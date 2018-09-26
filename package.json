@@ -1,0 +1,50 @@
+{
+  "name": "vue-nestable",
+  "version": "0.0.1",
+  "description": "vue-nestable",
+  "main": "dist/vue-nestable.js",
+  "scripts": {
+    "build": "rollup -c",
+    "lint": "eslint --ext .js,.vue .",
+    "fix": "eslint --ext .js,.vue . --fix"
+  },
+  "author": "Ralph Huwiler <ralph@huwiler.rocks>",
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "vue-nestable",
+    "vue nestable",
+    "vue tree"
+  ],
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rhwilr/vue-nestable"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "babel-eslint": "^10.0.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-minify": "^0.5.0",
+    "eslint": "^5.6.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^4.7.1",
+    "rollup": "^0.66.2",
+    "rollup-plugin-babel": "^4.0.2",
+    "rollup-plugin-commonjs": "^9.1.8",
+    "rollup-plugin-json": "^3.1.0",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-replace": "^2.0.0",
+    "rollup-plugin-uglify": "^6.0.0",
+    "rollup-plugin-vue": "^4.3.2",
+    "vue": "^2.4.2",
+    "vue-eslint-parser": "^3.2.2",
+    "vue-template-compiler": "^2.5.17"
+  }
+}
