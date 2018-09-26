@@ -35,7 +35,6 @@
 </template>
 
 <script type="text/babel">
-import Vue from 'vue'
 import nestableItem from './nestable-item.vue'
 import nestableHelpers from './nestable-helpers.js'
 import update from 'immutability-helper'
@@ -48,20 +47,6 @@ import {
   listWithChildren
 } from './utils.js'
 
-/*
-** Support passing down scopedSlots with v-bind
-** This feature will probably be added in a future Vue release,
-** https://github.com/vuejs/vue/pull/7765
-*/
-Vue.prototype._b = (function (bind) {
-  return function (data, tag, value, asProp, isSync) {
-    if (value && value.$scopedSlots) {
-      data.scopedSlots = value.$scopedSlots
-      delete value.$scopedSlots
-    }
-    return bind.apply(this, arguments)
-  }
-})(Vue.prototype._b)
 
 export default {
   components: {
