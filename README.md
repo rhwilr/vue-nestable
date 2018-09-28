@@ -23,6 +23,9 @@ Drag & drop hierarchical list made as a vue component with zero dependencies.
   * [Installation](#installation)
   * [Usage](#usage)
   * [Simple Example](#simple-example)
+  * [Advanced Example](#advanced-example)
+  * [Props](#props)
+  * [Events](#events)
 
 
 ## Demo
