@@ -9,8 +9,7 @@
           :index="index"
           :item="item"
           :options="itemOptions"
-          v-bind="{$scopedSlots}"
-        />
+          v-bind="{$scopedSlots}"/>
 
       </template>
     </ol>
@@ -21,12 +20,13 @@
         <ol
           :style="listStyles"
           class="nestable-list">
+
           <nestable-item
             :item="dragItem"
             :options="itemOptions"
             :is-copy="true"
-            v-bind="{$scopedSlots}"
-          />
+            v-bind="{$scopedSlots}"/>
+
         </ol>
       </div>
 
@@ -46,7 +46,6 @@ import {
   getTransformProps,
   listWithChildren
 } from './utils.js'
-
 
 export default {
   components: {
