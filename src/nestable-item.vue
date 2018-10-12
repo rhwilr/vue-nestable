@@ -2,7 +2,7 @@
   <li :class="itemClasses">
     <div
       class="nestable-item-name"
-      @mouseenter="options.dragItem ? options.onMouseEnter($event, item) : null">
+      @mouseenter="onMouseEnter">
 
       <slot :item="item"/>
     </div>
@@ -28,8 +28,12 @@
 </template>
 
 <script type="text/babel">
+import groupsObserver from './groups-observer.js'
+
 export default {
   name: 'NestableItem',
+
+  mixins: [groupsObserver],
 
   props: {
     item: {
@@ -58,6 +62,8 @@ export default {
     }
   },
 
+  inject: ['group'],
+
   computed: {
     isDragging () {
       let dragItem = this.options.dragItem
@@ -78,6 +84,15 @@ export default {
         `nestable-item${this.isCopy ? '-copy' : ''}-${this.item.id}`,
         this.isDragging ? 'is-dragging' : ''
       ]
+    }
+  },
+
+  methods: {
+    onMouseEnter (event) {
+      if (!this.options.dragItem) return
+
+      let item = this.item || this.$parent.item
+      this.notifyMouseEnter(this.group, event, item)
     }
   }
 }

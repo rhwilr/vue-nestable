@@ -7,7 +7,11 @@
 </template>
 
 <script type="text/babel">
+import groupsObserver from './groups-observer.js'
+
 export default {
+  mixins: [groupsObserver],
+  
   props: {
     item: {
       type: Object,
@@ -16,12 +20,12 @@ export default {
     }
   },
 
-  inject: ['onDragStart'],
+  inject: ['group'],
 
   methods: {
     dragstart (event) {
       let item = this.item || this.$parent.item
-      this.onDragStart(event, item)
+      this.notifyDragStart(this.group, event, item)
     }
   }
 }

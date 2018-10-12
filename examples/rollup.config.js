@@ -20,7 +20,8 @@ let plugins = [
     css: './dist/assets/css/app.css'
   }),
   buble({
-    objectAssign: 'Object.assign'
+    objectAssign: 'Object.assign',
+    transforms: { dangerousForOf: true }
   }),
   nodeResolve({
     jsnext: true,
