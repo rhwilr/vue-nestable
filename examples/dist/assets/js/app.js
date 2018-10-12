@@ -8234,9 +8234,9 @@
               }
             };
 
-            var CrossList = {render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"side-by-side"},[_c('div',{staticClass:"component-example"},[_c('vue-nestable',{scopedSlots:_vm._u([{key:"default",fn:function(ref){
+            var CrossList = {render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"side-by-side"},[_c('div',{staticClass:"component-example"},[_c('vue-nestable',{attrs:{"cross-list":"","group":"cross"},scopedSlots:_vm._u([{key:"default",fn:function(ref){
             var item = ref.item;
-            return _c('vue-nestable-handle',{attrs:{"item":item}},[_vm._v(" "+_vm._s(item.text)+" ")])}}]),model:{value:(_vm.nestableItems1),callback:function ($$v) {_vm.nestableItems1=$$v;},expression:"nestableItems1"}})],1),_vm._v(" "),_c('div',{staticClass:"component-example"},[_c('vue-nestable',{scopedSlots:_vm._u([{key:"default",fn:function(ref){
+            return _c('vue-nestable-handle',{attrs:{"item":item}},[_vm._v(" "+_vm._s(item.text)+" ")])}}]),model:{value:(_vm.nestableItems1),callback:function ($$v) {_vm.nestableItems1=$$v;},expression:"nestableItems1"}})],1),_vm._v(" "),_c('div',{staticClass:"component-example"},[_c('vue-nestable',{attrs:{"cross-list":"","group":"cross"},scopedSlots:_vm._u([{key:"default",fn:function(ref){
             var item = ref.item;
             return _c('vue-nestable-handle',{attrs:{"item":item}},[_vm._v(" "+_vm._s(item.text)+" ")])}}]),model:{value:(_vm.nestableItems2),callback:function ($$v) {_vm.nestableItems2=$$v;},expression:"nestableItems2"}})],1)])},staticRenderFns: [],_scopeId: 'data-v-8e123404',
               data: function data () {
@@ -8279,8 +8279,60 @@
               }
             };
 
-            var nestableItem = {render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('li',{class:_vm.itemClasses},[_c('div',{staticClass:"nestable-item-name",on:{"mouseenter":function($event){_vm.options.dragItem ? _vm.options.onMouseEnter($event, _vm.item) : null;}}},[_vm._t("default",null,{item:_vm.item})],2),_vm._v(" "),(_vm.hasChildren)?_c('ol',{staticClass:"nestable-list"},[_vm._l((_vm.item[_vm.options.childrenProp]),function(item,index){return [_c('nestable-item',_vm._b({key:index,attrs:{"index":index,"item":item,"options":_vm.options,"is-copy":_vm.isCopy}},'nestable-item',{$scopedSlots: _vm.$scopedSlots},false))]})],2):_vm._e()])},staticRenderFns: [],
+            var store = {};
+
+            var groupsObserver = {
+              methods: {
+                registerNestable: function registerNestable (nestable) {
+                  var storeGroup = this._getByGroup(nestable.group);
+
+                  storeGroup.onDragStartListeners.push(nestable.onDragStart);
+                  storeGroup.onMouseEnterListeners.push(nestable.onMouseEnter);
+                },
+
+                notifyDragStart: function notifyDragStart (group, event, item) {
+                  var storeGroup = this._getByGroup(group);
+
+                  for (var i = 0, list = storeGroup.onDragStartListeners; i < list.length; i += 1) {
+                    var listener = list[i];
+
+                    listener(event, item);
+                  }
+                },
+
+                notifyMouseEnter: function notifyMouseEnter (group, event, item) {
+                  var storeGroup = this._getByGroup(group);
+
+                  for (var i = 0, list = storeGroup.onMouseEnterListeners; i < list.length; i += 1) {
+                    var listener = list[i];
+
+                    listener(event, item);
+                  }
+                },
+
+                _getByGroup: function _getByGroup (group) {
+                  // the group already exists, return the reference
+                  if (store[group]) {
+                    return store[group]
+                  }
+
+                  // otherwise create a new object for the group
+                  store[group] = {
+                    onDragStartListeners: [],
+                    onMouseEnterListeners: [],
+                    onDragStart: [],
+                    dragItem: null
+                  };
+
+                  return store[group]
+                }
+              }
+            };
+
+            var nestableItem = {render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('li',{class:_vm.itemClasses},[_c('div',{staticClass:"nestable-item-name",on:{"mouseenter":_vm.onMouseEnter}},[_vm._t("default",null,{item:_vm.item})],2),_vm._v(" "),(_vm.hasChildren)?_c('ol',{staticClass:"nestable-list"},[_vm._l((_vm.item[_vm.options.childrenProp]),function(item,index){return [_c('nestable-item',_vm._b({key:index,attrs:{"index":index,"item":item,"options":_vm.options,"is-copy":_vm.isCopy}},'nestable-item',{$scopedSlots: _vm.$scopedSlots},false))]})],2):_vm._e()])},staticRenderFns: [],
               name: 'NestableItem',
+
+              mixins: [groupsObserver],
 
               props: {
                 item: {
@@ -8309,6 +8361,8 @@
                 }
               },
 
+              inject: ['group'],
+
               computed: {
                 isDragging: function isDragging () {
                   var dragItem = this.options.dragItem;
@@ -8329,6 +8383,15 @@
                     ("nestable-item" + (this.isCopy ? '-copy' : '') + "-" + (this.item.id)),
                     this.isDragging ? 'is-dragging' : ''
                   ]
+                }
+              },
+
+              methods: {
+                onMouseEnter: function onMouseEnter (event) {
+                  if (!this.options.dragItem) { return }
+
+                  var item = this.item || this.$parent.item;
+                  this.notifyMouseEnter(this.group, event, item);
                 }
               }
             };
@@ -8853,7 +8916,7 @@
                 nestableItem: nestableItem
               },
 
-              mixins: [nestableHelpers],
+              mixins: [nestableHelpers, groupsObserver],
 
               props: {
                 value: {
@@ -8890,9 +8953,8 @@
 
               provide: function provide () {
                 return {
-                  childrenProp: this.childrenProp,
-                  onDragStart: this.onDragStart,
-                  onMouseEnter: this.onMouseEnter
+                  group: this.group,
+                  childrenProp: this.childrenProp
                 }
               },
 
@@ -8915,9 +8977,7 @@
                 itemOptions: function itemOptions () {
                   return {
                     dragItem: this.dragItem,
-                    childrenProp: this.childrenProp,
-                    onDragStart: this.onDragStart,
-                    onMouseEnter: this.onMouseEnter
+                    childrenProp: this.childrenProp
                   }
                 },
                 listStyles: function listStyles () {
@@ -8942,6 +9002,8 @@
                 var items = listWithChildren(this.value, this.childrenProp);
                 this.$emit('input', items);
                 this.isDirty = false;
+
+                this.registerNestable(this);
               },
 
               beforeDestroy: function beforeDestroy () {
@@ -8971,7 +9033,6 @@
                   this.el = closest(event.target, '.nestable-item');
 
                   this.startTrackMouse();
-                  // this.onMouseMove(event)
 
                   this.dragItem = item;
                   this.itemsOld = this.value;
@@ -9184,6 +9245,8 @@
             };
 
             var nestableHandle = {render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{attrs:{"draggable":""},on:{"dragstart":_vm.dragstart}},[_vm._t("default")],2)},staticRenderFns: [],
+              mixins: [groupsObserver],
+              
               props: {
                 item: {
                   type: Object,
@@ -9192,12 +9255,12 @@
                 }
               },
 
-              inject: ['onDragStart'],
+              inject: ['group'],
 
               methods: {
                 dragstart: function dragstart (event) {
                   var item = this.item || this.$parent.item;
-                  this.onDragStart(event, item);
+                  this.notifyDragStart(this.group, event, item);
                 }
               }
             };

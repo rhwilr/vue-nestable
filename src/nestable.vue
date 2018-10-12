@@ -37,6 +37,7 @@
 <script type="text/babel">
 import nestableItem from './nestable-item.vue'
 import nestableHelpers from './nestable-helpers.js'
+import groupsObserver from './groups-observer.js'
 import update from 'immutability-helper'
 
 import {
@@ -52,7 +53,7 @@ export default {
     nestableItem
   },
 
-  mixins: [nestableHelpers],
+  mixins: [nestableHelpers, groupsObserver],
 
   props: {
     value: {
@@ -89,9 +90,8 @@ export default {
 
   provide () {
     return {
-      childrenProp: this.childrenProp,
-      onDragStart: this.onDragStart,
-      onMouseEnter: this.onMouseEnter
+      group: this.group,
+      childrenProp: this.childrenProp
     }
   },
 
@@ -114,9 +114,7 @@ export default {
     itemOptions () {
       return {
         dragItem: this.dragItem,
-        childrenProp: this.childrenProp,
-        onDragStart: this.onDragStart,
-        onMouseEnter: this.onMouseEnter
+        childrenProp: this.childrenProp
       }
     },
     listStyles () {
@@ -143,6 +141,8 @@ export default {
     let items = listWithChildren(this.value, this.childrenProp)
     this.$emit('input', items)
     this.isDirty = false
+
+    this.registerNestable(this)
   },
 
   beforeDestroy () {
@@ -172,7 +172,6 @@ export default {
       this.el = closest(event.target, '.nestable-item')
 
       this.startTrackMouse()
-      // this.onMouseMove(event)
 
       this.dragItem = item
       this.itemsOld = this.value

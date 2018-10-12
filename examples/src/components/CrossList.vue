@@ -2,7 +2,10 @@
   <div class="side-by-side">
     <div class="component-example">
 
-      <vue-nestable v-model="nestableItems1">
+      <vue-nestable
+        v-model="nestableItems1"
+        cross-list
+        group="cross">
         <vue-nestable-handle
           slot-scope="{ item }"
           :item="item">
@@ -13,7 +16,10 @@
     </div>
      <div class="component-example">
 
-      <vue-nestable v-model="nestableItems2">
+      <vue-nestable
+        v-model="nestableItems2"
+        cross-list
+        group="cross">
         <vue-nestable-handle
           slot-scope="{ item }"
           :item="item">
