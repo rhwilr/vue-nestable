@@ -1,6 +1,6 @@
 # vue-nestable
 
-Drag & drop hierarchical list made as a vue component with zero dependencies.
+Drag & drop hierarchical list made as a vue component.
 
 [![NPM Version][npm-image]][npm-url]
 

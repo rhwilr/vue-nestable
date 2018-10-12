@@ -16,7 +16,9 @@
     "vue nestable",
     "vue tree"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "immutability-helper": "^2.8.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rhwilr/vue-nestable"
