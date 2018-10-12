@@ -1,10 +1,8 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('immutability-helper')) :
-  typeof define === 'function' && define.amd ? define(['immutability-helper'], factory) :
-  (factory(global.update));
-}(this, (function (update) { 'use strict';
-
-  update = update && update.hasOwnProperty('default') ? update['default'] : update;
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (factory());
+}(this, (function () { 'use strict';
 
   function _defineProperty(obj, key, value) {
     if (key in obj) {
@@ -60,37 +58,13 @@
     throw new TypeError("Invalid attempt to spread non-iterable instance");
   }
 
+  var store={};var groupsObserver = {methods:{registerNestable:function c(a){var b=this._getByGroup(a.group);b.onDragStartListeners.push(a.onDragStart),b.onMouseEnterListeners.push(a.onMouseEnter);},notifyDragStart:function k(a,b,c){var d=this._getByGroup(a),e=!0,f=!1,g=void 0;try{for(var h,i,j=d.onDragStartListeners[Symbol.iterator]();!(e=(h=j.next()).done);e=!0)i=h.value,i(b,c);}catch(a){f=!0,g=a;}finally{try{e||null==j.return||j.return();}finally{if(f)throw g}}},notifyMouseEnter:function k(a,b,c){var d=this._getByGroup(a),e=!0,f=!1,g=void 0;try{for(var h,i,j=d.onMouseEnterListeners[Symbol.iterator]();!(e=(h=j.next()).done);e=!0)i=h.value,i(b,c);}catch(a){f=!0,g=a;}finally{try{e||null==j.return||j.return();}finally{if(f)throw g}}},_getByGroup:function b(a){// the group already exists, return the reference
+  return store[a]?store[a]:(store[a]={onDragStartListeners:[],onMouseEnterListeners:[],onDragStart:[],dragItem:null},store[a]);// otherwise create a new object for the group
+  }}};
+
   //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  var script = {name:"NestableItem",props:{item:{type:Object,required:!0,default:function a(){return {}},validator:function b(a){// The item must have an id prop
-  return a.id!==void 0}},index:{type:Number,required:!1,default:null},isCopy:{type:Boolean,required:!1,default:!1},options:{type:Object,required:!1,default:function a(){return {}}}},computed:{isDragging:function b(){var a=this.options.dragItem;return !this.isCopy&&a&&a.id===this.item.id},hasChildren:function a(){return this.item[this.options.childrenProp]&&0<this.item[this.options.childrenProp].length},hasHandle:function a(){return !!this.$scopedSlots.handler},itemClasses:function a(){return ["nestable-item".concat(this.isCopy?"-copy":""),"nestable-item".concat(this.isCopy?"-copy":"","-").concat(this.item.id),this.isDragging?"is-dragging":""]}}};
+  var script = {name:"NestableItem",mixins:[groupsObserver],props:{item:{type:Object,required:!0,default:function a(){return {}},validator:function b(a){// The item must have an id prop
+  return a.id!==void 0}},index:{type:Number,required:!1,default:null},isCopy:{type:Boolean,required:!1,default:!1},options:{type:Object,required:!1,default:function a(){return {}}}},inject:["group"],computed:{isDragging:function b(){var a=this.options.dragItem;return !this.isCopy&&a&&a.id===this.item.id},hasChildren:function a(){return this.item[this.options.childrenProp]&&0<this.item[this.options.childrenProp].length},hasHandle:function a(){return !!this.$scopedSlots.handler},itemClasses:function a(){return ["nestable-item".concat(this.isCopy?"-copy":""),"nestable-item".concat(this.isCopy?"-copy":"","-").concat(this.item.id),this.isDragging?"is-dragging":""]}},methods:{onMouseEnter:function c(a){if(this.options.dragItem){var b=this.item||this.$parent.item;this.notifyMouseEnter(this.group,a,b);}}}};
 
   /* script */
               const __vue_script__ = script;
@@ -105,13 +79,7 @@
         "div",
         {
           staticClass: "nestable-item-name",
-          on: {
-            mouseenter: function($event) {
-              _vm.options.dragItem
-                ? _vm.options.onMouseEnter($event, _vm.item)
-                : null;
-            }
-          }
+          on: { mouseenter: _vm.onMouseEnter }
         },
         [_vm._t("default", null, { item: _vm.item })],
         2
@@ -222,12 +190,277 @@
   // }
   }};
 
+  /**
+   * Copyright (c) 2013-present, Facebook, Inc.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE file in the root directory of this source tree.
+   */
+  /**
+   * Use invariant() to assert state which your program assumes to be true.
+   *
+   * Provide sprintf-style format (only %s is supported) and arguments
+   * to provide information about what broke and what you were
+   * expecting.
+   *
+   * The invariant message will be stripped in production, but the invariant
+   * will remain to ensure logic does not differ in production.
+   */
+
+  var invariant = function (condition, format, a, b, c, d, e, f) {
+
+    if (!condition) {
+      var error;
+
+      if (format === undefined) {
+        error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
+      } else {
+        var args = [a, b, c, d, e, f];
+        var argIndex = 0;
+        error = new Error(format.replace(/%s/g, function () {
+          return args[argIndex++];
+        }));
+        error.name = 'Invariant Violation';
+      }
+
+      error.framesToPop = 1; // we don't care about invariant's own frame
+
+      throw error;
+    }
+  };
+
+  var browser = invariant;
+
+  var hasOwnProperty = Object.prototype.hasOwnProperty;
+  var splice = Array.prototype.splice;
+  var toString = Object.prototype.toString;
+
+  var type = function (obj) {
+    return toString.call(obj).slice(8, -1);
+  };
+
+  var assign = Object.assign ||
+  /* istanbul ignore next */
+  function assign(target, source) {
+    getAllKeys(source).forEach(function (key) {
+      if (hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    });
+    return target;
+  };
+
+  var getAllKeys = typeof Object.getOwnPropertySymbols === 'function' ? function (obj) {
+    return Object.keys(obj).concat(Object.getOwnPropertySymbols(obj));
+  } :
+  /* istanbul ignore next */
+  function (obj) {
+    return Object.keys(obj);
+  };
+  /* istanbul ignore next */
+
+  function copy(object) {
+    if (Array.isArray(object)) {
+      return assign(object.constructor(object.length), object);
+    } else if (type(object) === 'Map') {
+      return new Map(object);
+    } else if (type(object) === 'Set') {
+      return new Set(object);
+    } else if (object && typeof object === 'object') {
+      var prototype = Object.getPrototypeOf(object);
+      return assign(Object.create(prototype), object);
+    } else {
+      return object;
+    }
+  }
+
+  function newContext() {
+    var commands = assign({}, defaultCommands);
+
+    update.extend = function (directive, fn) {
+      commands[directive] = fn;
+    };
+
+    update.isEquals = function (a, b) {
+      return a === b;
+    };
+
+    return update;
+
+    function update(object, spec) {
+      if (typeof spec === 'function') {
+        spec = {
+          $apply: spec
+        };
+      }
+
+      if (!(Array.isArray(object) && Array.isArray(spec))) {
+        browser(!Array.isArray(spec), 'update(): You provided an invalid spec to update(). The spec may ' + 'not contain an array except as the value of $set, $push, $unshift, ' + '$splice or any custom command allowing an array value.');
+      }
+
+      browser(typeof spec === 'object' && spec !== null, 'update(): You provided an invalid spec to update(). The spec and ' + 'every included key path must be plain objects containing one of the ' + 'following commands: %s.', Object.keys(commands).join(', '));
+      var nextObject = object;
+      getAllKeys(spec).forEach(function (key) {
+        if (hasOwnProperty.call(commands, key)) {
+          var objectWasNextObject = object === nextObject;
+          nextObject = commands[key](spec[key], nextObject, spec, object);
+
+          if (objectWasNextObject && update.isEquals(nextObject, object)) {
+            nextObject = object;
+          }
+        } else {
+          var nextValueForKey = type(object) === 'Map' ? update(object.get(key), spec[key]) : update(object[key], spec[key]);
+          var nextObjectValue = type(nextObject) === 'Map' ? nextObject.get(key) : nextObject[key];
+
+          if (!update.isEquals(nextValueForKey, nextObjectValue) || typeof nextValueForKey === 'undefined' && !hasOwnProperty.call(object, key)) {
+            if (nextObject === object) {
+              nextObject = copy(object);
+            }
+
+            if (type(nextObject) === 'Map') {
+              nextObject.set(key, nextValueForKey);
+            } else {
+              nextObject[key] = nextValueForKey;
+            }
+          }
+        }
+      });
+      return nextObject;
+    }
+  }
+
+  var defaultCommands = {
+    $push: function (value, nextObject, spec) {
+      invariantPushAndUnshift(nextObject, spec, '$push');
+      return value.length ? nextObject.concat(value) : nextObject;
+    },
+    $unshift: function (value, nextObject, spec) {
+      invariantPushAndUnshift(nextObject, spec, '$unshift');
+      return value.length ? value.concat(nextObject) : nextObject;
+    },
+    $splice: function (value, nextObject, spec, originalObject) {
+      invariantSplices(nextObject, spec);
+      value.forEach(function (args) {
+        invariantSplice(args);
+        if (nextObject === originalObject && args.length) nextObject = copy(originalObject);
+        splice.apply(nextObject, args);
+      });
+      return nextObject;
+    },
+    $set: function (value, nextObject, spec) {
+      invariantSet(spec);
+      return value;
+    },
+    $toggle: function (targets, nextObject) {
+      invariantSpecArray(targets, '$toggle');
+      var nextObjectCopy = targets.length ? copy(nextObject) : nextObject;
+      targets.forEach(function (target) {
+        nextObjectCopy[target] = !nextObject[target];
+      });
+      return nextObjectCopy;
+    },
+    $unset: function (value, nextObject, spec, originalObject) {
+      invariantSpecArray(value, '$unset');
+      value.forEach(function (key) {
+        if (Object.hasOwnProperty.call(nextObject, key)) {
+          if (nextObject === originalObject) nextObject = copy(originalObject);
+          delete nextObject[key];
+        }
+      });
+      return nextObject;
+    },
+    $add: function (value, nextObject, spec, originalObject) {
+      invariantMapOrSet(nextObject, '$add');
+      invariantSpecArray(value, '$add');
+
+      if (type(nextObject) === 'Map') {
+        value.forEach(function (pair) {
+          var key = pair[0];
+          var value = pair[1];
+          if (nextObject === originalObject && nextObject.get(key) !== value) nextObject = copy(originalObject);
+          nextObject.set(key, value);
+        });
+      } else {
+        value.forEach(function (value) {
+          if (nextObject === originalObject && !nextObject.has(value)) nextObject = copy(originalObject);
+          nextObject.add(value);
+        });
+      }
+
+      return nextObject;
+    },
+    $remove: function (value, nextObject, spec, originalObject) {
+      invariantMapOrSet(nextObject, '$remove');
+      invariantSpecArray(value, '$remove');
+      value.forEach(function (key) {
+        if (nextObject === originalObject && nextObject.has(key)) nextObject = copy(originalObject);
+        nextObject.delete(key);
+      });
+      return nextObject;
+    },
+    $merge: function (value, nextObject, spec, originalObject) {
+      invariantMerge(nextObject, value);
+      getAllKeys(value).forEach(function (key) {
+        if (value[key] !== nextObject[key]) {
+          if (nextObject === originalObject) nextObject = copy(originalObject);
+          nextObject[key] = value[key];
+        }
+      });
+      return nextObject;
+    },
+    $apply: function (value, original) {
+      invariantApply(value);
+      return value(original);
+    }
+  };
+  var contextForExport = newContext();
+  var immutabilityHelper = contextForExport;
+  var default_1 = contextForExport;
+  var newContext_1 = newContext; // invariants
+
+  function invariantPushAndUnshift(value, spec, command) {
+    browser(Array.isArray(value), 'update(): expected target of %s to be an array; got %s.', command, value);
+    invariantSpecArray(spec[command], command);
+  }
+
+  function invariantSpecArray(spec, command) {
+    browser(Array.isArray(spec), 'update(): expected spec of %s to be an array; got %s. ' + 'Did you forget to wrap your parameter in an array?', command, spec);
+  }
+
+  function invariantSplices(value, spec) {
+    browser(Array.isArray(value), 'Expected $splice target to be an array; got %s', value);
+    invariantSplice(spec['$splice']);
+  }
+
+  function invariantSplice(value) {
+    browser(Array.isArray(value), 'update(): expected spec of $splice to be an array of arrays; got %s. ' + 'Did you forget to wrap your parameters in an array?', value);
+  }
+
+  function invariantApply(fn) {
+    browser(typeof fn === 'function', 'update(): expected spec of $apply to be a function; got %s.', fn);
+  }
+
+  function invariantSet(spec) {
+    browser(Object.keys(spec).length === 1, 'Cannot have more than one key in an object with $set');
+  }
+
+  function invariantMerge(target, specValue) {
+    browser(specValue && typeof specValue === 'object', 'update(): $merge expects a spec of type \'object\'; got %s', specValue);
+    browser(target && typeof target === 'object', 'update(): $merge expects a target of type \'object\'; got %s', target);
+  }
+
+  function invariantMapOrSet(target, command) {
+    var typeOfTarget = type(target);
+    browser(typeOfTarget === 'Map' || typeOfTarget === 'Set', 'update(): %s expects a target of type Set or Map; got %s', command, typeOfTarget);
+  }
+  immutabilityHelper.default = default_1;
+  immutabilityHelper.newContext = newContext_1;
+
   var closest=function(a,b){// closest(e.target, '.field')
   for(;a;){if(a.matches&&a.matches(b))return a;a=a.parentNode;}return null};var getOffsetRect=function(a){var b=Math.round,c=a.getBoundingClientRect(),d=document.body,e=document.documentElement,f=window.pageYOffset||e.scrollTop||d.scrollTop,g=window.pageXOffset||e.scrollLeft||d.scrollLeft,h=e.clientTop||d.clientTop||0,i=e.clientLeft||d.clientLeft||0,j=c.top+f-h,k=c.left+g-i;return {top:b(j),left:b(k)}};var getTotalScroll=function(a){for(var b=0,c=0;a=a.parentNode;)b+=a.scrollTop||0,c+=a.scrollLeft||0;return {top:b,left:c}};var getTransformProps=function(a,b){return {transform:"translate("+a+"px, "+b+"px)"}};var listWithChildren=function(a,b){return a.map(function(a){return _objectSpread({},a,_defineProperty({},b,a[b]?listWithChildren(a[b],b):[]))})};
 
-  var script$1 = {components:{nestableItem:nestableItem},mixins:[nestableHelpers],props:{value:{type:Array,required:!0,default:function a(){return []}},threshold:{type:Number,required:!1,default:30},maxDepth:{type:Number,required:!1,default:10},group:{type:[String,Number],required:!1,default:function a(){return Math.random().toString(36).slice(2)}},childrenProp:{type:String,required:!1,default:"children"},collapsed:{type:Boolean,required:!1,default:!1}},provide:function a(){return {childrenProp:this.childrenProp,onDragStart:this.onDragStart,onMouseEnter:this.onMouseEnter}},data:function a(){return {itemsOld:null,// revert to copy in case of cancelling drag
-  dragItem:null,mouse:{last:{x:0},shift:{x:0}},el:null,elCopyStyles:null,isDirty:!1,collapsedGroups:[]}},computed:{itemOptions:function a(){return {dragItem:this.dragItem,childrenProp:this.childrenProp,onDragStart:this.onDragStart,onMouseEnter:this.onMouseEnter}},listStyles:function(){var a=document.querySelector(".nestable-"+this.group+" .nestable-item-"+this.dragItem.id),b={};return a&&(b.width="".concat(a.clientWidth,"px")),this.elCopyStyles&&(b=_objectSpread({},b,this.elCopyStyles)),b}},created:function b(){var a=listWithChildren(this.value,this.childrenProp);this.$emit("input",a),this.isDirty=!1;},beforeDestroy:function a(){this.stopTrackMouse();},methods:{startTrackMouse:function a(){document.addEventListener("mousemove",this.onMouseMove),document.addEventListener("mouseup",this.onDragEnd),document.addEventListener("keydown",this.onKeyDown);},stopTrackMouse:function a(){document.removeEventListener("mousemove",this.onMouseMove),document.removeEventListener("mouseup",this.onDragEnd),document.removeEventListener("keydown",this.onKeyDown),this.elCopyStyles=null;},onDragStart:function c(a,b){// this.onMouseMove(event)
-  a&&(a.preventDefault(),a.stopPropagation()),this.el=closest(a.target,".nestable-item"),this.startTrackMouse(),this.dragItem=b,this.itemsOld=this.value;},onDragEnd:function c(a,b){a&&a.preventDefault(),this.stopTrackMouse(),this.el=null,b?this.dragRevert():this.dragApply();},onKeyDown:function b(a){27===a.which&&this.onDragEnd(null,!0);},onMouseMove:function i(a){var b=Math.abs,c=a.clientX,d=a.clientY,e=getTransformProps(c,d),f=document.querySelector(".nestable-"+this.group+" .nestable-drag-layer > .nestable-list");if(!this.elCopyStyles){var g=getOffsetRect(this.el),h=getTotalScroll(this.el);this.elCopyStyles=_objectSpread({marginTop:"".concat(g.top-d-h.top,"px"),marginLeft:"".concat(g.left-c-h.left,"px")},e);}else{for(var j in this.elCopyStyles=_objectSpread({},this.elCopyStyles,e),e)e.hasOwnProperty(j)&&(f.style[j]=e[j]);var k=c-this.mouse.last.x;0<=k&&0<=this.mouse.shift.x||0>=k&&0>=this.mouse.shift.x?this.mouse.shift.x+=k:this.mouse.shift.x=0,this.mouse.last.x=c,b(this.mouse.shift.x)>this.threshold&&(0<this.mouse.shift.x?this.tryIncreaseDepth(this.dragItem):this.tryDecreaseDepth(this.dragItem),this.mouse.shift.x=0);}},moveItem:function i(a){var b=a.dragItem,c=a.pathFrom,d=a.pathTo,e=this.getRealNextPath(c,d),f=this.getSplicePath(c,{numToRemove:1,childrenProp:this.childrenProp}),g=this.getSplicePath(e,{numToRemove:0,itemsToInsert:[b],childrenProp:this.childrenProp}),h=this.value;h=update(h,f),h=update(h,g),this.isDirty=!0,this.$emit("input",h);},tryIncreaseDepth:function e(a){var b=this.getPathById(a.id),c=b[b.length-1],d=b.length+this.getItemDepth(a);// has previous sibling and isn't at max depth
+  var script$1 = {components:{nestableItem:nestableItem},mixins:[nestableHelpers,groupsObserver],props:{value:{type:Array,required:!0,default:function a(){return []}},threshold:{type:Number,required:!1,default:30},maxDepth:{type:Number,required:!1,default:10},group:{type:[String,Number],required:!1,default:function a(){return Math.random().toString(36).slice(2)}},childrenProp:{type:String,required:!1,default:"children"},collapsed:{type:Boolean,required:!1,default:!1}},provide:function a(){return {group:this.group,childrenProp:this.childrenProp}},data:function a(){return {itemsOld:null,// revert to copy in case of cancelling drag
+  dragItem:null,mouse:{last:{x:0},shift:{x:0}},el:null,elCopyStyles:null,isDirty:!1,collapsedGroups:[]}},computed:{itemOptions:function a(){return {dragItem:this.dragItem,childrenProp:this.childrenProp}},listStyles:function(){var a=document.querySelector(".nestable-"+this.group+" .nestable-item-"+this.dragItem.id),b={};return a&&(b.width="".concat(a.clientWidth,"px")),this.elCopyStyles&&(b=_objectSpread({},b,this.elCopyStyles)),b}},created:function b(){var a=listWithChildren(this.value,this.childrenProp);this.$emit("input",a),this.isDirty=!1,this.registerNestable(this);},beforeDestroy:function a(){this.stopTrackMouse();},methods:{startTrackMouse:function a(){document.addEventListener("mousemove",this.onMouseMove),document.addEventListener("mouseup",this.onDragEnd),document.addEventListener("keydown",this.onKeyDown);},stopTrackMouse:function a(){document.removeEventListener("mousemove",this.onMouseMove),document.removeEventListener("mouseup",this.onDragEnd),document.removeEventListener("keydown",this.onKeyDown),this.elCopyStyles=null;},onDragStart:function c(a,b){a&&(a.preventDefault(),a.stopPropagation()),this.el=closest(a.target,".nestable-item"),this.startTrackMouse(),this.dragItem=b,this.itemsOld=this.value;},onDragEnd:function c(a,b){a&&a.preventDefault(),this.stopTrackMouse(),this.el=null,b?this.dragRevert():this.dragApply();},onKeyDown:function b(a){27===a.which&&this.onDragEnd(null,!0);},onMouseMove:function i(a){var b=Math.abs,c=a.clientX,d=a.clientY,e=getTransformProps(c,d),f=document.querySelector(".nestable-"+this.group+" .nestable-drag-layer > .nestable-list");if(!this.elCopyStyles){var g=getOffsetRect(this.el),h=getTotalScroll(this.el);this.elCopyStyles=_objectSpread({marginTop:"".concat(g.top-d-h.top,"px"),marginLeft:"".concat(g.left-c-h.left,"px")},e);}else{for(var j in this.elCopyStyles=_objectSpread({},this.elCopyStyles,e),e)e.hasOwnProperty(j)&&(f.style[j]=e[j]);var k=c-this.mouse.last.x;0<=k&&0<=this.mouse.shift.x||0>=k&&0>=this.mouse.shift.x?this.mouse.shift.x+=k:this.mouse.shift.x=0,this.mouse.last.x=c,b(this.mouse.shift.x)>this.threshold&&(0<this.mouse.shift.x?this.tryIncreaseDepth(this.dragItem):this.tryDecreaseDepth(this.dragItem),this.mouse.shift.x=0);}},moveItem:function i(a){var b=a.dragItem,c=a.pathFrom,d=a.pathTo,e=this.getRealNextPath(c,d),f=this.getSplicePath(c,{numToRemove:1,childrenProp:this.childrenProp}),g=this.getSplicePath(e,{numToRemove:0,itemsToInsert:[b],childrenProp:this.childrenProp}),h=this.value;h=immutabilityHelper(h,f),h=immutabilityHelper(h,g),this.isDirty=!0,this.$emit("input",h);},tryIncreaseDepth:function e(a){var b=this.getPathById(a.id),c=b[b.length-1],d=b.length+this.getItemDepth(a);// has previous sibling and isn't at max depth
   if(0<c&&d<=this.maxDepth){var f=this.getItemByPath(b.slice(0,-1).concat(c-1));// previous sibling is not collapsed
   if(!f[this.childrenProp].length||!this.isCollapsed(f)){var g=b.slice(0,-1).concat(c-1).concat(f[this.childrenProp].length);// if collapsed by default
   // and was no children here
@@ -376,14 +609,7 @@
     );
 
   //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  var script$2 = {props:{item:{type:Object,required:!1,default:function a(){return {}}}},inject:["onDragStart"],methods:{dragstart:function c(a){var b=this.item||this.$parent.item;this.onDragStart(a,b);}}};
+  var script$2 = {mixins:[groupsObserver],props:{item:{type:Object,required:!1,default:function a(){return {}}}},inject:["group"],methods:{dragstart:function c(a){var b=this.item||this.$parent.item;this.notifyDragStart(this.group,a,b);}}};
 
   /* script */
               const __vue_script__$2 = script$2;
