@@ -175,6 +175,8 @@ export default {
 
       this.dragItem = item
       this.itemsOld = this.value
+
+      this.onMouseMove(event)
     },
 
     onDragEnd (event, isCancel) {
