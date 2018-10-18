@@ -151,6 +151,11 @@ vue-nestable is extremly customizable. For example you don't have to make the en
 | keyProp      | String           | 'id'          | Optional name of property with identifier.                                                                                                                                                                                      |
 | childrenProp | String           | 'children'    | Optional name of property with children.                                                                                                                                                                                        |
 
+## Slots
+| Slot Name   | Description                                                                     |
+| :---------- | :------------------------------------------------------------------------------ |
+| placeholder | Lets you define a custom template that is used when no elements are in the list |
+
 ## Events
 | Event | Parameters | Description                         |
 | :---- | :--------- | :---------------------------------- |
