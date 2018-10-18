@@ -58,13 +58,13 @@
     throw new TypeError("Invalid attempt to spread non-iterable instance");
   }
 
-  var store={};var groupsObserver = {methods:{registerNestable:function c(a){var b=this._getByGroup(a.group);b.onDragStartListeners.push(a.onDragStart),b.onMouseEnterListeners.push(a.onMouseEnter);},notifyDragStart:function k(a,b,c){var d=this._getByGroup(a),e=!0,f=!1,g=void 0;try{for(var h,i,j=d.onDragStartListeners[Symbol.iterator]();!(e=(h=j.next()).done);e=!0)i=h.value,i(b,c);}catch(a){f=!0,g=a;}finally{try{e||null==j.return||j.return();}finally{if(f)throw g}}},notifyMouseEnter:function k(a,b,c){var d=this._getByGroup(a),e=!0,f=!1,g=void 0;try{for(var h,i,j=d.onMouseEnterListeners[Symbol.iterator]();!(e=(h=j.next()).done);e=!0)i=h.value,i(b,c);}catch(a){f=!0,g=a;}finally{try{e||null==j.return||j.return();}finally{if(f)throw g}}},_getByGroup:function b(a){// the group already exists, return the reference
+  var store={};var groupsObserver = {methods:{registerNestable:function c(a){var b=this._getByGroup(a.group);b.onDragStartListeners.push(a.onDragStart),b.onMouseEnterListeners.push(a.onMouseEnter);},notifyDragStart:function k(a,b,c){var d=this._getByGroup(a),e=!0,f=!1,g=void 0;try{for(var h,i,j=d.onDragStartListeners[Symbol.iterator]();!(e=(h=j.next()).done);e=!0)i=h.value,i(b,c);}catch(a){f=!0,g=a;}finally{try{e||null==j.return||j.return();}finally{if(f)throw g}}},notifyMouseEnter:function l(a,b,c,d){var e=this._getByGroup(a),f=!0,g=!1,h=void 0;try{for(var i,j,k=e.onMouseEnterListeners[Symbol.iterator]();!(f=(i=k.next()).done);f=!0)j=i.value,j(b,c,d);}catch(a){g=!0,h=a;}finally{try{f||null==k.return||k.return();}finally{if(g)throw h}}},_getByGroup:function b(a){// the group already exists, return the reference
   return store[a]?store[a]:(store[a]={onDragStartListeners:[],onMouseEnterListeners:[],onDragStart:[],dragItem:null},store[a]);// otherwise create a new object for the group
   }}};
 
   //
   var script = {name:"NestableItem",mixins:[groupsObserver],props:{item:{type:Object,required:!0,default:function a(){return {}},validator:function b(a){// The item must have an id prop
-  return a.id!==void 0}},index:{type:Number,required:!1,default:null},isCopy:{type:Boolean,required:!1,default:!1},options:{type:Object,required:!1,default:function a(){return {}}}},inject:["group"],computed:{isDragging:function b(){var a=this.options.dragItem;return !this.isCopy&&a&&a.id===this.item.id},hasChildren:function a(){return this.item[this.options.childrenProp]&&0<this.item[this.options.childrenProp].length},hasHandle:function a(){return !!this.$scopedSlots.handler},itemClasses:function a(){return ["nestable-item".concat(this.isCopy?"-copy":""),"nestable-item".concat(this.isCopy?"-copy":"","-").concat(this.item.id),this.isDragging?"is-dragging":""]}},methods:{onMouseEnter:function c(a){if(this.options.dragItem){var b=this.item||this.$parent.item;this.notifyMouseEnter(this.group,a,b);}}}};
+  return a.id!==void 0}},index:{type:Number,required:!1,default:null},isCopy:{type:Boolean,required:!1,default:!1},options:{type:Object,required:!1,default:function a(){return {}}}},inject:["listId","group"],computed:{isDragging:function b(){var a=this.options.dragItem;return !this.isCopy&&a&&a.id===this.item.id},hasChildren:function a(){return this.item[this.options.childrenProp]&&0<this.item[this.options.childrenProp].length},hasHandle:function a(){return !!this.$scopedSlots.handler},itemClasses:function a(){return ["nestable-item".concat(this.isCopy?"-copy":""),"nestable-item".concat(this.isCopy?"-copy":"","-").concat(this.item.id),this.isDragging?"is-dragging":""]}},methods:{onMouseEnter:function c(a){if(this.options.dragItem){var b=this.item||this.$parent.item;this.notifyMouseEnter(this.group,a,this.listId,b);}}}};
 
   /* script */
               const __vue_script__ = script;
@@ -189,6 +189,80 @@
   //   };
   // }
   }};
+
+  //
+  var script$1 = {name:"NestableItem",mixins:[groupsObserver],props:{index:{type:Number,required:!1,default:null},options:{type:Object,required:!1,default:function a(){return {}}}},inject:["listId","group"],computed:{isDragging:function b(){var a=this.options.dragItem;return a}},methods:{onMouseEnter:function b(a){this.options.dragItem&&this.notifyMouseEnter(this.group,a,this.listId,null);}}};
+
+  /* script */
+              const __vue_script__$1 = script$1;
+              
+  /* template */
+  var __vue_render__$1 = function() {
+    var _vm = this;
+    var _h = _vm.$createElement;
+    var _c = _vm._self._c || _h;
+    return _c("li", [
+      _c(
+        "div",
+        {
+          staticClass: "nestable-list-empty",
+          on: { mouseenter: _vm.onMouseEnter }
+        },
+        [_vm._t("default")],
+        2
+      )
+    ])
+  };
+  var __vue_staticRenderFns__$1 = [];
+  __vue_render__$1._withStripped = true;
+
+    /* style */
+    const __vue_inject_styles__$1 = undefined;
+    /* scoped */
+    const __vue_scope_id__$1 = undefined;
+    /* module identifier */
+    const __vue_module_identifier__$1 = undefined;
+    /* functional template */
+    const __vue_is_functional_template__$1 = false;
+    /* component normalizer */
+    function __vue_normalize__$1(
+      template, style, script,
+      scope, functional, moduleIdentifier,
+      createInjector, createInjectorSSR
+    ) {
+      const component = (typeof script === 'function' ? script.options : script) || {};
+
+      // For security concerns, we use only base name in production mode.
+      component.__file = "/home/ralph/Tinker/vue-nestable/src/placeholder.vue";
+
+      if (!component.render) {
+        component.render = template.render;
+        component.staticRenderFns = template.staticRenderFns;
+        component._compiled = true;
+
+        if (functional) component.functional = true;
+      }
+
+      component._scopeId = scope;
+
+      return component
+    }
+    /* style inject */
+    
+    /* style inject SSR */
+    
+
+    
+    var placeholder = __vue_normalize__$1(
+      { render: __vue_render__$1, staticRenderFns: __vue_staticRenderFns__$1 },
+      __vue_inject_styles__$1,
+      __vue_script__$1,
+      __vue_scope_id__$1,
+      __vue_is_functional_template__$1,
+      __vue_module_identifier__$1,
+      undefined,
+      undefined
+    );
 
   /**
    * Copyright (c) 2013-present, Facebook, Inc.
@@ -459,8 +533,8 @@
   var closest=function(a,b){// closest(e.target, '.field')
   for(;a;){if(a.matches&&a.matches(b))return a;a=a.parentNode;}return null};var getOffsetRect=function(a){var b=Math.round,c=a.getBoundingClientRect(),d=document.body,e=document.documentElement,f=window.pageYOffset||e.scrollTop||d.scrollTop,g=window.pageXOffset||e.scrollLeft||d.scrollLeft,h=e.clientTop||d.clientTop||0,i=e.clientLeft||d.clientLeft||0,j=c.top+f-h,k=c.left+g-i;return {top:b(j),left:b(k)}};var getTotalScroll=function(a){for(var b=0,c=0;a=a.parentNode;)b+=a.scrollTop||0,c+=a.scrollLeft||0;return {top:b,left:c}};var getTransformProps=function(a,b){return {transform:"translate("+a+"px, "+b+"px)"}};var listWithChildren=function(a,b){return a.map(function(a){return _objectSpread({},a,_defineProperty({},b,a[b]?listWithChildren(a[b],b):[]))})};
 
-  var script$1 = {components:{nestableItem:nestableItem},mixins:[nestableHelpers,groupsObserver],props:{value:{type:Array,required:!0,default:function a(){return []}},threshold:{type:Number,required:!1,default:30},maxDepth:{type:Number,required:!1,default:10},group:{type:[String,Number],required:!1,default:function a(){return Math.random().toString(36).slice(2)}},childrenProp:{type:String,required:!1,default:"children"},collapsed:{type:Boolean,required:!1,default:!1}},provide:function a(){return {group:this.group,childrenProp:this.childrenProp}},data:function a(){return {itemsOld:null,// revert to copy in case of cancelling drag
-  dragItem:null,mouse:{last:{x:0},shift:{x:0}},el:null,elCopyStyles:null,isDirty:!1,collapsedGroups:[]}},computed:{itemOptions:function a(){return {dragItem:this.dragItem,childrenProp:this.childrenProp}},listStyles:function(){var a=document.querySelector(".nestable-"+this.group+" .nestable-item-"+this.dragItem.id),b={};return a&&(b.width="".concat(a.clientWidth,"px")),this.elCopyStyles&&(b=_objectSpread({},b,this.elCopyStyles)),b}},created:function b(){var a=listWithChildren(this.value,this.childrenProp);this.$emit("input",a),this.isDirty=!1,this.registerNestable(this);},beforeDestroy:function a(){this.stopTrackMouse();},methods:{startTrackMouse:function a(){document.addEventListener("mousemove",this.onMouseMove),document.addEventListener("mouseup",this.onDragEnd),document.addEventListener("keydown",this.onKeyDown);},stopTrackMouse:function a(){document.removeEventListener("mousemove",this.onMouseMove),document.removeEventListener("mouseup",this.onDragEnd),document.removeEventListener("keydown",this.onKeyDown),this.elCopyStyles=null;},onDragStart:function c(a,b){a&&(a.preventDefault(),a.stopPropagation()),this.el=closest(a.target,".nestable-item"),this.startTrackMouse(),this.dragItem=b,this.itemsOld=this.value,this.onMouseMove(a);},onDragEnd:function c(a,b){a&&a.preventDefault(),this.stopTrackMouse(),this.el=null,b?this.dragRevert():this.dragApply();},onKeyDown:function b(a){27===a.which&&this.onDragEnd(null,!0);},onMouseMove:function i(a){var b=Math.abs,c=a.clientX,d=a.clientY,e=getTransformProps(c,d),f=document.querySelector(".nestable-"+this.group+" .nestable-drag-layer > .nestable-list");if(!this.elCopyStyles){var g=getOffsetRect(this.el),h=getTotalScroll(this.el);this.elCopyStyles=_objectSpread({marginTop:"".concat(g.top-d-h.top,"px"),marginLeft:"".concat(g.left-c-h.left,"px")},e);}else{for(var j in this.elCopyStyles=_objectSpread({},this.elCopyStyles,e),e)e.hasOwnProperty(j)&&(f.style[j]=e[j]);var k=c-this.mouse.last.x;0<=k&&0<=this.mouse.shift.x||0>=k&&0>=this.mouse.shift.x?this.mouse.shift.x+=k:this.mouse.shift.x=0,this.mouse.last.x=c,b(this.mouse.shift.x)>this.threshold&&(0<this.mouse.shift.x?this.tryIncreaseDepth(this.dragItem):this.tryDecreaseDepth(this.dragItem),this.mouse.shift.x=0);}},moveItem:function i(a){var b=a.dragItem,c=a.pathFrom,d=a.pathTo,e=this.getRealNextPath(c,d),f=this.getSplicePath(c,{numToRemove:1,childrenProp:this.childrenProp}),g=this.getSplicePath(e,{numToRemove:0,itemsToInsert:[b],childrenProp:this.childrenProp}),h=this.value;h=immutabilityHelper(h,f),h=immutabilityHelper(h,g),this.isDirty=!0,this.$emit("input",h);},tryIncreaseDepth:function e(a){var b=this.getPathById(a.id),c=b[b.length-1],d=b.length+this.getItemDepth(a);// has previous sibling and isn't at max depth
+  var script$2 = {components:{nestableItem:nestableItem,placeholder:placeholder},mixins:[nestableHelpers,groupsObserver],props:{value:{type:Array,required:!0,default:function a(){return []}},threshold:{type:Number,required:!1,default:30},maxDepth:{type:Number,required:!1,default:10},group:{type:[String,Number],required:!1,default:function a(){return Math.random().toString(36).slice(2)}},childrenProp:{type:String,required:!1,default:"children"},collapsed:{type:Boolean,required:!1,default:!1}},provide:function a(){return {listId:this.listId,group:this.group,childrenProp:this.childrenProp}},data:function a(){return {itemsOld:null,// revert to copy in case of cancelling drag
+  dragItem:null,mouse:{last:{x:0},shift:{x:0}},el:null,elCopyStyles:null,isDirty:!1,collapsedGroups:[],listId:Math.random().toString(36).slice(2)}},computed:{listIsEmpty:function a(){return 0===this.value.length},itemOptions:function a(){return {dragItem:this.dragItem,childrenProp:this.childrenProp}},listStyles:function(){var a=document.querySelector(".nestable-"+this.group+" .nestable-item-"+this.dragItem.id),b={};return a&&(b.width="".concat(a.clientWidth,"px")),this.elCopyStyles&&(b=_objectSpread({},b,this.elCopyStyles)),b}},created:function b(){var a=listWithChildren(this.value,this.childrenProp);this.$emit("input",a),this.isDirty=!1,this.registerNestable(this);},beforeDestroy:function a(){this.stopTrackMouse();},methods:{startTrackMouse:function a(){document.addEventListener("mousemove",this.onMouseMove),document.addEventListener("mouseup",this.onDragEnd),document.addEventListener("keydown",this.onKeyDown);},stopTrackMouse:function a(){document.removeEventListener("mousemove",this.onMouseMove),document.removeEventListener("mouseup",this.onDragEnd),document.removeEventListener("keydown",this.onKeyDown),this.elCopyStyles=null;},onDragStart:function c(a,b){a&&(a.preventDefault(),a.stopPropagation()),this.el=closest(a.target,".nestable-item"),this.startTrackMouse(),this.dragItem=b,this.itemsOld=this.value,this.onMouseMove(a);},onDragEnd:function c(a,b){a&&a.preventDefault(),this.stopTrackMouse(),this.el=null,b?this.dragRevert():this.dragApply();},onKeyDown:function b(a){27===a.which&&this.onDragEnd(null,!0);},onMouseMove:function i(a){var b=Math.abs,c=a.clientX,d=a.clientY,e=getTransformProps(c,d),f=document.querySelector(".nestable-"+this.group+" .nestable-drag-layer > .nestable-list");if(!this.elCopyStyles){var g=getOffsetRect(this.el),h=getTotalScroll(this.el);this.elCopyStyles=_objectSpread({marginTop:"".concat(g.top-d-h.top,"px"),marginLeft:"".concat(g.left-c-h.left,"px")},e);}else{for(var j in this.elCopyStyles=_objectSpread({},this.elCopyStyles,e),e)e.hasOwnProperty(j)&&(f.style[j]=e[j]);var k=c-this.mouse.last.x;0<=k&&0<=this.mouse.shift.x||0>=k&&0>=this.mouse.shift.x?this.mouse.shift.x+=k:this.mouse.shift.x=0,this.mouse.last.x=c,b(this.mouse.shift.x)>this.threshold&&(0<this.mouse.shift.x?this.tryIncreaseDepth(this.dragItem):this.tryDecreaseDepth(this.dragItem),this.mouse.shift.x=0);}},moveItem:function i(a){var b=a.dragItem,c=a.pathFrom,d=a.pathTo,e=this.getRealNextPath(c,d),f=this.getSplicePath(c,{numToRemove:1,childrenProp:this.childrenProp}),g=this.getSplicePath(e,{numToRemove:0,itemsToInsert:[b],childrenProp:this.childrenProp}),h=this.value;h=immutabilityHelper(h,f),h=immutabilityHelper(h,g),this.isDirty=!0,this.$emit("input",h);},tryIncreaseDepth:function e(a){var b=this.getPathById(a.id),c=b[b.length-1],d=b.length+this.getItemDepth(a);// has previous sibling and isn't at max depth
   if(0<c&&d<=this.maxDepth){var f=this.getItemByPath(b.slice(0,-1).concat(c-1));// previous sibling is not collapsed
   if(!f[this.childrenProp].length||!this.isCollapsed(f)){var g=b.slice(0,-1).concat(c-1).concat(f[this.childrenProp].length);// if collapsed by default
   // and was no children here
@@ -480,16 +554,24 @@
   //   collapseProps = this.onToggleCollapse(parent, true);
   // }
   // this.moveItem({ dragItem, pathFrom, pathTo }, collapseProps)
-  f[f.length-1]+=1,this.moveItem({dragItem:a,pathFrom:b,pathTo:f});}}},onMouseEnter:function h(a,b){a&&(a.preventDefault(),a.stopPropagation());var c=this.dragItem;if(c.id!==b.id){var d=this.getPathById(c.id),e=this.getPathById(b.id),f=this.getRealNextPath(d,e).length+(this.getItemDepth(c)-1);if(!(f>this.maxDepth)){// if collapsed by default
+  f[f.length-1]+=1,this.moveItem({dragItem:a,pathFrom:b,pathTo:f});}}},onMouseEnter:function i(a,b,c){a&&(a.preventDefault(),a.stopPropagation());var d=this.dragItem;// if the event does not have a valid item that belongs to this list, ignore it
+  if(null===c||d.id!==c.id){// calculate the path the item is comming from
+  var e=this.getPathById(d.id);// if the event is not emitted from this list and the item was not removed from this list,
+  // we can ignore this event
+  if(b===this.listId||0!==e.length){var f=null===c?0<e.length?[]:[0]:this.getPathById(c.id);// if we are dragging to an empty list, we need to remove
+  // the item from the origin list and append it to the start of the new list
+  // if the move to the new depth is greater than max depth,
+  // don't move
+  var g=this.getRealNextPath(e,f).length+(this.getItemDepth(d)-1);if(!(g>this.maxDepth)){// if collapsed by default
   // and move last (by count) child
   // remove parent node from list of open nodes
-  var g={};if(this.collapsed&&1<d.length){var i=this.getItemByPath(d.slice(0,-1));1===i[this.childrenProp].length&&(g=this.onToggleCollapse(i,!0));}this.moveItem({dragItem:c,pathFrom:d,pathTo:e},g);}}},isCollapsed:function b(a){return !!(-1<this.collapsedGroups.indexOf(a.id)^this.collapsed)},dragApply:function a(){this.$emit("change",this.dragItem),this.itemsOld=null,this.dragItem=null,this.isDirty=!1;},dragRevert:function a(){this.$emit("input",this.itemsOld),this.itemsOld=null,this.dragItem=null,this.isDirty=!1;}}};
+  var h={};if(this.collapsed&&1<e.length){var j=this.getItemByPath(e.slice(0,-1));1===j[this.childrenProp].length&&(h=this.onToggleCollapse(j,!0));}this.moveItem({dragItem:d,pathFrom:e,pathTo:f},h);}}}},isCollapsed:function b(a){return !!(-1<this.collapsedGroups.indexOf(a.id)^this.collapsed)},dragApply:function a(){this.$emit("change",this.dragItem),this.itemsOld=null,this.dragItem=null,this.isDirty=!1;},dragRevert:function a(){this.$emit("input",this.itemsOld),this.itemsOld=null,this.dragItem=null,this.isDirty=!1;}}};
 
   /* script */
-              const __vue_script__$1 = script$1;
+              const __vue_script__$2 = script$2;
               
   /* template */
-  var __vue_render__$1 = function() {
+  var __vue_render__$2 = function() {
     var _vm = this;
     var _h = _vm.$createElement;
     var _c = _vm._self._c || _h;
@@ -501,6 +583,15 @@
           "ol",
           { staticClass: "nestable-list nestable-group" },
           [
+            _vm.listIsEmpty
+              ? _c(
+                  "placeholder",
+                  { attrs: { options: _vm.itemOptions } },
+                  [_vm._t("placeholder", [_vm._v("No content")])],
+                  2
+                )
+              : _vm._e(),
+            _vm._v(" "),
             _vm._l(_vm.value, function(item, index) {
               return [
                 _c(
@@ -557,19 +648,19 @@
       2
     )
   };
-  var __vue_staticRenderFns__$1 = [];
-  __vue_render__$1._withStripped = true;
+  var __vue_staticRenderFns__$2 = [];
+  __vue_render__$2._withStripped = true;
 
     /* style */
-    const __vue_inject_styles__$1 = undefined;
+    const __vue_inject_styles__$2 = undefined;
     /* scoped */
-    const __vue_scope_id__$1 = undefined;
+    const __vue_scope_id__$2 = undefined;
     /* module identifier */
-    const __vue_module_identifier__$1 = undefined;
+    const __vue_module_identifier__$2 = undefined;
     /* functional template */
-    const __vue_is_functional_template__$1 = false;
+    const __vue_is_functional_template__$2 = false;
     /* component normalizer */
-    function __vue_normalize__$1(
+    function __vue_normalize__$2(
       template, style, script,
       scope, functional, moduleIdentifier,
       createInjector, createInjectorSSR
@@ -597,25 +688,25 @@
     
 
     
-    var nestable = __vue_normalize__$1(
-      { render: __vue_render__$1, staticRenderFns: __vue_staticRenderFns__$1 },
-      __vue_inject_styles__$1,
-      __vue_script__$1,
-      __vue_scope_id__$1,
-      __vue_is_functional_template__$1,
-      __vue_module_identifier__$1,
+    var nestable = __vue_normalize__$2(
+      { render: __vue_render__$2, staticRenderFns: __vue_staticRenderFns__$2 },
+      __vue_inject_styles__$2,
+      __vue_script__$2,
+      __vue_scope_id__$2,
+      __vue_is_functional_template__$2,
+      __vue_module_identifier__$2,
       undefined,
       undefined
     );
 
   //
-  var script$2 = {mixins:[groupsObserver],props:{item:{type:Object,required:!1,default:function a(){return {}}}},inject:["group"],methods:{dragstart:function c(a){var b=this.item||this.$parent.item;this.notifyDragStart(this.group,a,b);}}};
+  var script$3 = {mixins:[groupsObserver],props:{item:{type:Object,required:!1,default:function a(){return {}}}},inject:["group"],methods:{dragstart:function c(a){var b=this.item||this.$parent.item;this.notifyDragStart(this.group,a,b);}}};
 
   /* script */
-              const __vue_script__$2 = script$2;
+              const __vue_script__$3 = script$3;
               
   /* template */
-  var __vue_render__$2 = function() {
+  var __vue_render__$3 = function() {
     var _vm = this;
     var _h = _vm.$createElement;
     var _c = _vm._self._c || _h;
@@ -626,19 +717,19 @@
       2
     )
   };
-  var __vue_staticRenderFns__$2 = [];
-  __vue_render__$2._withStripped = true;
+  var __vue_staticRenderFns__$3 = [];
+  __vue_render__$3._withStripped = true;
 
     /* style */
-    const __vue_inject_styles__$2 = undefined;
+    const __vue_inject_styles__$3 = undefined;
     /* scoped */
-    const __vue_scope_id__$2 = undefined;
+    const __vue_scope_id__$3 = undefined;
     /* module identifier */
-    const __vue_module_identifier__$2 = undefined;
+    const __vue_module_identifier__$3 = undefined;
     /* functional template */
-    const __vue_is_functional_template__$2 = false;
+    const __vue_is_functional_template__$3 = false;
     /* component normalizer */
-    function __vue_normalize__$2(
+    function __vue_normalize__$3(
       template, style, script,
       scope, functional, moduleIdentifier,
       createInjector, createInjectorSSR
@@ -666,13 +757,13 @@
     
 
     
-    var nestableHandle = __vue_normalize__$2(
-      { render: __vue_render__$2, staticRenderFns: __vue_staticRenderFns__$2 },
-      __vue_inject_styles__$2,
-      __vue_script__$2,
-      __vue_scope_id__$2,
-      __vue_is_functional_template__$2,
-      __vue_module_identifier__$2,
+    var nestableHandle = __vue_normalize__$3(
+      { render: __vue_render__$3, staticRenderFns: __vue_staticRenderFns__$3 },
+      __vue_inject_styles__$3,
+      __vue_script__$3,
+      __vue_scope_id__$3,
+      __vue_is_functional_template__$3,
+      __vue_module_identifier__$3,
       undefined,
       undefined
     );
