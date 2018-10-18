@@ -25,6 +25,7 @@ Drag & drop hierarchical list made as a vue component.
   * [Simple Example](#simple-example)
   * [Advanced Example](#advanced-example)
   * [Props](#props)
+  * [Slots](#slots)
   * [Events](#events)
 
 
