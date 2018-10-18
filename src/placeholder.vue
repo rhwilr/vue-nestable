@@ -29,7 +29,7 @@ export default {
     }
   },
 
-  inject: ['group'],
+  inject: ['listId', 'group'],
 
   computed: {
     isDragging () {
@@ -42,7 +42,7 @@ export default {
     onMouseEnter (event) {
       if (!this.options.dragItem) return
 
-      this.notifyMouseEnter(this.group, event, null)
+      this.notifyMouseEnter(this.group, event, this.listId, null)
     }
   }
 }
