@@ -8,6 +8,7 @@
     "dev": "cross-env NODE_ENV=development rollup -cw"
   },
   "dependencies": {
+    "rollup-plugin-postcss": "^1.6.2",
     "vue": "^2.5.16"
   },
   "devDependencies": {
