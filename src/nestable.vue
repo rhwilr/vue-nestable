@@ -100,6 +100,7 @@ export default {
 
   provide () {
     return {
+      listId: this.listId,
       group: this.group,
       childrenProp: this.childrenProp
     }
@@ -116,7 +117,8 @@ export default {
       el: null,
       elCopyStyles: null,
       isDirty: false,
-      collapsedGroups: []
+      collapsedGroups: [],
+      listId: Math.random().toString(36).slice(2)
     }
   },
 
@@ -341,20 +343,24 @@ export default {
       }
     },
 
-    onMouseEnter (event, item) {
+    onMouseEnter (event, eventList, item, ) {
       if (event) {
         event.preventDefault()
         event.stopPropagation()
       }
 
-
       const dragItem = this.dragItem
+      // if the event does not have a valid item that belongs to this list, ignore it
       if (item !== null && dragItem.id === item.id) return
 
+      // calculate the path the item is comming from
       const pathFrom = this.getPathById(dragItem.id)
 
-      let pathTo
+      // if the event is not emitted from this list and the item was not removed from this list,
+      // we can ignore this event
+      if (eventList !== this.listId && pathFrom.length === 0) return
 
+      let pathTo
       // if we are dragging to an empty list, we need to remove
       // the item from the origin list and append it to the start of the new list
       if (item === null) {

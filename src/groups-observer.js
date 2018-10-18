@@ -17,11 +17,11 @@ export default {
       }
     },
 
-    notifyMouseEnter (group, event, item) {
+    notifyMouseEnter (group, event, eventList, item) {
       let storeGroup = this._getByGroup(group)
 
       for (let listener of storeGroup.onMouseEnterListeners) {
-        listener(event, item)
+        listener(event, eventList, item)
       }
     },
 

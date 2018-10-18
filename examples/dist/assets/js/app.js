@@ -8314,13 +8314,13 @@
                   }
                 },
 
-                notifyMouseEnter: function notifyMouseEnter (group, event, item) {
+                notifyMouseEnter: function notifyMouseEnter (group, event, eventList, item) {
                   var storeGroup = this._getByGroup(group);
 
                   for (var i = 0, list = storeGroup.onMouseEnterListeners; i < list.length; i += 1) {
                     var listener = list[i];
 
-                    listener(event, item);
+                    listener(event, eventList, item);
                   }
                 },
 
@@ -8375,7 +8375,7 @@
                 }
               },
 
-              inject: ['group'],
+              inject: ['listId', 'group'],
 
               computed: {
                 isDragging: function isDragging () {
@@ -8405,7 +8405,7 @@
                   if (!this.options.dragItem) { return }
 
                   var item = this.item || this.$parent.item;
-                  this.notifyMouseEnter(this.group, event, item);
+                  this.notifyMouseEnter(this.group, event, this.listId, item);
                 }
               }
             };
@@ -8569,7 +8569,7 @@
                 }
               },
 
-              inject: ['group'],
+              inject: ['listId', 'group'],
 
               computed: {
                 isDragging: function isDragging () {
@@ -8582,7 +8582,7 @@
                 onMouseEnter: function onMouseEnter (event) {
                   if (!this.options.dragItem) { return }
 
-                  this.notifyMouseEnter(this.group, event, null);
+                  this.notifyMouseEnter(this.group, event, this.listId, null);
                 }
               }
             };
@@ -9004,6 +9004,7 @@
 
               provide: function provide () {
                 return {
+                  listId: this.listId,
                   group: this.group,
                   childrenProp: this.childrenProp
                 }
@@ -9020,7 +9021,8 @@
                   el: null,
                   elCopyStyles: null,
                   isDirty: false,
-                  collapsedGroups: []
+                  collapsedGroups: [],
+                  listId: Math.random().toString(36).slice(2)
                 }
               },
 
@@ -9244,20 +9246,24 @@
                   }
                 },
 
-                onMouseEnter: function onMouseEnter (event, item) {
+                onMouseEnter: function onMouseEnter (event, eventList, item ) {
                   if (event) {
                     event.preventDefault();
                     event.stopPropagation();
                   }
 
-
                   var dragItem = this.dragItem;
+                  // if the event does not have a valid item that belongs to this list, ignore it
                   if (item !== null && dragItem.id === item.id) { return }
 
+                  // calculate the path the item is comming from
                   var pathFrom = this.getPathById(dragItem.id);
 
-                  var pathTo;
+                  // if the event is not emitted from this list and the item was not removed from this list,
+                  // we can ignore this event
+                  if (eventList !== this.listId && pathFrom.length === 0) { return }
 
+                  var pathTo;
                   // if we are dragging to an empty list, we need to remove
                   // the item from the origin list and append it to the start of the new list
                   if (item === null) {
