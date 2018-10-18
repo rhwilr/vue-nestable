@@ -8270,12 +8270,26 @@
               }
             };
 
-            var App = {render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app"},[_c('simple'),_vm._v(" "),_c('advanced'),_vm._v(" "),_c('cross-list')],1)},staticRenderFns: [],
+            var NoItems = {render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"component-example"},[_c('vue-nestable',{attrs:{"cross-list":"","group":"cross"},scopedSlots:_vm._u([{key:"default",fn:function(ref){
+            var item = ref.item;
+            return _c('vue-nestable-handle',{attrs:{"item":item}},[_vm._v(" "+_vm._s(item.text)+" ")])}}]),model:{value:(_vm.nestableItems1),callback:function ($$v) {_vm.nestableItems1=$$v;},expression:"nestableItems1"}},[_c('div',{attrs:{"slot":"placeholder"},slot:"placeholder"},[_c('h2',[_vm._v("This list is empty")]),_vm._v(" "),_c('p',[_vm._v("You can add items by dragging them here from the list above.")])])])],1)},staticRenderFns: [],_scopeId: 'data-v-74d834ff',
+              data: function data () {
+                return {
+                  nestableItems1: [
+                  ]
+                }
+              }
+            };
+
+            Promise.resolve().then(function () { return vueNestable; });
+
+            var App = {render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app"},[_c('h1',[_vm._v("A simple list")]),_vm._v(" "),_c('simple'),_vm._v(" "),_c('h1',[_vm._v("Advanced list with custom drag handle")]),_vm._v(" "),_c('advanced'),_vm._v(" "),_c('h1',[_vm._v("Draggable across different lists")]),_vm._v(" "),_c('cross-list'),_vm._v(" "),_c('h1',[_vm._v("Customize the placeholder text")]),_vm._v(" "),_c('no-items')],1)},staticRenderFns: [],
               name: 'app',
               components: {
                 Simple: Simple,
                 Advanced: Advanced,
-                CrossList: CrossList
+                CrossList: CrossList,
+                NoItems: NoItems
               }
             };
 
@@ -8534,6 +8548,42 @@
                 //   };
                 // }
 
+              }
+            };
+
+            var placeholder$1 = {render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('li',[_c('div',{staticClass:"nestable-list-empty",on:{"mouseenter":_vm.onMouseEnter}},[_vm._t("default")],2)])},staticRenderFns: [],
+              name: 'NestableItem',
+
+              mixins: [groupsObserver],
+
+              props: {
+                index: {
+                  type: Number,
+                  required: false,
+                  default: null
+                },
+                options: {
+                  type: Object,
+                  required: false,
+                  default: function () { return ({}); }
+                }
+              },
+
+              inject: ['group'],
+
+              computed: {
+                isDragging: function isDragging () {
+                  var dragItem = this.options.dragItem;
+                  return dragItem
+                }
+              },
+
+              methods: {
+                onMouseEnter: function onMouseEnter (event) {
+                  if (!this.options.dragItem) { return }
+
+                  this.notifyMouseEnter(this.group, event, null);
+                }
               }
             };
 
@@ -8911,9 +8961,10 @@
               })
             };
 
-            var nestable = {render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:['nestable', ("nestable-" + (_vm.group))]},[_c('ol',{staticClass:"nestable-list nestable-group"},[_vm._l((_vm.value),function(item,index){return [_c('nestable-item',_vm._b({key:index,attrs:{"index":index,"item":item,"options":_vm.itemOptions}},'nestable-item',{$scopedSlots: _vm.$scopedSlots},false))]})],2),_vm._v(" "),(_vm.dragItem)?[_c('div',{staticClass:"nestable-drag-layer"},[_c('ol',{staticClass:"nestable-list",style:(_vm.listStyles)},[_c('nestable-item',_vm._b({attrs:{"item":_vm.dragItem,"options":_vm.itemOptions,"is-copy":true}},'nestable-item',{$scopedSlots: _vm.$scopedSlots},false))],1)])]:_vm._e()],2)},staticRenderFns: [],
+            var nestable = {render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:['nestable', ("nestable-" + (_vm.group))]},[_c('ol',{staticClass:"nestable-list nestable-group"},[(_vm.listIsEmpty)?_c('placeholder',{attrs:{"options":_vm.itemOptions}},[_vm._t("placeholder",[_vm._v("No content")])],2):_vm._e(),_vm._v(" "),_vm._l((_vm.value),function(item,index){return [_c('nestable-item',_vm._b({key:index,attrs:{"index":index,"item":item,"options":_vm.itemOptions}},'nestable-item',{$scopedSlots: _vm.$scopedSlots},false))]})],2),_vm._v(" "),(_vm.dragItem)?[_c('div',{staticClass:"nestable-drag-layer"},[_c('ol',{staticClass:"nestable-list",style:(_vm.listStyles)},[_c('nestable-item',_vm._b({attrs:{"item":_vm.dragItem,"options":_vm.itemOptions,"is-copy":true}},'nestable-item',{$scopedSlots: _vm.$scopedSlots},false))],1)])]:_vm._e()],2)},staticRenderFns: [],
               components: {
-                nestableItem: nestableItem
+                nestableItem: nestableItem,
+                placeholder: placeholder$1
               },
 
               mixins: [nestableHelpers, groupsObserver],
@@ -8974,6 +9025,9 @@
               },
 
               computed: {
+                listIsEmpty: function listIsEmpty () {
+                  return this.value.length === 0
+                },
                 itemOptions: function itemOptions () {
                   return {
                     dragItem: this.dragItem,
@@ -9036,6 +9090,8 @@
 
                   this.dragItem = item;
                   this.itemsOld = this.value;
+
+                  this.onMouseMove(event);
                 },
 
                 onDragEnd: function onDragEnd (event, isCancel) {
@@ -9194,11 +9250,21 @@
                     event.stopPropagation();
                   }
 
+
                   var dragItem = this.dragItem;
-                  if (dragItem.id === item.id) { return }
+                  if (item !== null && dragItem.id === item.id) { return }
 
                   var pathFrom = this.getPathById(dragItem.id);
-                  var pathTo = this.getPathById(item.id);
+
+                  var pathTo;
+
+                  // if we are dragging to an empty list, we need to remove
+                  // the item from the origin list and append it to the start of the new list
+                  if (item === null) {
+                    pathTo = pathFrom.length > 0 ? [] :  [0];
+                  } else {
+                    pathTo = this.getPathById(item.id);
+                  }
 
                   // if the move to the new depth is greater than max depth,
                   // don't move
@@ -9292,6 +9358,40 @@
             new Vue({
               render: function (h) { return h(App); }
             }).$mount('#app');
+
+            function styleInject(css, ref) {
+              if ( ref === void 0 ) { ref = {}; }
+              var insertAt = ref.insertAt;
+
+              if (!css || typeof document === 'undefined') { return; }
+
+              var head = document.head || document.getElementsByTagName('head')[0];
+              var style = document.createElement('style');
+              style.type = 'text/css';
+
+              if (insertAt === 'top') {
+                if (head.firstChild) {
+                  head.insertBefore(style, head.firstChild);
+                } else {
+                  head.appendChild(style);
+                }
+              } else {
+                head.appendChild(style);
+              }
+
+              if (style.styleSheet) {
+                style.styleSheet.cssText = css;
+              } else {
+                style.appendChild(document.createTextNode(css));
+              }
+            }
+
+            var css = "/*\n* Style for nestable\n*/\n.nestable {\n  position: relative;\n}\n.nestable .nestable-list {\n  margin: 0;\n  padding: 0 0 0 40px;\n  list-style-type: none;\n}\n.nestable > .nestable-list {\n  padding: 0;\n}\n.nestable-item,\n.nestable-item-copy {\n  margin: 10px 0 0;\n}\n.nestable-item:first-child,\n.nestable-item-copy:first-child {\n  margin-top: 0;\n}\n.nestable-item .nestable-list,\n.nestable-item-copy .nestable-list {\n  margin-top: 10px;\n}\n.nestable-item {\n  position: relative;\n}\n.nestable-item.is-dragging .nestable-list {\n  pointer-events: none;\n}\n.nestable-item.is-dragging * {\n  opacity: 0;\n  filter: alpha(opacity=0);\n}\n.nestable-item.is-dragging:before {\n  content: ' ';\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(106, 127, 233, 0.274);\n  border: 1px dashed rgb(73, 100, 241);\n  -webkit-border-radius: 5px;\n  border-radius: 5px;\n}\n.nestable-drag-layer {\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 100;\n  pointer-events: none;\n}\n.nestable-drag-layer > .nestable-list {\n  position: absolute;\n  top: 0;\n  left: 0;\n  padding: 0;\n  background-color: rgba(106, 127, 233, 0.274);\n}\n.nestable [draggable=\"true\"] {\n  cursor: move;\n}\n";
+            styleInject(css);
+
+            var vueNestable = /*#__PURE__*/Object.freeze({
+                        default: css
+            });
 
 })));
 //# sourceMappingURL=app.js.map

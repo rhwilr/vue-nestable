@@ -2,6 +2,7 @@ import path from 'path'
 import alias from 'rollup-plugin-alias'
 import vue from 'rollup-plugin-vue'
 import buble from 'rollup-plugin-buble'
+import postcss from 'rollup-plugin-postcss'
 import nodeResolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import nodeGlobals from 'rollup-plugin-node-globals'
@@ -15,6 +16,9 @@ let plugins = [
     vue$: 'vue/dist/vue.common.js',
     '@': path.resolve('./src/'),
     resolve: ['.js', '.vue']
+  }),
+  postcss({
+    plugins: []
   }),
   vue({
     css: './dist/assets/css/app.css'

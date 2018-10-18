@@ -1,6 +1,14 @@
 <template>
   <div :class="['nestable', `nestable-${group}`]">
     <ol class="nestable-list nestable-group">
+      <!-- No items in list -->
+      <placeholder 
+        v-if="listIsEmpty"
+        :options="itemOptions">
+        <slot name="placeholder">No content</slot>
+      </placeholder>
+
+      <!-- Render items -->
       <template
         v-for="(item, index) in value">
 
@@ -38,6 +46,7 @@
 import nestableItem from './nestable-item.vue'
 import nestableHelpers from './nestable-helpers.js'
 import groupsObserver from './groups-observer.js'
+import placeholder from './placeholder.vue'
 import update from 'immutability-helper'
 
 import {
@@ -50,7 +59,8 @@ import {
 
 export default {
   components: {
-    nestableItem
+    nestableItem,
+    placeholder
   },
 
   mixins: [nestableHelpers, groupsObserver],
@@ -111,6 +121,9 @@ export default {
   },
 
   computed: {
+    listIsEmpty () {
+      return this.value.length === 0
+    },
     itemOptions () {
       return {
         dragItem: this.dragItem,
@@ -334,11 +347,21 @@ export default {
         event.stopPropagation()
       }
 
+
       const dragItem = this.dragItem
-      if (dragItem.id === item.id) return
+      if (item !== null && dragItem.id === item.id) return
 
       const pathFrom = this.getPathById(dragItem.id)
-      const pathTo = this.getPathById(item.id)
+
+      let pathTo
+
+      // if we are dragging to an empty list, we need to remove
+      // the item from the origin list and append it to the start of the new list
+      if (item === null) {
+        pathTo = pathFrom.length > 0 ? [] :  [0]
+      } else {
+        pathTo = this.getPathById(item.id)
+      }
 
       // if the move to the new depth is greater than max depth,
       // don't move
