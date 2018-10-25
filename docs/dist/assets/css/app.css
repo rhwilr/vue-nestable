@@ -1,86 +1,12 @@
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-* Style for examples
-*/
-body {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f3f3f4;
-}
-
-.app {
-    color: #444;
-    margin-top: 3em;
-    max-width: 800px;
-    flex: 1;
-    font-family: Helvetica, sans-serif;
-    display: flex;
-    flex-direction: column;
-}
-
-.component-example {
-    border-radius: 4px;
-    box-shadow: 0 2px 3px 0 rgba(16, 17, 23, .1), 0 0 1px 0 rgba(16, 17, 23, .1);
-    background-color: white;
-    color: #49494d;
-    padding: 1em;
-    flex: 1;
-    margin: 1em;
-}
-.side-by-side {
-  display: flex;
-}
-h1 {
-  margin-bottom: 0;
-}
-
-
-
 /*# sourceMappingURL=Simple.vue.map */
 
 
 /*# sourceMappingURL=Advanced.vue.map */
 
 
-/*# sourceMappingURL=CrossList.vue.map */
-
-
 /*# sourceMappingURL=NoItems.vue.map */
+
+
+/*# sourceMappingURL=CrossList.vue.map */

@@ -8281,10 +8281,13 @@
               }
             };
 
+            // import styles
             Promise.resolve().then(function () { return vueNestable; });
+            Promise.resolve().then(function () { return docs; });
 
-            var App = {render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app"},[_c('h1',[_vm._v("A simple list")]),_vm._v(" "),_c('simple'),_vm._v(" "),_c('h1',[_vm._v("Advanced list with custom drag handle")]),_vm._v(" "),_c('advanced'),_vm._v(" "),_c('h1',[_vm._v("Draggable across different lists")]),_vm._v(" "),_c('cross-list'),_vm._v(" "),_c('h1',[_vm._v("Customize the placeholder text")]),_vm._v(" "),_c('no-items')],1)},staticRenderFns: [],
+            var App = {render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"content"},[_c('h1',[_vm._v("A simple list")]),_vm._v(" "),_c('simple'),_vm._v(" "),_c('h1',[_vm._v("Advanced list with custom drag handle")]),_vm._v(" "),_c('advanced'),_vm._v(" "),_c('h1',[_vm._v("Draggable across different lists")]),_vm._v(" "),_c('cross-list'),_vm._v(" "),_c('h1',[_vm._v("Customize the placeholder text")]),_vm._v(" "),_c('no-items')],1)])},staticRenderFns: [function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"header"},[_c('h1',[_vm._v("vue-nestable")]),_vm._v(" "),_c('div',{staticClass:"command"},[_vm._v("npm install --save vue-nestable")]),_vm._v(" "),_c('div',{staticClass:"description"},[_vm._v("Drag & drop hierarchical list made as a vue component")]),_vm._v(" "),_c('section',{staticClass:"nav"},[_c('a',{attrs:{"href":"https://github.com/rhwilr/vue-nestable#vue-nestable"}},[_vm._v("Documentation")]),_vm._v(" "),_c('a',{attrs:{"href":"https://github.com/rhwilr/vue-nestable/issues"}},[_vm._v("Report an issue")])])])}],
               name: 'app',
+
               components: {
                 Simple: Simple,
                 Advanced: Advanced,
@@ -9397,6 +9400,13 @@
 
             var vueNestable = /*#__PURE__*/Object.freeze({
                         default: css
+            });
+
+            var css$1 = "/*\n* Default styles\n*/\nh1, h2 {\n  font-weight: 400;\n}\n\nh1 {\n  text-align: center;\n  margin: 0 0 32px;\n}\n\n\n/*\n* Header\n*/\nbody {\n  display: flex;\n  align-items: flex-start;\n  justify-content: center;\n  height: 100vh;\n  margin: 0;\n  background-color: #f3f3f4;\n}\n\n.app {\n  font-family: Helvetica, sans-serif;\n  display: flex;\n  flex-direction: column;\n  flex: 1;\n}\n\n.header {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n\n  background: #415ad4;\n  color: #f3f3f4;\n  padding: 32px;\n}\n\n.command {\n  background: #2c44bd;\n  color: #fff;\n  font-family: monospace;\n  margin: 12px auto;\n  border-radius: 2px;\n  padding: 12px 62px;\n  box-sizing: border-box;\n}\n\n.description {\n  margin-top: 24px;\n}\n\nsection.nav {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center;\n  margin-top: 24px;\n}\n\nsection.nav a:hover {\n  background: #5b70d6;\n}\nsection.nav a {\n  display: inline-block;\n  padding: 8px 16px;\n  color: #fff;\n  background: #5166cf;\n  border-radius: 3px;\n}\nsection.nav a:not(:last-child) {\n  margin-right: 8px;\n}\na {\n  text-decoration: none;\n  cursor: pointer;\n}\n\n/*\n* Content and components\n*/\n\n.content {\n  color: #444;\n  margin: auto;\n  margin-top: 3em;\n  max-width: 800px;\n  flex: 1;\n  display: flex;\n  flex-direction: column;\n}\n\n.component-example {\n  border-radius: 4px;\n  box-shadow: 0 2px 3px 0 rgba(16, 17, 23, 0.1), 0 0 1px 0 rgba(16, 17, 23, 0.1);\n  background-color: white;\n  color: #49494d;\n  padding: 1em;\n  flex: 1;\n  margin: 1em;\n}\n.side-by-side {\n  display: flex;\n}\n";
+            styleInject(css$1);
+
+            var docs = /*#__PURE__*/Object.freeze({
+                        default: css$1
             });
 
 })));
