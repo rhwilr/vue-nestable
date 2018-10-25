@@ -1,5 +1,5 @@
 {
-  "name": "examples",
+  "name": "vue-nestable-docs",
   "version": "1.0.0",
   "description": "vue-nestable examples",
   "author": "Ralph Huwiler <rhuwiler@hosttech.ch>",
@@ -13,23 +13,23 @@
     "vue": "^2.5.16"
   },
   "devDependencies": {
-    "autoprefixer": "^8.0.0",
+    "autoprefixer": "^9.3.1",
     "babel-core": "^6.26.0",
     "cross-env": "^5.0.5",
     "cssnano-cli": "^1.0.4",
     "npm-run-all": "^4.0.1",
-    "postcss-cli": "^5.0.0",
-    "rollup": "^0.62.0",
+    "postcss-cli": "^6.0.1",
+    "rollup": "^0.66.0",
     "rollup-plugin-alias": "^1.4.0",
     "rollup-plugin-buble": "^0.19.1",
-    "rollup-plugin-uglify": "^4.0.0",
+    "rollup-plugin-uglify": "^6.0.0",
     "rollup-plugin-commonjs": "^9.1.0",
     "rollup-plugin-livereload": "^0.6.0",
     "rollup-plugin-node-globals": "^1.1.0",
     "rollup-plugin-node-resolve": "^3.0.2",
     "rollup-plugin-replace": "^2.0.0",
-    "rollup-plugin-serve": "^0.4.2",
-    "rollup-plugin-vue": "^3.0.0",
+    "rollup-plugin-serve": "^0.6.2",
+    "rollup-plugin-vue": "^4.3.2",
     "vue-template-compiler": "^2.5.13"
   }
 }
