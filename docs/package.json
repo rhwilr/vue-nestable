@@ -5,7 +5,8 @@
   "author": "Ralph Huwiler <rhuwiler@hosttech.ch>",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development rollup -cw"
+    "dev": "cross-env NODE_ENV=development rollup -cw",
+    "build": "cross-env NODE_ENV=production rollup -c"
   },
   "dependencies": {
     "rollup-plugin-postcss": "^1.6.2",
