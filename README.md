@@ -30,9 +30,8 @@ Drag & drop hierarchical list made as a vue component.
 
 
 ## Demo
-```
-Todo
-```
+
+[Live Demo](https://rhwilr.github.io/vue-nestable/)
 
 
 ## A word of caution

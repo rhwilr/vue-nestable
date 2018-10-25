@@ -1,0 +1,109 @@
+/*
+* Default styles
+*/
+h1, h2 {
+  font-weight: 400;
+}
+
+h1 {
+  text-align: center;
+  margin: 0 0 32px;
+}
+
+
+/*
+* Header
+*/
+body {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f3f3f4;
+}
+
+.app {
+  font-family: Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: #415ad4;
+  color: #f3f3f4;
+  padding: 32px;
+}
+
+.command {
+  background: #2c44bd;
+  color: #fff;
+  font-family: monospace;
+  margin: 12px auto;
+  border-radius: 2px;
+  padding: 12px 62px;
+  box-sizing: border-box;
+}
+
+.description {
+  margin-top: 24px;
+}
+
+section.nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+section.nav a:hover {
+  background: #5b70d6;
+}
+section.nav a {
+  display: inline-block;
+  padding: 8px 16px;
+  color: #fff;
+  background: #5166cf;
+  border-radius: 3px;
+}
+section.nav a:not(:last-child) {
+  margin-right: 8px;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*
+* Content and components
+*/
+
+.content {
+  color: #444;
+  margin: auto;
+  margin-top: 3em;
+  max-width: 800px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.component-example {
+  border-radius: 4px;
+  box-shadow: 0 2px 3px 0 rgba(16, 17, 23, 0.1), 0 0 1px 0 rgba(16, 17, 23, 0.1);
+  background-color: white;
+  color: #49494d;
+  padding: 1em;
+  flex: 1;
+  margin: 1em;
+}
+.side-by-side {
+  display: flex;
+}
