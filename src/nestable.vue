@@ -296,7 +296,7 @@ export default {
         const prevSibling = this.getItemByPath(pathFrom.slice(0, -1).concat(itemIndex - 1))
 
         // previous sibling is not collapsed
-        if (!prevSibling[this.childrenProp].length || !this.isCollapsed(prevSibling)) {
+        if (prevSibling[this.childrenProp] && (!prevSibling[this.childrenProp].length || !this.isCollapsed(prevSibling))) {
           const pathTo = pathFrom
             .slice(0, -1)
             .concat(itemIndex - 1)

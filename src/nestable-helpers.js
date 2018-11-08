@@ -27,7 +27,7 @@ export default {
       let item = null
 
       path.forEach(index => {
-        const list = item ? item[this.childrenProp] : items
+        const list = item && item[this.childrenProp] ? item[this.childrenProp] : items
         item = list[index]
       })
 
@@ -37,7 +37,7 @@ export default {
     getItemDepth (item) {
       let level = 1
 
-      if (item[this.childrenProp].length > 0) {
+      if (item[this.childrenProp] && item[this.childrenProp].length > 0) {
         const childrenDepths = item[this.childrenProp].map(this.getItemDepth)
         level += Math.max(...childrenDepths)
       }
