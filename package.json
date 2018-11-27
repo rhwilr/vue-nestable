@@ -1,6 +1,6 @@
 {
   "name": "vue-nestable",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "vue-nestable",
   "main": "dist/vue-nestable.js",
   "scripts": {
