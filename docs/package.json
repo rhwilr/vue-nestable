@@ -19,7 +19,7 @@
     "cssnano-cli": "^1.0.4",
     "npm-run-all": "^4.0.1",
     "postcss-cli": "^6.0.1",
-    "rollup": "^0.66.0",
+    "rollup": "^0.67.3",
     "rollup-plugin-alias": "^1.4.0",
     "rollup-plugin-buble": "^0.19.1",
     "rollup-plugin-uglify": "^6.0.0",
@@ -28,7 +28,7 @@
     "rollup-plugin-node-globals": "^1.1.0",
     "rollup-plugin-node-resolve": "^3.0.2",
     "rollup-plugin-replace": "^2.0.0",
-    "rollup-plugin-serve": "^0.6.2",
+    "rollup-plugin-serve": "^0.6.0",
     "rollup-plugin-vue": "^4.3.2",
     "vue-template-compiler": "^2.5.13"
   }
