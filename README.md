@@ -3,10 +3,13 @@
 Drag & drop hierarchical list made as a vue component.
 
 [![NPM Version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
 
 [npm-image]: https://img.shields.io/npm/v/vue-nestable.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/vue-nestable
 
+[travis-image]: https://img.shields.io/travis/rhwilr/vue-nestable/master.svg?style=flat-square
+[travis-url]: https://travis-ci.org/rhwilr/vue-nestable
 
 <hr />
 
