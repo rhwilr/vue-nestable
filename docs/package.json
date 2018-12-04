@@ -4,11 +4,15 @@
   "description": "vue-nestable examples",
   "author": "Ralph Huwiler <rhuwiler@hosttech.ch>",
   "private": true,
+  "homepage": "https://rhwilr.github.io/vue-nestable/",
   "scripts": {
     "dev": "cross-env NODE_ENV=development rollup -cw",
-    "build": "cross-env NODE_ENV=production rollup -c"
+    "build": "cross-env NODE_ENV=production rollup -c",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "gh-pages": "^2.0.1",
     "rollup-plugin-postcss": "^1.6.2",
     "vue": "^2.5.16"
   },

@@ -63,7 +63,7 @@ if (isDevelopment) {
   config.plugins.push(livereload())
   config.plugins.push(
     serve({
-      contentBase: './',
+      contentBase: './dist',
       port: 8080,
       open: true
     })
