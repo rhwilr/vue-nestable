@@ -7,7 +7,9 @@ Drag & drop hierarchical list made as a vue component.
 [npm-image]: https://img.shields.io/npm/v/vue-nestable.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/vue-nestable
 
+
 <hr />
+
 
 ## Goals
   - A simple vue component to create a draggable list to customizable items
@@ -19,7 +21,6 @@ Drag & drop hierarchical list made as a vue component.
 
 ## Table of contents
   * [Demo](#Demo)
-  * [A word of caution](#a-word-of-caution)
   * [Installation](#installation)
   * [Usage](#usage)
   * [Simple Example](#simple-example)
@@ -32,15 +33,6 @@ Drag & drop hierarchical list made as a vue component.
 ## Demo
 
 [Live Demo](https://rhwilr.github.io/vue-nestable/)
-
-
-## A word of caution
-
-vue-nestable depends on a [proposed feature](https://github.com/vuejs/vue/pull/7765) to vue that is currently not available in a release.
-I can not recomand the use of this package in a production environment until this feature lands in vue-core since we do not know if it ever will.
-But if you want to give it a try anyways, we do provide a polyfill. See [Installation](#installation).
-
-As long as this feature is not available in vue, we can not hit version 1.0 with vue-nestable.
 
 
 ## Installation
@@ -56,20 +48,9 @@ npm install --save vue-nestable
 ```js
 import Vue from 'vue'
 import VueNestable from 'vue-nestable'
-import ScopedSlotsPolyfill from 'vue-nestable/lib/scoped-slots-polyfill'
 
 Vue.use(VueNestable)
-
-/*
-** Polyfill for passing down scopedSlots with v-bind
-** https://github.com/vuejs/vue/pull/7765
-*/
-Vue.use(ScopedSlotsPolyfill)
 ```
-
-As mentioned above, currently we need to import a polyfill for this component to work.
-You can remove this polyfill as soon as it is possible to pass down scoped-slots in vue.
-
 
 ## Simple Example
 
@@ -155,6 +136,7 @@ vue-nestable is extremly customizable. For example you don't have to make the en
 | Slot Name   | Description                                                                     |
 | :---------- | :------------------------------------------------------------------------------ |
 | placeholder | Lets you define a custom template that is used when no elements are in the list |
+
 
 ## Events
 | Event | Parameters | Description                         |
