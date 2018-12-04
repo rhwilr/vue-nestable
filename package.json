@@ -1,14 +1,18 @@
 {
   "name": "vue-nestable",
-  "version": "1.0.0",
+  "version": "1.0.0-beta.0",
   "description": "vue-nestable",
   "main": "dist/vue-nestable.js",
   "scripts": {
     "build": "rollup -c",
     "lint": "eslint --ext .js,.vue .",
-    "fix": "eslint --ext .js,.vue . --fix"
+    "fix": "eslint --ext .js,.vue . --fix",
+    "prepublish": "npm run lint",
+    "postpublish": "cd docs; npm ci; npm run deploy"
   },
   "author": "Ralph Huwiler <ralph@huwiler.rocks>",
+  "private": true,
+  "homepage": "https://github.com/rhwilr/vue-nestable",
   "license": "MIT",
   "keywords": [
     "vue",
