@@ -14,14 +14,14 @@ import replace from 'rollup-plugin-replace'
 let plugins = [
   alias({
     vue$: 'vue/dist/vue.common.js',
-    '@': path.resolve('./src/'),
+    '@': path.resolve('./docs/src/'),
     resolve: ['.js', '.vue']
   }),
   postcss({
     plugins: []
   }),
   vue({
-    css: './dist/assets/css/app.css'
+    css: './docs/dist/assets/css/app.css'
   }),
   buble({
     objectAssign: 'Object.assign',
@@ -37,9 +37,9 @@ let plugins = [
 ]
 
 let config = {
-  input: './src/main.js',
+  input: './docs/src/main.js',
   output: {
-    file: './dist/assets/js/app.js',
+    file: './docs/dist/assets/js/app.js',
     format: 'umd',
     sourcemap: true
   },
@@ -63,7 +63,7 @@ if (isDevelopment) {
   config.plugins.push(livereload())
   config.plugins.push(
     serve({
-      contentBase: './dist',
+      contentBase: './docs/dist',
       port: 8080,
       open: true
     })

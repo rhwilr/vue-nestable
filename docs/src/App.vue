@@ -11,7 +11,7 @@
       <section class="nav">
         <a href="https://github.com/rhwilr/vue-nestable#vue-nestable">Documentation</a>
         <a href="https://github.com/rhwilr/vue-nestable/issues">Report an issue</a>
-        <a href="https://www.npmjs.com/package/vue-nestable">Npm</a>
+        <a href="https://www.npmjs.com/package/vue-nestable">Npm package</a>
       </section>
     </div>
 
