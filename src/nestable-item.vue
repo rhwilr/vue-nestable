@@ -19,14 +19,14 @@
           :item="item"
           :options="options"
           :is-copy="isCopy"
-          >
+        >
 
           <!-- bind scoped slots to the netable-item component -->
-          <template 
-            v-for="slot in Object.keys($scopedSlots)" 
-            :slot="slot" 
-            slot-scope="scope">
-            <slot 
+          <template
+            slot-scope="scope"
+            v-for="slot in Object.keys($scopedSlots)"
+            :slot="slot">
+            <slot
               :name="slot"
               v-bind="scope"/>
           </template>

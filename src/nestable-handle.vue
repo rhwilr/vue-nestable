@@ -11,7 +11,7 @@ import groupsObserver from './groups-observer.js'
 
 export default {
   mixins: [groupsObserver],
-  
+
   props: {
     item: {
       type: Object,

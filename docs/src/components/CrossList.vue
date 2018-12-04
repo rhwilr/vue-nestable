@@ -14,7 +14,7 @@
       </vue-nestable>
 
     </div>
-     <div class="component-example">
+    <div class="component-example">
 
       <vue-nestable
         v-model="nestableItems2"

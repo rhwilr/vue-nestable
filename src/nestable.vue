@@ -2,7 +2,7 @@
   <div :class="['nestable', `nestable-${group}`]">
     <ol class="nestable-list nestable-group">
       <!-- No items in list -->
-      <placeholder 
+      <placeholder
         v-if="listIsEmpty"
         :options="itemOptions">
         <slot name="placeholder">No content</slot>
@@ -17,14 +17,14 @@
           :index="index"
           :item="item"
           :options="itemOptions"
-          >
+        >
 
           <!-- bind scoped slots to the netable-item component -->
-          <template 
-            v-for="slot in Object.keys($scopedSlots)" 
-            :slot="slot" 
-            slot-scope="scope">
-            <slot 
+          <template
+            slot-scope="scope"
+            v-for="slot in Object.keys($scopedSlots)"
+            :slot="slot">
+            <slot
               :name="slot"
               v-bind="scope"/>
           </template>
@@ -45,18 +45,18 @@
             :item="dragItem"
             :options="itemOptions"
             :is-copy="true"
-            >
+          >
 
             <!-- bind scoped slots to the netable-item component -->
-            <template 
-              v-for="slot in Object.keys($scopedSlots)" 
-              :slot="slot" 
-              slot-scope="scope">
-              <slot 
+            <template
+              slot-scope="scope"
+              v-for="slot in Object.keys($scopedSlots)"
+              :slot="slot">
+              <slot
                 :name="slot"
                 v-bind="scope"/>
             </template>
-          
+
           </nestable-item>
         </ol>
       </div>
@@ -366,7 +366,7 @@ export default {
       }
     },
 
-    onMouseEnter (event, eventList, item, ) {
+    onMouseEnter (event, eventList, item) {
       if (event) {
         event.preventDefault()
         event.stopPropagation()
@@ -387,7 +387,7 @@ export default {
       // if we are dragging to an empty list, we need to remove
       // the item from the origin list and append it to the start of the new list
       if (item === null) {
-        pathTo = pathFrom.length > 0 ? [] :  [0]
+        pathTo = pathFrom.length > 0 ? [] : [0]
       } else {
         pathTo = this.getPathById(item.id)
       }
