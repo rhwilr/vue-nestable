@@ -7,11 +7,10 @@
     "build": "cross-env NODE_ENV=production rollup -c",
     "lint": "eslint --ext .js,.vue .",
     "fix": "eslint --ext .js,.vue . --fix",
-    "prepublish": "npm run lint; npm run build",
+    "prepublish": "npm run build",
     "postpublish": "cd docs; npm ci; npm run deploy"
   },
   "author": "Ralph Huwiler <ralph@huwiler.rocks>",
-  "private": true,
   "homepage": "https://github.com/rhwilr/vue-nestable",
   "license": "MIT",
   "keywords": [
