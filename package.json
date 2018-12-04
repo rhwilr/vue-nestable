@@ -4,10 +4,10 @@
   "description": "vue-nestable",
   "main": "dist/vue-nestable.js",
   "scripts": {
-    "build": "rollup -c",
+    "build": "cross-env NODE_ENV=production rollup -c",
     "lint": "eslint --ext .js,.vue .",
     "fix": "eslint --ext .js,.vue . --fix",
-    "prepublish": "npm run lint",
+    "prepublish": "npm run lint; npm run build",
     "postpublish": "cd docs; npm ci; npm run deploy"
   },
   "author": "Ralph Huwiler <ralph@huwiler.rocks>",
@@ -33,6 +33,7 @@
     "babel-eslint": "^10.0.1",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-minify": "^0.5.0",
+    "cross-env": "^5.2.0",
     "eslint": "^5.9.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-friendly-formatter": "^4.0.1",

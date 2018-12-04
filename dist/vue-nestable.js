@@ -70,57 +70,8 @@
               const __vue_script__ = script;
               
   /* template */
-  var __vue_render__ = function() {
-    var _vm = this;
-    var _h = _vm.$createElement;
-    var _c = _vm._self._c || _h;
-    return _c("li", { class: _vm.itemClasses }, [
-      _c(
-        "div",
-        {
-          staticClass: "nestable-item-name",
-          on: { mouseenter: _vm.onMouseEnter }
-        },
-        [_vm._t("default", null, { item: _vm.item })],
-        2
-      ),
-      _vm._v(" "),
-      _vm.hasChildren
-        ? _c(
-            "ol",
-            { staticClass: "nestable-list" },
-            [
-              _vm._l(_vm.item[_vm.options.childrenProp], function(item, index) {
-                return [
-                  _c("nestable-item", {
-                    key: index,
-                    attrs: {
-                      index: index,
-                      item: item,
-                      options: _vm.options,
-                      "is-copy": _vm.isCopy
-                    },
-                    scopedSlots: _vm._u([
-                      _vm._l(Object.keys(_vm.$scopedSlots), function(slot) {
-                        return {
-                          key: slot,
-                          fn: function(scope) {
-                            return [_vm._t(slot, null, null, scope)]
-                          }
-                        }
-                      })
-                    ])
-                  })
-                ]
-              })
-            ],
-            2
-          )
-        : _vm._e()
-    ])
-  };
+  var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('li',{class:_vm.itemClasses},[_c('div',{staticClass:"nestable-item-name",on:{"mouseenter":_vm.onMouseEnter}},[_vm._t("default",null,{item:_vm.item})],2),_vm._v(" "),(_vm.hasChildren)?_c('ol',{staticClass:"nestable-list"},[_vm._l((_vm.item[_vm.options.childrenProp]),function(item,index){return [_c('nestable-item',{key:index,attrs:{"index":index,"item":item,"options":_vm.options,"is-copy":_vm.isCopy},scopedSlots:_vm._u([_vm._l((Object.keys(_vm.$scopedSlots)),function(slot){return {key:slot,fn:function(scope){return [_vm._t(slot,null,null,scope)]}}})])})]})],2):_vm._e()])};
   var __vue_staticRenderFns__ = [];
-  __vue_render__._withStripped = true;
 
     /* style */
     const __vue_inject_styles__ = undefined;
@@ -139,7 +90,7 @@
       const component = (typeof script$$1 === 'function' ? script$$1.options : script$$1) || {};
 
       // For security concerns, we use only base name in production mode.
-      component.__file = "/home/ralph/webDev/vue-nestable/src/nestable-item.vue";
+      component.__file = "nestable-item.vue";
 
       if (!component.render) {
         component.render = template.render;
@@ -199,24 +150,8 @@
               const __vue_script__$1 = script$1;
               
   /* template */
-  var __vue_render__$1 = function() {
-    var _vm = this;
-    var _h = _vm.$createElement;
-    var _c = _vm._self._c || _h;
-    return _c("li", [
-      _c(
-        "div",
-        {
-          staticClass: "nestable-list-empty",
-          on: { mouseenter: _vm.onMouseEnter }
-        },
-        [_vm._t("default")],
-        2
-      )
-    ])
-  };
+  var __vue_render__$1 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('li',[_c('div',{staticClass:"nestable-list-empty",on:{"mouseenter":_vm.onMouseEnter}},[_vm._t("default")],2)])};
   var __vue_staticRenderFns__$1 = [];
-  __vue_render__$1._withStripped = true;
 
     /* style */
     const __vue_inject_styles__$1 = undefined;
@@ -235,7 +170,7 @@
       const component = (typeof script === 'function' ? script.options : script) || {};
 
       // For security concerns, we use only base name in production mode.
-      component.__file = "/home/ralph/webDev/vue-nestable/src/placeholder.vue";
+      component.__file = "placeholder.vue";
 
       if (!component.render) {
         component.render = template.render;
@@ -573,85 +508,8 @@
               const __vue_script__$2 = script$2;
               
   /* template */
-  var __vue_render__$2 = function() {
-    var _vm = this;
-    var _h = _vm.$createElement;
-    var _c = _vm._self._c || _h;
-    return _c(
-      "div",
-      { class: ["nestable", "nestable-" + _vm.group] },
-      [
-        _c(
-          "ol",
-          { staticClass: "nestable-list nestable-group" },
-          [
-            _vm.listIsEmpty
-              ? _c(
-                  "placeholder",
-                  { attrs: { options: _vm.itemOptions } },
-                  [_vm._t("placeholder", [_vm._v("No content")])],
-                  2
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _vm._l(_vm.value, function(item, index) {
-              return [
-                _c("nestable-item", {
-                  key: index,
-                  attrs: { index: index, item: item, options: _vm.itemOptions },
-                  scopedSlots: _vm._u([
-                    _vm._l(Object.keys(_vm.$scopedSlots), function(slot) {
-                      return {
-                        key: slot,
-                        fn: function(scope) {
-                          return [_vm._t(slot, null, null, scope)]
-                        }
-                      }
-                    })
-                  ])
-                })
-              ]
-            })
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _vm.dragItem
-          ? [
-              _c("div", { staticClass: "nestable-drag-layer" }, [
-                _c(
-                  "ol",
-                  { staticClass: "nestable-list", style: _vm.listStyles },
-                  [
-                    _c("nestable-item", {
-                      attrs: {
-                        item: _vm.dragItem,
-                        options: _vm.itemOptions,
-                        "is-copy": true
-                      },
-                      scopedSlots: _vm._u([
-                        _vm._l(Object.keys(_vm.$scopedSlots), function(slot) {
-                          return {
-                            key: slot,
-                            fn: function(scope) {
-                              return [_vm._t(slot, null, null, scope)]
-                            }
-                          }
-                        })
-                      ])
-                    })
-                  ],
-                  1
-                )
-              ])
-            ]
-          : _vm._e()
-      ],
-      2
-    )
-  };
+  var __vue_render__$2 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:['nestable', ("nestable-" + _vm.group)]},[_c('ol',{staticClass:"nestable-list nestable-group"},[(_vm.listIsEmpty)?_c('placeholder',{attrs:{"options":_vm.itemOptions}},[_vm._t("placeholder",[_vm._v("No content")])],2):_vm._e(),_vm._v(" "),_vm._l((_vm.value),function(item,index){return [_c('nestable-item',{key:index,attrs:{"index":index,"item":item,"options":_vm.itemOptions},scopedSlots:_vm._u([_vm._l((Object.keys(_vm.$scopedSlots)),function(slot){return {key:slot,fn:function(scope){return [_vm._t(slot,null,null,scope)]}}})])})]})],2),_vm._v(" "),(_vm.dragItem)?[_c('div',{staticClass:"nestable-drag-layer"},[_c('ol',{staticClass:"nestable-list",style:(_vm.listStyles)},[_c('nestable-item',{attrs:{"item":_vm.dragItem,"options":_vm.itemOptions,"is-copy":true},scopedSlots:_vm._u([_vm._l((Object.keys(_vm.$scopedSlots)),function(slot){return {key:slot,fn:function(scope){return [_vm._t(slot,null,null,scope)]}}})])})],1)])]:_vm._e()],2)};
   var __vue_staticRenderFns__$2 = [];
-  __vue_render__$2._withStripped = true;
 
     /* style */
     const __vue_inject_styles__$2 = undefined;
@@ -670,7 +528,7 @@
       const component = (typeof script === 'function' ? script.options : script) || {};
 
       // For security concerns, we use only base name in production mode.
-      component.__file = "/home/ralph/webDev/vue-nestable/src/nestable.vue";
+      component.__file = "nestable.vue";
 
       if (!component.render) {
         component.render = template.render;
@@ -708,19 +566,8 @@
               const __vue_script__$3 = script$3;
               
   /* template */
-  var __vue_render__$3 = function() {
-    var _vm = this;
-    var _h = _vm.$createElement;
-    var _c = _vm._self._c || _h;
-    return _c(
-      "span",
-      { attrs: { draggable: "" }, on: { dragstart: _vm.dragstart } },
-      [_vm._t("default")],
-      2
-    )
-  };
+  var __vue_render__$3 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{attrs:{"draggable":""},on:{"dragstart":_vm.dragstart}},[_vm._t("default")],2)};
   var __vue_staticRenderFns__$3 = [];
-  __vue_render__$3._withStripped = true;
 
     /* style */
     const __vue_inject_styles__$3 = undefined;
@@ -739,7 +586,7 @@
       const component = (typeof script === 'function' ? script.options : script) || {};
 
       // For security concerns, we use only base name in production mode.
-      component.__file = "/home/ralph/webDev/vue-nestable/src/nestable-handle.vue";
+      component.__file = "nestable-handle.vue";
 
       if (!component.render) {
         component.render = template.render;
