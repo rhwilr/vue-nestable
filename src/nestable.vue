@@ -18,7 +18,17 @@
           :item="item"
           :options="itemOptions"
           >
-          <template v-for="slot in Object.keys($scopedSlots)" :slot="slot" slot-scope="scope"><slot :name="slot" v-bind="scope"/></template>
+
+          <!-- bind scoped slots to the netable-item component -->
+          <template 
+            v-for="slot in Object.keys($scopedSlots)" 
+            :slot="slot" 
+            slot-scope="scope">
+            <slot 
+              :name="slot"
+              v-bind="scope"/>
+          </template>
+
         </nestable-item>
 
       </template>
@@ -36,7 +46,17 @@
             :options="itemOptions"
             :is-copy="true"
             >
-            <template v-for="slot in Object.keys($scopedSlots)" :slot="slot" slot-scope="scope"><slot :name="slot" v-bind="scope"/></template>
+
+            <!-- bind scoped slots to the netable-item component -->
+            <template 
+              v-for="slot in Object.keys($scopedSlots)" 
+              :slot="slot" 
+              slot-scope="scope">
+              <slot 
+                :name="slot"
+                v-bind="scope"/>
+            </template>
+          
           </nestable-item>
         </ol>
       </div>
