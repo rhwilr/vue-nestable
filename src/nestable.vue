@@ -17,7 +17,9 @@
           :index="index"
           :item="item"
           :options="itemOptions"
-          v-bind="{$scopedSlots}"/>
+          >
+          <template v-for="slot in Object.keys($scopedSlots)" :slot="slot" slot-scope="scope"><slot :name="slot" v-bind="scope"/></template>
+        </nestable-item>
 
       </template>
     </ol>
@@ -33,8 +35,9 @@
             :item="dragItem"
             :options="itemOptions"
             :is-copy="true"
-            v-bind="{$scopedSlots}"/>
-
+            >
+            <template v-for="slot in Object.keys($scopedSlots)" :slot="slot" slot-scope="scope"><slot :name="slot" v-bind="scope"/></template>
+          </nestable-item>
         </ol>
       </div>
 
