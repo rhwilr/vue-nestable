@@ -16,10 +16,11 @@ Drag & drop hierarchical list made as a vue component.
 
 ## Goals
   - A simple vue component to create a draggable list to customizable items
-  - Reorder items by dragging them above an other item
+  - Reorder items by dragging them above another item
   - Intuitively nest items by dragging right
-  - Fully customizable, ships with no css
-  - Everything is configurable: item identifier, max nesting level, threshold for nesting
+  - Fully customizable, ships with no CSS
+  - Everything is configurable: item identifier, max nesting level, threshold
+    for nesting
 
 
 ## Table of contents
@@ -28,6 +29,7 @@ Drag & drop hierarchical list made as a vue component.
   * [Usage](#usage)
   * [Simple Example](#simple-example)
   * [Advanced Example](#advanced-example)
+  * [Styling](#styling)
   * [Props](#props)
   * [Slots](#slots)
   * [Events](#events)
@@ -55,9 +57,11 @@ import VueNestable from 'vue-nestable'
 Vue.use(VueNestable)
 ```
 
+
 ## Simple Example
 
-You only need two components: `vue-nestable` which renders the list and `vue-nestable-handle` which indicates the are the user can drag the item by.
+You only need two components: `vue-nestable` which renders the list and
+`vue-nestable-handle` which indicates the area the user can drag the item by.
 
 It can't get any easier than this. 
 
@@ -100,9 +104,12 @@ export default {
 </script>
 ```
 
+
 ## Advanced Example
 
-vue-nestable is extremly customizable. For example you don't have to make the entire item draggable. Instead you can just add an icon by which the item can be dragged. We also limited the nesting level to 2 in this example.
+vue-nestable is extremely customizable. For example, you don't have to make the
+entire item draggable. Instead, you can just add an icon by which the item can be
+dragged. We also limited the nesting level to 2 in this example.
 
 ```html
 <template>
@@ -123,6 +130,14 @@ vue-nestable is extremly customizable. For example you don't have to make the en
 
 </template>
 ```
+
+
+## Styling
+
+By default, vue-nestable comes without any styling. Which means you can
+customize the appearance completely to your needs. However, if you want you can
+take a look at the style used in the demo:
+[docs/assets/vue-nestable.css](docs/assets/vue-nestable.css)
 
 
 ## Props
