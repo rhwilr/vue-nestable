@@ -17,16 +17,24 @@
 
     <!-- Component Demo -->
     <div class="content">
-      <h1>A simple list</h1>
+      <h1>Just a list</h1>
+      <p>This is about as minimal as it gets. We just render a list of individual items.</p>
+      <list/>
+
+      <h1>Sort items by drag & drop</h1>
+      <p>Wrap your item in a <code>vue-nestable-handle</code> to allow it to be dragged.</p>
       <simple/>
 
       <h1>Advanced list with custom drag handle</h1>
+      <p>You can customize how deeply items can be nested as well what the <code>id</code> prop is called.</p>
       <advanced/>
 
       <h1>Draggable across different lists</h1>
+      <p>You can drag items across different lists if you set the <code>group</code> property to the same value.</p>
       <cross-list/>
 
       <h1>Customize the placeholder text</h1>
+      <p>You can display a placeholder when there are no items in the list.</p>
       <no-items/>
     </div>
   </div>
@@ -35,6 +43,7 @@
 <script>
 
 // import example components
+import List from '@/components/List.vue'
 import Simple from '@/components/Simple.vue'
 import Advanced from '@/components/Advanced.vue'
 import CrossList from '@/components/CrossList.vue'
@@ -48,6 +57,7 @@ export default {
   name: 'App',
 
   components: {
+    List,
     Simple,
     Advanced,
     CrossList,

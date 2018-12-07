@@ -89,6 +89,7 @@ a {
   color: #444;
   margin: auto;
   margin-top: 3em;
+  margin-bottom: 3em;
   max-width: 800px;
   flex: 1;
   display: flex;
@@ -99,7 +100,14 @@ a {
   margin: 32px 0 0;
 }
 
+.content p {
+  padding: 0 3em;
+  margin-bottom: 0;
+  text-align: center;
+}
+
 .component-example {
+  position: relative;
   border-radius: 4px;
   box-shadow: 0 2px 3px 0 rgba(16, 17, 23, 0.1), 0 0 1px 0 rgba(16, 17, 23, 0.1);
   background-color: white;
@@ -110,4 +118,39 @@ a {
 }
 .side-by-side {
   display: flex;
+}
+
+.side-by-side .side {
+  flex: 1;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.side-by-side .side + .side {
+  padding-left: 3em;
+  padding-right: 0;
+  border-left: 1px solid #ddd;
+}
+
+.source-code-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  width: 1.3em;
+  height: 1.3em;
+
+  padding: 0.3em;
+  background-color: #5b6fd61e;
+  border-left: 1px solid #5b6fd657;
+  border-bottom: 1px solid #5b6fd657;
+  color: #5b6fd6a1;
+  border-bottom-left-radius: 4px;
+
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.component-example:hover .source-code-link {
+  opacity: 1;
 }

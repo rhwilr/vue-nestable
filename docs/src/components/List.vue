@@ -1,12 +1,10 @@
 <template>
-  <component-example link="Simple">
+  <component-example link="List">
 
     <vue-nestable v-model="nestableItems">
-      <vue-nestable-handle
-        slot-scope="{ item }"
-        :item="item">
+      <span slot-scope="{ item }">
         {{ item.text }}
-      </vue-nestable-handle>
+      </span>
     </vue-nestable>
 
   </component-example>

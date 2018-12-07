@@ -27,8 +27,7 @@ Drag & drop hierarchical list made as a vue component.
   * [Demo](#Demo)
   * [Installation](#installation)
   * [Usage](#usage)
-  * [Simple Example](#simple-example)
-  * [Advanced Example](#advanced-example)
+  * [Example](#example)
   * [Styling](#styling)
   * [Props](#props)
   * [Slots](#slots)
@@ -58,12 +57,12 @@ Vue.use(VueNestable)
 ```
 
 
-## Simple Example
+## Example
 
 You only need two components: `vue-nestable` which renders the list and
 `vue-nestable-handle` which indicates the area the user can drag the item by.
 
-It can't get any easier than this. 
+**Note:** Each item must have a unique `id` property.
 
 ```html
 <template>
@@ -102,33 +101,6 @@ export default {
   }
 }
 </script>
-```
-
-
-## Advanced Example
-
-vue-nestable is extremely customizable. For example, you don't have to make the
-entire item draggable. Instead, you can just add an icon by which the item can be
-dragged. We also limited the nesting level to 2 in this example.
-
-```html
-<template>
-
-  <vue-nestable
-    v-model="nestableItems"
-    :max-depth="2">
-    <template slot-scope="{ item }">
-      <!-- Handler -->
-      <vue-nestable-handle :item="item">
-        ☰
-      </vue-nestable-handle>
-
-      <!-- Content -->
-      <span>Item :: {{ item.text }}</span>
-    </template>
-  </vue-nestable>
-
-</template>
 ```
 
 

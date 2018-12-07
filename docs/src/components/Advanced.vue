@@ -1,13 +1,15 @@
 <template>
-  <div class="component-example">
+  <component-example link="Advanced">
 
     <vue-nestable
       v-model="nestableItems"
-      :max-depth="2">
+      :max-depth="2"
+      key-prop="key"
+      children-prop="nested">
       <template slot-scope="{ item }">
         <!-- Handler -->
         <vue-nestable-handle :item="item">
-          ☰
+          <i class="fas fa-bars"></i>
         </vue-nestable-handle>
 
         <!-- Content -->
@@ -15,26 +17,32 @@
       </template>
     </vue-nestable>
 
-  </div>
+  </component-example>
 </template>
 
 <script>
+import ComponentExample from './ComponentExample.vue'
+
 export default {
+  components: {
+    ComponentExample
+  },
+
   data () {
     return {
       nestableItems: [
         {
-          id: 0,
+          key: 0,
           text: 'Andy'
         }, {
-          id: 1,
+          key: 1,
           text: 'Harry',
-          children: [{
-            id: 2,
+          nested: [{
+            key: 2,
             text: 'David'
           }]
         }, {
-          id: 3,
+          key: 3,
           text: 'Lisa'
         }
       ]

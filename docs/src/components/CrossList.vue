@@ -1,38 +1,46 @@
 <template>
-  <div class="side-by-side">
-    <div class="component-example">
+  <component-example link="Advanced">
+    <div class="side-by-side">
+      <div class="side">
 
-      <vue-nestable
-        v-model="nestableItems1"
-        cross-list
-        group="cross">
-        <vue-nestable-handle
-          slot-scope="{ item }"
-          :item="item">
-          {{ item.text }}
-        </vue-nestable-handle>
-      </vue-nestable>
+        <vue-nestable
+          v-model="nestableItems1"
+          cross-list
+          group="cross">
+          <vue-nestable-handle
+            slot-scope="{ item }"
+            :item="item">
+            {{ item.text }}
+          </vue-nestable-handle>
+        </vue-nestable>
 
+      </div>
+      <div class="side">
+
+        <vue-nestable
+          v-model="nestableItems2"
+          cross-list
+          group="cross">
+          <vue-nestable-handle
+            slot-scope="{ item }"
+            :item="item">
+            {{ item.text }}
+          </vue-nestable-handle>
+        </vue-nestable>
+
+      </div>
     </div>
-    <div class="component-example">
-
-      <vue-nestable
-        v-model="nestableItems2"
-        cross-list
-        group="cross">
-        <vue-nestable-handle
-          slot-scope="{ item }"
-          :item="item">
-          {{ item.text }}
-        </vue-nestable-handle>
-      </vue-nestable>
-
-    </div>
-  </div>
+  </component-example>
 </template>
 
 <script>
+import ComponentExample from './ComponentExample.vue'
+
 export default {
+  components: {
+    ComponentExample
+  },
+
   data () {
     return {
       nestableItems1: [

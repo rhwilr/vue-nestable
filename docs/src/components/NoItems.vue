@@ -1,5 +1,5 @@
 <template>
-  <div class="component-example">
+  <component-example link="NoItems">
 
     <vue-nestable
       v-model="nestableItems1"
@@ -19,11 +19,17 @@
 
     </vue-nestable>
 
-  </div>
+  </component-example>
 </template>
 
 <script>
+import ComponentExample from './ComponentExample.vue'
+
 export default {
+  components: {
+    ComponentExample
+  },
+
   data () {
     return {
       nestableItems1: [
