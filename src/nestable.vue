@@ -104,6 +104,11 @@ export default {
       required: false,
       default: 10
     },
+    keyProp: {
+      type: String,
+      required: false,
+      default: 'id'
+    },
     group: {
       type: [String, Number],
       required: false,
@@ -124,8 +129,7 @@ export default {
   provide () {
     return {
       listId: this.listId,
-      group: this.group,
-      childrenProp: this.childrenProp
+      group: this.group
     }
   },
 
@@ -152,11 +156,12 @@ export default {
     itemOptions () {
       return {
         dragItem: this.dragItem,
+        keyProp: this.keyProp,
         childrenProp: this.childrenProp
       }
     },
     listStyles () {
-      const el = document.querySelector('.nestable-' + this.group + ' .nestable-item-' + this.dragItem.id)
+      const el = document.querySelector('.nestable-' + this.group + ' .nestable-item-' + this.dragItem[this.keyProp])
 
       let listStyles = {}
 
@@ -310,7 +315,7 @@ export default {
     },
 
     tryIncreaseDepth (dragItem) {
-      const pathFrom = this.getPathById(dragItem.id)
+      const pathFrom = this.getPathById(dragItem[this.keyProp])
       const itemIndex = pathFrom[pathFrom.length - 1]
       const newDepth = pathFrom.length + this.getItemDepth(dragItem)
 
@@ -340,7 +345,7 @@ export default {
     },
 
     tryDecreaseDepth (dragItem) {
-      const pathFrom = this.getPathById(dragItem.id)
+      const pathFrom = this.getPathById(dragItem[this.keyProp])
       const itemIndex = pathFrom[pathFrom.length - 1]
 
       // has parent
@@ -374,10 +379,10 @@ export default {
 
       const dragItem = this.dragItem
       // if the event does not have a valid item that belongs to this list, ignore it
-      if (item !== null && dragItem.id === item.id) return
+      if (item !== null && dragItem[this.keyProp] === item[this.keyProp]) return
 
       // calculate the path the item is comming from
-      const pathFrom = this.getPathById(dragItem.id)
+      const pathFrom = this.getPathById(dragItem[this.keyProp])
 
       // if the event is not emitted from this list and the item was not removed from this list,
       // we can ignore this event
@@ -389,7 +394,7 @@ export default {
       if (item === null) {
         pathTo = pathFrom.length > 0 ? [] : [0]
       } else {
-        pathTo = this.getPathById(item.id)
+        pathTo = this.getPathById(item[this.keyProp])
       }
 
       // if the move to the new depth is greater than max depth,
@@ -415,7 +420,7 @@ export default {
     },
 
     isCollapsed (item) {
-      return !!((this.collapsedGroups.indexOf(item.id) > -1) ^ this.collapsed)
+      return !!((this.collapsedGroups.indexOf(item[this.keyProp]) > -1) ^ this.collapsed)
     },
 
     dragApply () {

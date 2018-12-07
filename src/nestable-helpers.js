@@ -7,7 +7,7 @@ export default {
       let path = []
 
       items.every((item, i) => {
-        if (item.id === id) {
+        if (item[this.keyProp] === id) {
           path.push(i)
         } else if (item[this.childrenProp]) {
           const childrenPath = this.getPathById(id, item[this.childrenProp])

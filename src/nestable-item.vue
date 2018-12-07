@@ -50,11 +50,7 @@ export default {
     item: {
       type: Object,
       required: true,
-      default: () => ({}),
-      validator (value) {
-        // The item must have an id prop
-        return value.id !== undefined
-      }
+      default: () => ({})
     },
     index: {
       type: Number,
@@ -68,7 +64,7 @@ export default {
     },
     options: {
       type: Object,
-      required: false,
+      required: true,
       default: () => ({})
     }
   },
@@ -78,7 +74,7 @@ export default {
   computed: {
     isDragging () {
       let dragItem = this.options.dragItem
-      return !this.isCopy && dragItem && dragItem.id === this.item.id
+      return !this.isCopy && dragItem && dragItem[this.options.keyProp] === this.item[this.options.keyProp]
     },
 
     hasChildren () {
@@ -92,7 +88,7 @@ export default {
     itemClasses () {
       return [
         `nestable-item${this.isCopy ? '-copy' : ''}`,
-        `nestable-item${this.isCopy ? '-copy' : ''}-${this.item.id}`,
+        `nestable-item${this.isCopy ? '-copy' : ''}-${this.item[this.options.keyProp]}`,
         this.isDragging ? 'is-dragging' : ''
       ]
     }
