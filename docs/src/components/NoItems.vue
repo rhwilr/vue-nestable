@@ -7,7 +7,7 @@
       group="cross">
 
       <div slot="placeholder">
-        <h2>This list is empty</h2>
+        <b>This list is empty</b>
         <p>You can add items by dragging them here from the list above.</p>
       </div>
 

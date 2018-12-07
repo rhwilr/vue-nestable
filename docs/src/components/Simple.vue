@@ -5,6 +5,7 @@
       <vue-nestable-handle
         slot-scope="{ item }"
         :item="item">
+        <i class="fas fa-user"></i>
         {{ item.text }}
       </vue-nestable-handle>
     </vue-nestable>

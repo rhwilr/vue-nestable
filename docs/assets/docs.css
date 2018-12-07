@@ -154,3 +154,7 @@ a {
 .component-example:hover .source-code-link {
   opacity: 1;
 }
+
+.nestable-list-empty {
+  text-align: center;
+}
