@@ -9,7 +9,7 @@
       <template slot-scope="{ item }">
         <!-- Handler -->
         <vue-nestable-handle :item="item">
-          <i class="fas fa-bars"></i>
+          <i class="fas fa-bars"/>
         </vue-nestable-handle>
 
         <!-- Content -->

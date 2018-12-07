@@ -5,7 +5,7 @@
       :href="url"
       target="_blank"
       class="source-code-link">
-      <i class="fas fa-code"></i>
+      <i class="fas fa-code"/>
     </a>
 
     <slot/>
