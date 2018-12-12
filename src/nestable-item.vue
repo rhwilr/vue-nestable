@@ -1,7 +1,7 @@
 <template>
   <li :class="itemClasses">
     <div
-      class="nestable-item-name"
+      class="nestable-item-content"
       @mouseenter="onMouseEnter">
 
       <slot :item="item"/>
