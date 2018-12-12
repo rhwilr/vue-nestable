@@ -24,7 +24,7 @@
     "vue tree"
   ],
   "dependencies": {
-    "immutability-helper": "^2.8.1"
+    "immutability-helper": "^2.9.0"
   },
   "repository": {
     "type": "git",
@@ -33,14 +33,14 @@
   "devDependencies": {
     "@babel/core": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
-    "@vue/test-utils": "^1.0.0-beta.26",
+    "@vue/test-utils": "^1.0.0-beta.27",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-minify": "^0.5.0",
     "cross-env": "^5.2.0",
-    "eslint": "^5.9.0",
+    "eslint": "^5.10.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-plugin-import": "^2.14.0",
@@ -52,9 +52,9 @@
     "jest": "^23.6.0",
     "postcss-cli": "^6.0.1",
     "rollup": "^0.67.4",
-    "rollup-plugin-alias": "^1.4.0",
-    "rollup-plugin-babel": "^4.0.2",
-    "rollup-plugin-buble": "^0.19.1",
+    "rollup-plugin-alias": "^1.5.1",
+    "rollup-plugin-babel": "^4.1.0",
+    "rollup-plugin-buble": "^0.19.6",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-json": "^3.1.0",
     "rollup-plugin-livereload": "^0.6.0",
@@ -65,10 +65,10 @@
     "rollup-plugin-serve": "^0.6.0",
     "rollup-plugin-uglify": "^6.0.0",
     "rollup-plugin-vue": "^4.3.2",
-    "vue": "^2.5.16",
+    "vue": "^2.5.21",
     "vue-eslint-parser": "^3.3.0",
-    "vue-jest": "^3.0.1",
-    "vue-template-compiler": "^2.5.17"
+    "vue-jest": "^3.0.2",
+    "vue-template-compiler": "^2.5.21"
   },
   "jest": {
     "moduleFileExtensions": [
