@@ -1,11 +1,12 @@
 <template>
-  <vue-nestable v-model="nestableItems">
-    <vue-nestable-handle
+  <VueNestable v-model="nestableItems">
+    <VueNestableHandle
       slot-scope="{ item }"
-      :item="item">
+      :item="item"
+    >
       {{ item.text }}
-    </vue-nestable-handle>
-  </vue-nestable>
+    </VueNestableHandle>
+  </VueNestable>
 </template>
 
 <script>

@@ -2,37 +2,37 @@
   <li :class="itemClasses">
     <div
       class="nestable-item-content"
-      @mouseenter="onMouseEnter">
-
-      <slot :item="item"/>
+      @mouseenter="onMouseEnter"
+    >
+      <slot :item="item" />
     </div>
 
     <ol
       v-if="hasChildren"
-      class="nestable-list">
+      class="nestable-list"
+    >
       <template
-        v-for="(item, index) in item[options.childrenProp]">
-
-        <nestable-item
-          :key="index"
+        v-for="(child, childIndex) in item[options.childrenProp]"
+      >
+        <NestableItem
+          :key="childIndex"
           :index="index"
-          :item="item"
+          :item="child"
           :options="options"
           :is-copy="isCopy"
         >
-
           <!-- bind scoped slots to the netable-item component -->
           <template
-            slot-scope="scope"
             v-for="slot in Object.keys($scopedSlots)"
-            :slot="slot">
+            :slot="slot"
+            slot-scope="scope"
+          >
             <slot
               :name="slot"
-              v-bind="scope"/>
+              v-bind="scope"
+            />
           </template>
-
-        </nestable-item>
-
+        </NestableItem>
       </template>
     </ol>
   </li>

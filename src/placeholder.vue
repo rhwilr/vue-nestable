@@ -2,8 +2,9 @@
   <li>
     <div
       class="nestable-list-empty"
-      @mouseenter="onMouseEnter">
-      <slot/>
+      @mouseenter="onMouseEnter"
+    >
+      <slot />
     </div>
   </li>
 </template>

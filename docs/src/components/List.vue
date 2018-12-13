@@ -1,13 +1,11 @@
 <template>
-  <component-example link="List">
-
-    <vue-nestable v-model="nestableItems">
+  <ComponentExample link="List">
+    <VueNestable v-model="nestableItems">
       <span slot-scope="{ item }">
         {{ item.text }}
       </span>
-    </vue-nestable>
-
-  </component-example>
+    </VueNestable>
+  </ComponentExample>
 </template>
 
 <script>

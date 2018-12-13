@@ -1,16 +1,15 @@
 <template>
-  <component-example link="Simple">
-
-    <vue-nestable v-model="nestableItems">
-      <vue-nestable-handle
+  <ComponentExample link="Simple">
+    <VueNestable v-model="nestableItems">
+      <VueNestableHandle
         slot-scope="{ item }"
-        :item="item">
-        <i class="fas fa-user"/>
+        :item="item"
+      >
+        <i class="fas fa-user" />
         {{ item.text }}
-      </vue-nestable-handle>
-    </vue-nestable>
-
-  </component-example>
+      </VueNestableHandle>
+    </VueNestable>
+  </ComponentExample>
 </template>
 
 <script>

@@ -1,25 +1,23 @@
 <template>
-  <component-example link="NoItems">
-
-    <vue-nestable
+  <ComponentExample link="NoItems">
+    <VueNestable
       v-model="nestableItems1"
       cross-list
-      group="cross">
-
+      group="cross"
+    >
       <div slot="placeholder">
         <b>This list is empty</b>
         <p>You can add items by dragging them here from the list above.</p>
       </div>
 
-      <vue-nestable-handle
+      <VueNestableHandle
         slot-scope="{ item }"
-        :item="item">
+        :item="item"
+      >
         {{ item.text }}
-      </vue-nestable-handle>
-
-    </vue-nestable>
-
-  </component-example>
+      </VueNestableHandle>
+    </VueNestable>
+  </ComponentExample>
 </template>
 
 <script>

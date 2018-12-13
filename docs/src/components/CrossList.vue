@@ -1,36 +1,36 @@
 <template>
-  <component-example link="CrossList">
+  <ComponentExample link="CrossList">
     <div class="side-by-side">
       <div class="side">
-
-        <vue-nestable
+        <VueNestable
           v-model="nestableItems1"
           cross-list
-          group="cross">
-          <vue-nestable-handle
+          group="cross"
+        >
+          <VueNestableHandle
             slot-scope="{ item }"
-            :item="item">
+            :item="item"
+          >
             {{ item.text }}
-          </vue-nestable-handle>
-        </vue-nestable>
-
+          </VueNestableHandle>
+        </VueNestable>
       </div>
       <div class="side">
-
-        <vue-nestable
+        <VueNestable
           v-model="nestableItems2"
           cross-list
-          group="cross">
-          <vue-nestable-handle
+          group="cross"
+        >
+          <VueNestableHandle
             slot-scope="{ item }"
-            :item="item">
+            :item="item"
+          >
             {{ item.text }}
-          </vue-nestable-handle>
-        </vue-nestable>
-
+          </VueNestableHandle>
+        </VueNestable>
       </div>
     </div>
-  </component-example>
+  </ComponentExample>
 </template>
 
 <script>

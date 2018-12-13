@@ -2,65 +2,65 @@
   <div :class="['nestable', `nestable-${group}`]">
     <ol class="nestable-list nestable-group">
       <!-- No items in list -->
-      <placeholder
+      <Placeholder
         v-if="listIsEmpty"
-        :options="itemOptions">
-        <slot name="placeholder">No content</slot>
-      </placeholder>
+        :options="itemOptions"
+      >
+        <slot name="placeholder">
+          No content
+        </slot>
+      </Placeholder>
 
       <!-- Render items -->
       <template
-        v-for="(item, index) in value">
-
-        <nestable-item
+        v-for="(item, index) in value"
+      >
+        <NestableItem
           :key="index"
           :index="index"
           :item="item"
           :options="itemOptions"
         >
-
           <!-- bind scoped slots to the netable-item component -->
           <template
-            slot-scope="scope"
             v-for="slot in Object.keys($scopedSlots)"
-            :slot="slot">
+            :slot="slot"
+            slot-scope="scope"
+          >
             <slot
               :name="slot"
-              v-bind="scope"/>
+              v-bind="scope"
+            />
           </template>
-
-        </nestable-item>
-
+        </NestableItem>
       </template>
     </ol>
 
     <template v-if="dragItem">
-
       <div class="nestable-drag-layer">
         <ol
           :style="listStyles"
-          class="nestable-list">
-
-          <nestable-item
+          class="nestable-list"
+        >
+          <NestableItem
             :item="dragItem"
             :options="itemOptions"
             :is-copy="true"
           >
-
             <!-- bind scoped slots to the netable-item component -->
             <template
-              slot-scope="scope"
               v-for="slot in Object.keys($scopedSlots)"
-              :slot="slot">
+              :slot="slot"
+              slot-scope="scope"
+            >
               <slot
                 :name="slot"
-                v-bind="scope"/>
+                v-bind="scope"
+              />
             </template>
-
-          </nestable-item>
+          </NestableItem>
         </ol>
       </div>
-
     </template>
   </div>
 </template>

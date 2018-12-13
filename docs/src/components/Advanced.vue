@@ -1,23 +1,22 @@
 <template>
-  <component-example link="Advanced">
-
-    <vue-nestable
+  <ComponentExample link="Advanced">
+    <VueNestable
       v-model="nestableItems"
       :max-depth="2"
       key-prop="key"
-      children-prop="nested">
+      children-prop="nested"
+    >
       <template slot-scope="{ item }">
         <!-- Handler -->
-        <vue-nestable-handle :item="item">
-          <i class="fas fa-bars"/>
-        </vue-nestable-handle>
+        <VueNestableHandle :item="item">
+          <i class="fas fa-bars" />
+        </VueNestableHandle>
 
         <!-- Content -->
         <span>Item :: {{ item.text }}</span>
       </template>
-    </vue-nestable>
-
-  </component-example>
+    </VueNestable>
+  </ComponentExample>
 </template>
 
 <script>

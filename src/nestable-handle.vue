@@ -1,8 +1,9 @@
 <template>
   <span
     draggable
-    @dragstart="dragstart">
-    <slot/>
+    @dragstart="dragstart"
+  >
+    <slot />
   </span>
 </template>
 

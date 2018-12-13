@@ -1,15 +1,14 @@
 <template>
   <div class="component-example">
-
     <a
       :href="url"
       target="_blank"
-      class="source-code-link">
-      <i class="fas fa-code"/>
+      class="source-code-link"
+    >
+      <i class="fas fa-code" />
     </a>
 
-    <slot/>
-
+    <slot />
   </div>
 </template>
 
