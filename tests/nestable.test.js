@@ -1,15 +1,15 @@
 import { createLocalVue, mount } from '@vue/test-utils'
 import VueNestable from '../src/index'
-import VueNestableStub from './stubs/VueNestable.vue'
+import BasicStub from './stubs/Basic.vue'
 
 const localVue = createLocalVue()
 localVue.use(VueNestable)
 
 describe('vue-nestable', () => {
-  const wrapper = mount(VueNestableStub, { localVue })
+  const wrapper = mount(BasicStub, { localVue })
 
   it('renders the correct markup', () => {
-    expect(wrapper.contains(VueNestableStub)).toBe(true)
+    expect(wrapper.contains(BasicStub)).toBe(true)
 
     expect(wrapper.find(`.nestable`).exists()).toBe(true)
     expect(wrapper.find(`.nestable-item-content`).exists()).toBe(true)
