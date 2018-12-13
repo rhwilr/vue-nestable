@@ -6,12 +6,12 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development rollup -w -c ./docs/rollup.config.js",
     "build": "cross-env NODE_ENV=production rollup -c",
+    "deploy-docs": "cross-env NODE_ENV=production rollup -c ./docs/rollup.config.js; gh-pages -d docs/dist",
     "lint": "eslint --ext .js,.vue .",
     "pretest": "npm run lint",
     "fix": "eslint --ext .js,.vue . --fix",
     "test": "jest",
     "prepublish": "npm run build",
-    "deploy": "cross-env NODE_ENV=production rollup -c ./docs/rollup.config.js; gh-pages -d docs/dist",
     "postpublish": "npm run deploy"
   },
   "author": "Ralph Huwiler <ralph@huwiler.rocks>",
