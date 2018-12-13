@@ -1,5 +1,5 @@
 <template>
-  <component-example link="Advanced">
+  <component-example link="CrossList">
     <div class="side-by-side">
       <div class="side">
 
