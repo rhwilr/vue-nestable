@@ -200,6 +200,14 @@
       undefined
     );
 
+  function unwrapExports (x) {
+  	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x.default : x;
+  }
+
+  function createCommonjsModule(fn, module) {
+  	return module = { exports: {} }, fn(module, module.exports), module.exports;
+  }
+
   /**
    * Copyright (c) 2013-present, Facebook, Inc.
    *
@@ -241,236 +249,279 @@
 
   var browser = invariant;
 
-  var hasOwnProperty = Object.prototype.hasOwnProperty;
-  var splice = Array.prototype.splice;
-  var toString = Object.prototype.toString;
+  var immutabilityHelper = createCommonjsModule(function (module, exports) {
 
-  var type = function (obj) {
-    return toString.call(obj).slice(8, -1);
-  };
-
-  var assign = Object.assign ||
-  /* istanbul ignore next */
-  function assign(target, source) {
-    getAllKeys(source).forEach(function (key) {
-      if (hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
+    Object.defineProperty(exports, "__esModule", {
+      value: true
     });
-    return target;
-  };
+    var hasOwnProperty = Object.prototype.hasOwnProperty;
+    var splice = Array.prototype.splice;
+    var toString = Object.prototype.toString;
 
-  var getAllKeys = typeof Object.getOwnPropertySymbols === 'function' ? function (obj) {
-    return Object.keys(obj).concat(Object.getOwnPropertySymbols(obj));
-  } :
-  /* istanbul ignore next */
-  function (obj) {
-    return Object.keys(obj);
-  };
-  /* istanbul ignore next */
-
-  function copy(object) {
-    if (Array.isArray(object)) {
-      return assign(object.constructor(object.length), object);
-    } else if (type(object) === 'Map') {
-      return new Map(object);
-    } else if (type(object) === 'Set') {
-      return new Set(object);
-    } else if (object && typeof object === 'object') {
-      var prototype = Object.getPrototypeOf(object);
-      return assign(Object.create(prototype), object);
-    } else {
-      return object;
+    function type(obj) {
+      return toString.call(obj).slice(8, -1);
     }
-  }
 
-  function newContext() {
-    var commands = assign({}, defaultCommands);
-
-    update.extend = function (directive, fn) {
-      commands[directive] = fn;
+    var assign = Object.assign ||
+    /* istanbul ignore next */
+    function (target, source) {
+      getAllKeys(source).forEach(function (key) {
+        if (hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      });
+      return target;
     };
 
-    update.isEquals = function (a, b) {
-      return a === b;
+    var getAllKeys = typeof Object.getOwnPropertySymbols === 'function' ? function (obj) {
+      return Object.keys(obj).concat(Object.getOwnPropertySymbols(obj));
+    }
+    /* istanbul ignore next */
+    : function (obj) {
+      return Object.keys(obj);
     };
 
-    return update;
+    function copy(object) {
+      return Array.isArray(object) ? assign(object.constructor(object.length), object) : type(object) === 'Map' ? new Map(object) : type(object) === 'Set' ? new Set(object) : object && typeof object === 'object' ? assign(Object.create(Object.getPrototypeOf(object)), object)
+      /* istanbul ignore next */
+      : object;
+    }
 
-    function update(object, spec) {
-      if (typeof spec === 'function') {
-        spec = {
-          $apply: spec
+    var Context =
+    /** @class */
+    function () {
+      function Context() {
+        this.commands = assign({}, defaultCommands);
+        this.update = this.update.bind(this); // Deprecated: update.extend, update.isEquals and update.newContext
+
+        this.update.extend = this.extend = this.extend.bind(this);
+
+        this.update.isEquals = function (x, y) {
+          return x === y;
+        };
+
+        this.update.newContext = function () {
+          return new Context().update;
         };
       }
 
-      if (!(Array.isArray(object) && Array.isArray(spec))) {
-        browser(!Array.isArray(spec), 'update(): You provided an invalid spec to update(). The spec may ' + 'not contain an array except as the value of $set, $push, $unshift, ' + '$splice or any custom command allowing an array value.');
-      }
+      Object.defineProperty(Context.prototype, "isEquals", {
+        get: function () {
+          return this.update.isEquals;
+        },
+        set: function (value) {
+          this.update.isEquals = value;
+        },
+        enumerable: true,
+        configurable: true
+      });
 
-      browser(typeof spec === 'object' && spec !== null, 'update(): You provided an invalid spec to update(). The spec and ' + 'every included key path must be plain objects containing one of the ' + 'following commands: %s.', Object.keys(commands).join(', '));
-      var nextObject = object;
-      getAllKeys(spec).forEach(function (key) {
-        if (hasOwnProperty.call(commands, key)) {
-          var objectWasNextObject = object === nextObject;
-          nextObject = commands[key](spec[key], nextObject, spec, object);
+      Context.prototype.extend = function (directive, fn) {
+        this.commands[directive] = fn;
+      };
 
-          if (objectWasNextObject && update.isEquals(nextObject, object)) {
-            nextObject = object;
+      Context.prototype.update = function (object, $spec) {
+        var _this = this;
+
+        var spec = typeof $spec === 'function' ? {
+          $apply: $spec
+        } : $spec;
+
+        if (!(Array.isArray(object) && Array.isArray(spec))) {
+          browser(!Array.isArray(spec), 'update(): You provided an invalid spec to update(). The spec may ' + 'not contain an array except as the value of $set, $push, $unshift, ' + '$splice or any custom command allowing an array value.');
+        }
+
+        browser(typeof spec === 'object' && spec !== null, 'update(): You provided an invalid spec to update(). The spec and ' + 'every included key path must be plain objects containing one of the ' + 'following commands: %s.', Object.keys(this.commands).join(', '));
+        var nextObject = object;
+        getAllKeys(spec).forEach(function (key) {
+          if (hasOwnProperty.call(_this.commands, key)) {
+            var objectWasNextObject = object === nextObject;
+            nextObject = _this.commands[key](spec[key], nextObject, spec, object);
+
+            if (objectWasNextObject && _this.isEquals(nextObject, object)) {
+              nextObject = object;
+            }
+          } else {
+            var nextValueForKey = type(object) === 'Map' ? _this.update(object.get(key), spec[key]) : _this.update(object[key], spec[key]);
+            var nextObjectValue = type(nextObject) === 'Map' ? nextObject.get(key) : nextObject[key];
+
+            if (!_this.isEquals(nextValueForKey, nextObjectValue) || typeof nextValueForKey === 'undefined' && !hasOwnProperty.call(object, key)) {
+              if (nextObject === object) {
+                nextObject = copy(object);
+              }
+
+              if (type(nextObject) === 'Map') {
+                nextObject.set(key, nextValueForKey);
+              } else {
+                nextObject[key] = nextValueForKey;
+              }
+            }
           }
+        });
+        return nextObject;
+      };
+
+      return Context;
+    }();
+
+    exports.Context = Context;
+    var defaultCommands = {
+      $push: function (value, nextObject, spec) {
+        invariantPushAndUnshift(nextObject, spec, '$push');
+        return value.length ? nextObject.concat(value) : nextObject;
+      },
+      $unshift: function (value, nextObject, spec) {
+        invariantPushAndUnshift(nextObject, spec, '$unshift');
+        return value.length ? value.concat(nextObject) : nextObject;
+      },
+      $splice: function (value, nextObject, spec, originalObject) {
+        invariantSplices(nextObject, spec);
+        value.forEach(function (args) {
+          invariantSplice(args);
+
+          if (nextObject === originalObject && args.length) {
+            nextObject = copy(originalObject);
+          }
+
+          splice.apply(nextObject, args);
+        });
+        return nextObject;
+      },
+      $set: function (value, _nextObject, spec) {
+        invariantSet(spec);
+        return value;
+      },
+      $toggle: function (targets, nextObject) {
+        invariantSpecArray(targets, '$toggle');
+        var nextObjectCopy = targets.length ? copy(nextObject) : nextObject;
+        targets.forEach(function (target) {
+          nextObjectCopy[target] = !nextObject[target];
+        });
+        return nextObjectCopy;
+      },
+      $unset: function (value, nextObject, _spec, originalObject) {
+        invariantSpecArray(value, '$unset');
+        value.forEach(function (key) {
+          if (Object.hasOwnProperty.call(nextObject, key)) {
+            if (nextObject === originalObject) {
+              nextObject = copy(originalObject);
+            }
+
+            delete nextObject[key];
+          }
+        });
+        return nextObject;
+      },
+      $add: function (values, nextObject, _spec, originalObject) {
+        invariantMapOrSet(nextObject, '$add');
+        invariantSpecArray(values, '$add');
+
+        if (type(nextObject) === 'Map') {
+          values.forEach(function (_a) {
+            var key = _a[0],
+                value = _a[1];
+
+            if (nextObject === originalObject && nextObject.get(key) !== value) {
+              nextObject = copy(originalObject);
+            }
+
+            nextObject.set(key, value);
+          });
         } else {
-          var nextValueForKey = type(object) === 'Map' ? update(object.get(key), spec[key]) : update(object[key], spec[key]);
-          var nextObjectValue = type(nextObject) === 'Map' ? nextObject.get(key) : nextObject[key];
-
-          if (!update.isEquals(nextValueForKey, nextObjectValue) || typeof nextValueForKey === 'undefined' && !hasOwnProperty.call(object, key)) {
-            if (nextObject === object) {
-              nextObject = copy(object);
+          values.forEach(function (value) {
+            if (nextObject === originalObject && !nextObject.has(value)) {
+              nextObject = copy(originalObject);
             }
 
-            if (type(nextObject) === 'Map') {
-              nextObject.set(key, nextValueForKey);
-            } else {
-              nextObject[key] = nextValueForKey;
-            }
+            nextObject.add(value);
+          });
+        }
+
+        return nextObject;
+      },
+      $remove: function (value, nextObject, _spec, originalObject) {
+        invariantMapOrSet(nextObject, '$remove');
+        invariantSpecArray(value, '$remove');
+        value.forEach(function (key) {
+          if (nextObject === originalObject && nextObject.has(key)) {
+            nextObject = copy(originalObject);
           }
-        }
-      });
-      return nextObject;
-    }
-  }
 
-  var defaultCommands = {
-    $push: function (value, nextObject, spec) {
-      invariantPushAndUnshift(nextObject, spec, '$push');
-      return value.length ? nextObject.concat(value) : nextObject;
-    },
-    $unshift: function (value, nextObject, spec) {
-      invariantPushAndUnshift(nextObject, spec, '$unshift');
-      return value.length ? value.concat(nextObject) : nextObject;
-    },
-    $splice: function (value, nextObject, spec, originalObject) {
-      invariantSplices(nextObject, spec);
-      value.forEach(function (args) {
-        invariantSplice(args);
-        if (nextObject === originalObject && args.length) nextObject = copy(originalObject);
-        splice.apply(nextObject, args);
-      });
-      return nextObject;
-    },
-    $set: function (value, nextObject, spec) {
-      invariantSet(spec);
-      return value;
-    },
-    $toggle: function (targets, nextObject) {
-      invariantSpecArray(targets, '$toggle');
-      var nextObjectCopy = targets.length ? copy(nextObject) : nextObject;
-      targets.forEach(function (target) {
-        nextObjectCopy[target] = !nextObject[target];
-      });
-      return nextObjectCopy;
-    },
-    $unset: function (value, nextObject, spec, originalObject) {
-      invariantSpecArray(value, '$unset');
-      value.forEach(function (key) {
-        if (Object.hasOwnProperty.call(nextObject, key)) {
-          if (nextObject === originalObject) nextObject = copy(originalObject);
-          delete nextObject[key];
-        }
-      });
-      return nextObject;
-    },
-    $add: function (value, nextObject, spec, originalObject) {
-      invariantMapOrSet(nextObject, '$add');
-      invariantSpecArray(value, '$add');
+          nextObject.delete(key);
+        });
+        return nextObject;
+      },
+      $merge: function (value, nextObject, _spec, originalObject) {
+        invariantMerge(nextObject, value);
+        getAllKeys(value).forEach(function (key) {
+          if (value[key] !== nextObject[key]) {
+            if (nextObject === originalObject) {
+              nextObject = copy(originalObject);
+            }
 
-      if (type(nextObject) === 'Map') {
-        value.forEach(function (pair) {
-          var key = pair[0];
-          var value = pair[1];
-          if (nextObject === originalObject && nextObject.get(key) !== value) nextObject = copy(originalObject);
-          nextObject.set(key, value);
+            nextObject[key] = value[key];
+          }
         });
-      } else {
-        value.forEach(function (value) {
-          if (nextObject === originalObject && !nextObject.has(value)) nextObject = copy(originalObject);
-          nextObject.add(value);
-        });
+        return nextObject;
+      },
+      $apply: function (value, original) {
+        invariantApply(value);
+        return value(original);
       }
+    };
+    var defaultContext = new Context();
+    exports.isEquals = defaultContext.update.isEquals;
+    exports.extend = defaultContext.extend;
+    exports.default = defaultContext.update; // @ts-ignore
 
-      return nextObject;
-    },
-    $remove: function (value, nextObject, spec, originalObject) {
-      invariantMapOrSet(nextObject, '$remove');
-      invariantSpecArray(value, '$remove');
-      value.forEach(function (key) {
-        if (nextObject === originalObject && nextObject.has(key)) nextObject = copy(originalObject);
-        nextObject.delete(key);
-      });
-      return nextObject;
-    },
-    $merge: function (value, nextObject, spec, originalObject) {
-      invariantMerge(nextObject, value);
-      getAllKeys(value).forEach(function (key) {
-        if (value[key] !== nextObject[key]) {
-          if (nextObject === originalObject) nextObject = copy(originalObject);
-          nextObject[key] = value[key];
-        }
-      });
-      return nextObject;
-    },
-    $apply: function (value, original) {
-      invariantApply(value);
-      return value(original);
+    exports.default.default = module.exports = assign(exports.default, exports); // invariants
+
+    function invariantPushAndUnshift(value, spec, command) {
+      browser(Array.isArray(value), 'update(): expected target of %s to be an array; got %s.', command, value);
+      invariantSpecArray(spec[command], command);
     }
-  };
-  var contextForExport = newContext();
-  var immutabilityHelper = contextForExport;
-  var default_1 = contextForExport;
-  var newContext_1 = newContext; // invariants
 
-  function invariantPushAndUnshift(value, spec, command) {
-    browser(Array.isArray(value), 'update(): expected target of %s to be an array; got %s.', command, value);
-    invariantSpecArray(spec[command], command);
-  }
+    function invariantSpecArray(spec, command) {
+      browser(Array.isArray(spec), 'update(): expected spec of %s to be an array; got %s. ' + 'Did you forget to wrap your parameter in an array?', command, spec);
+    }
 
-  function invariantSpecArray(spec, command) {
-    browser(Array.isArray(spec), 'update(): expected spec of %s to be an array; got %s. ' + 'Did you forget to wrap your parameter in an array?', command, spec);
-  }
+    function invariantSplices(value, spec) {
+      browser(Array.isArray(value), 'Expected $splice target to be an array; got %s', value);
+      invariantSplice(spec.$splice);
+    }
 
-  function invariantSplices(value, spec) {
-    browser(Array.isArray(value), 'Expected $splice target to be an array; got %s', value);
-    invariantSplice(spec['$splice']);
-  }
+    function invariantSplice(value) {
+      browser(Array.isArray(value), 'update(): expected spec of $splice to be an array of arrays; got %s. ' + 'Did you forget to wrap your parameters in an array?', value);
+    }
 
-  function invariantSplice(value) {
-    browser(Array.isArray(value), 'update(): expected spec of $splice to be an array of arrays; got %s. ' + 'Did you forget to wrap your parameters in an array?', value);
-  }
+    function invariantApply(fn) {
+      browser(typeof fn === 'function', 'update(): expected spec of $apply to be a function; got %s.', fn);
+    }
 
-  function invariantApply(fn) {
-    browser(typeof fn === 'function', 'update(): expected spec of $apply to be a function; got %s.', fn);
-  }
+    function invariantSet(spec) {
+      browser(Object.keys(spec).length === 1, 'Cannot have more than one key in an object with $set');
+    }
 
-  function invariantSet(spec) {
-    browser(Object.keys(spec).length === 1, 'Cannot have more than one key in an object with $set');
-  }
+    function invariantMerge(target, specValue) {
+      browser(specValue && typeof specValue === 'object', 'update(): $merge expects a spec of type \'object\'; got %s', specValue);
+      browser(target && typeof target === 'object', 'update(): $merge expects a target of type \'object\'; got %s', target);
+    }
 
-  function invariantMerge(target, specValue) {
-    browser(specValue && typeof specValue === 'object', 'update(): $merge expects a spec of type \'object\'; got %s', specValue);
-    browser(target && typeof target === 'object', 'update(): $merge expects a target of type \'object\'; got %s', target);
-  }
-
-  function invariantMapOrSet(target, command) {
-    var typeOfTarget = type(target);
-    browser(typeOfTarget === 'Map' || typeOfTarget === 'Set', 'update(): %s expects a target of type Set or Map; got %s', command, typeOfTarget);
-  }
-  immutabilityHelper.default = default_1;
-  immutabilityHelper.newContext = newContext_1;
+    function invariantMapOrSet(target, command) {
+      var typeOfTarget = type(target);
+      browser(typeOfTarget === 'Map' || typeOfTarget === 'Set', 'update(): %s expects a target of type Set or Map; got %s', command, typeOfTarget);
+    }
+  });
+  var update = unwrapExports(immutabilityHelper);
+  var immutabilityHelper_1 = immutabilityHelper.Context;
+  var immutabilityHelper_2 = immutabilityHelper.isEquals;
+  var immutabilityHelper_3 = immutabilityHelper.extend;
 
   var closest=function(a,b){// closest(e.target, '.field')
   for(;a;){if(a.matches&&a.matches(b))return a;a=a.parentNode;}return null};var getOffsetRect=function(a){var b=Math.round,c=a.getBoundingClientRect(),d=document.body,e=document.documentElement,f=window.pageYOffset||e.scrollTop||d.scrollTop,g=window.pageXOffset||e.scrollLeft||d.scrollLeft,h=e.clientTop||d.clientTop||0,i=e.clientLeft||d.clientLeft||0,j=c.top+f-h,k=c.left+g-i;return {top:b(j),left:b(k)}};var getTotalScroll=function(a){for(var b=0,c=0;a=a.parentNode;)b+=a.scrollTop||0,c+=a.scrollLeft||0;return {top:b,left:c}};var getTransformProps=function(a,b){return {transform:"translate("+a+"px, "+b+"px)"}};var listWithChildren=function(a,b){return a.map(function(a){return _objectSpread({},a,_defineProperty({},b,a[b]?listWithChildren(a[b],b):[]))})};
 
   var script$2 = {components:{nestableItem:nestableItem,placeholder:placeholder},mixins:[nestableHelpers,groupsObserver],props:{value:{type:Array,required:!0,default:function a(){return []}},threshold:{type:Number,required:!1,default:30},maxDepth:{type:Number,required:!1,default:10},keyProp:{type:String,required:!1,default:"id"},group:{type:[String,Number],required:!1,default:function a(){return Math.random().toString(36).slice(2)}},childrenProp:{type:String,required:!1,default:"children"},collapsed:{type:Boolean,required:!1,default:!1}},provide:function a(){return {listId:this.listId,group:this.group}},data:function a(){return {itemsOld:null,// revert to copy in case of cancelling drag
-  dragItem:null,mouse:{last:{x:0},shift:{x:0}},el:null,elCopyStyles:null,isDirty:!1,collapsedGroups:[],listId:Math.random().toString(36).slice(2)}},computed:{listIsEmpty:function a(){return 0===this.value.length},itemOptions:function a(){return {dragItem:this.dragItem,keyProp:this.keyProp,childrenProp:this.childrenProp}},listStyles:function(){var a=document.querySelector(".nestable-"+this.group+" .nestable-item-"+this.dragItem[this.keyProp]),b={};return a&&(b.width="".concat(a.clientWidth,"px")),this.elCopyStyles&&(b=_objectSpread({},b,this.elCopyStyles)),b}},created:function b(){var a=listWithChildren(this.value,this.childrenProp);this.$emit("input",a),this.isDirty=!1,this.registerNestable(this);},beforeDestroy:function a(){this.stopTrackMouse();},methods:{startTrackMouse:function a(){document.addEventListener("mousemove",this.onMouseMove),document.addEventListener("mouseup",this.onDragEnd),document.addEventListener("keydown",this.onKeyDown);},stopTrackMouse:function a(){document.removeEventListener("mousemove",this.onMouseMove),document.removeEventListener("mouseup",this.onDragEnd),document.removeEventListener("keydown",this.onKeyDown),this.elCopyStyles=null;},onDragStart:function c(a,b){a&&(a.preventDefault(),a.stopPropagation()),this.el=closest(a.target,".nestable-item"),this.startTrackMouse(),this.dragItem=b,this.itemsOld=this.value,this.onMouseMove(a);},onDragEnd:function c(a,b){a&&a.preventDefault(),this.stopTrackMouse(),this.el=null,b?this.dragRevert():this.dragApply();},onKeyDown:function b(a){27===a.which&&this.onDragEnd(null,!0);},onMouseMove:function i(a){var b=Math.abs,c=a.clientX,d=a.clientY,e=getTransformProps(c,d),f=document.querySelector(".nestable-"+this.group+" .nestable-drag-layer > .nestable-list");if(!this.elCopyStyles){var g=getOffsetRect(this.el),h=getTotalScroll(this.el);this.elCopyStyles=_objectSpread({marginTop:"".concat(g.top-d-h.top,"px"),marginLeft:"".concat(g.left-c-h.left,"px")},e);}else{for(var j in this.elCopyStyles=_objectSpread({},this.elCopyStyles,e),e)e.hasOwnProperty(j)&&(f.style[j]=e[j]);var k=c-this.mouse.last.x;0<=k&&0<=this.mouse.shift.x||0>=k&&0>=this.mouse.shift.x?this.mouse.shift.x+=k:this.mouse.shift.x=0,this.mouse.last.x=c,b(this.mouse.shift.x)>this.threshold&&(0<this.mouse.shift.x?this.tryIncreaseDepth(this.dragItem):this.tryDecreaseDepth(this.dragItem),this.mouse.shift.x=0);}},moveItem:function i(a){var b=a.dragItem,c=a.pathFrom,d=a.pathTo,e=this.getRealNextPath(c,d),f=this.getSplicePath(c,{numToRemove:1,childrenProp:this.childrenProp}),g=this.getSplicePath(e,{numToRemove:0,itemsToInsert:[b],childrenProp:this.childrenProp}),h=this.value;h=immutabilityHelper(h,f),h=immutabilityHelper(h,g),this.isDirty=!0,this.$emit("input",h);},tryIncreaseDepth:function e(a){var b=this.getPathById(a[this.keyProp]),c=b[b.length-1],d=b.length+this.getItemDepth(a);// has previous sibling and isn't at max depth
+  dragItem:null,mouse:{last:{x:0},shift:{x:0}},el:null,elCopyStyles:null,isDirty:!1,collapsedGroups:[],listId:Math.random().toString(36).slice(2)}},computed:{listIsEmpty:function a(){return 0===this.value.length},itemOptions:function a(){return {dragItem:this.dragItem,keyProp:this.keyProp,childrenProp:this.childrenProp}},listStyles:function(){var a=document.querySelector(".nestable-"+this.group+" .nestable-item-"+this.dragItem[this.keyProp]),b={};return a&&(b.width="".concat(a.clientWidth,"px")),this.elCopyStyles&&(b=_objectSpread({},b,this.elCopyStyles)),b}},created:function b(){var a=listWithChildren(this.value,this.childrenProp);this.$emit("input",a),this.isDirty=!1,this.registerNestable(this);},beforeDestroy:function a(){this.stopTrackMouse();},methods:{startTrackMouse:function a(){document.addEventListener("mousemove",this.onMouseMove),document.addEventListener("mouseup",this.onDragEnd),document.addEventListener("keydown",this.onKeyDown);},stopTrackMouse:function a(){document.removeEventListener("mousemove",this.onMouseMove),document.removeEventListener("mouseup",this.onDragEnd),document.removeEventListener("keydown",this.onKeyDown),this.elCopyStyles=null;},onDragStart:function c(a,b){a&&(a.preventDefault(),a.stopPropagation()),this.el=closest(a.target,".nestable-item"),this.startTrackMouse(),this.dragItem=b,this.itemsOld=this.value,this.onMouseMove(a);},onDragEnd:function c(a,b){a&&a.preventDefault(),this.stopTrackMouse(),this.el=null,b?this.dragRevert():this.dragApply();},onKeyDown:function b(a){27===a.which&&this.onDragEnd(null,!0);},onMouseMove:function i(a){var b=Math.abs,c=a.clientX,d=a.clientY,e=getTransformProps(c,d),f=document.querySelector(".nestable-"+this.group+" .nestable-drag-layer > .nestable-list");if(!this.elCopyStyles){var g=getOffsetRect(this.el),h=getTotalScroll(this.el);this.elCopyStyles=_objectSpread({marginTop:"".concat(g.top-d-h.top,"px"),marginLeft:"".concat(g.left-c-h.left,"px")},e);}else{for(var j in this.elCopyStyles=_objectSpread({},this.elCopyStyles,e),e)e.hasOwnProperty(j)&&(f.style[j]=e[j]);var k=c-this.mouse.last.x;0<=k&&0<=this.mouse.shift.x||0>=k&&0>=this.mouse.shift.x?this.mouse.shift.x+=k:this.mouse.shift.x=0,this.mouse.last.x=c,b(this.mouse.shift.x)>this.threshold&&(0<this.mouse.shift.x?this.tryIncreaseDepth(this.dragItem):this.tryDecreaseDepth(this.dragItem),this.mouse.shift.x=0);}},moveItem:function i(a){var b=a.dragItem,c=a.pathFrom,d=a.pathTo,e=this.getRealNextPath(c,d),f=this.getSplicePath(c,{numToRemove:1,childrenProp:this.childrenProp}),g=this.getSplicePath(e,{numToRemove:0,itemsToInsert:[b],childrenProp:this.childrenProp}),h=this.value;h=update(h,f),h=update(h,g),this.isDirty=!0,this.$emit("input",h);},tryIncreaseDepth:function e(a){var b=this.getPathById(a[this.keyProp]),c=b[b.length-1],d=b.length+this.getItemDepth(a);// has previous sibling and isn't at max depth
   if(0<c&&d<=this.maxDepth){var f=this.getItemByPath(b.slice(0,-1).concat(c-1));// previous sibling is not collapsed
   if(f[this.childrenProp]&&(!f[this.childrenProp].length||!this.isCollapsed(f))){var g=b.slice(0,-1).concat(c-1).concat(f[this.childrenProp].length);// if collapsed by default
   // and was no children here
