@@ -1,8 +1,8 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (factory());
-}(this, (function () { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (factory((global.VueNestable = {})));
+}(this, (function (exports) { 'use strict';
 
   function _defineProperty(obj, key, value) {
     if (key in obj) {
@@ -69,7 +69,7 @@
               const __vue_script__ = script;
               
   /* template */
-  var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('li',{class:_vm.itemClasses},[_c('div',{staticClass:"nestable-item-name",on:{"mouseenter":_vm.onMouseEnter}},[_vm._t("default",null,{item:_vm.item})],2),_vm._v(" "),(_vm.hasChildren)?_c('ol',{staticClass:"nestable-list"},[_vm._l((_vm.item[_vm.options.childrenProp]),function(item,index){return [_c('nestable-item',{key:index,attrs:{"index":index,"item":item,"options":_vm.options,"is-copy":_vm.isCopy},scopedSlots:_vm._u([_vm._l((Object.keys(_vm.$scopedSlots)),function(slot){return {key:slot,fn:function(scope){return [_vm._t(slot,null,null,scope)]}}})])})]})],2):_vm._e()])};
+  var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('li',{class:_vm.itemClasses},[_c('div',{staticClass:"nestable-item-content",on:{"mouseenter":_vm.onMouseEnter}},[_vm._t("default",null,{item:_vm.item})],2),_vm._v(" "),(_vm.hasChildren)?_c('ol',{staticClass:"nestable-list"},[_vm._l((_vm.item[_vm.options.childrenProp]),function(item,index){return [_c('nestable-item',{key:index,attrs:{"index":index,"item":item,"options":_vm.options,"is-copy":_vm.isCopy},scopedSlots:_vm._u([_vm._l((Object.keys(_vm.$scopedSlots)),function(slot){return {key:slot,fn:function(scope){return [_vm._t(slot,null,null,scope)]}}})])})]})],2):_vm._e()])};
   var __vue_staticRenderFns__ = [];
 
     /* style */
@@ -616,6 +616,12 @@
       undefined
     );
 
-  module.exports={install:function b(a){a.component("vue-nestable",nestable),a.component("vue-nestable-handle",nestableHandle);}};
+  var index = {install:function b(a){a.component("vue-nestable",nestable),a.component("vue-nestable-handle",nestableHandle);}};
+
+  exports.Nestable = nestable;
+  exports.NestableHandle = nestableHandle;
+  exports.default = index;
+
+  Object.defineProperty(exports, '__esModule', { value: true });
 
 })));

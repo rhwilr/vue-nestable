@@ -13,8 +13,8 @@ import replace from 'rollup-plugin-replace'
 
 let plugins = [
   alias({
-    vue$: 'vue/dist/vue.common.js',
     '@': path.resolve('./docs/src/'),
+    'vue': 'node_modules/vue/dist/vue.common.js',
     resolve: ['.js', '.vue']
   }),
   postcss({
