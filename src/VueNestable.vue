@@ -66,10 +66,10 @@
 </template>
 
 <script type="text/babel">
-import nestableItem from './nestable-item.vue'
+import NestableItem from './NestableItem.vue'
+import Placeholder from './Placeholder.vue'
 import nestableHelpers from './nestable-helpers.js'
 import groupsObserver from './groups-observer.js'
-import placeholder from './placeholder.vue'
 import update from 'immutability-helper'
 
 import {
@@ -81,9 +81,11 @@ import {
 } from './utils.js'
 
 export default {
+  name: 'VueNestable',
+
   components: {
-    nestableItem,
-    placeholder
+    NestableItem,
+    Placeholder
   },
 
   mixins: [nestableHelpers, groupsObserver],

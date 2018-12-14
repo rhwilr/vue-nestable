@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-import nestable from '../../src/nestable.vue'
-import nestableHandle from '../../src/nestable-handle.vue'
+import VueNestable from '../../src/VueNestable.vue'
+import VueNestableHandle from '../../src/VueNestableHandle.vue'
 
-Vue.component('vue-nestable', nestable)
-Vue.component('vue-nestable-handle', nestableHandle)
+Vue.component('VueNestable', VueNestable)
+Vue.component('VueNestableHandle', VueNestableHandle)
 
 new Vue({
   render: h => h(App)

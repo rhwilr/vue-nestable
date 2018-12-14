@@ -13,7 +13,7 @@
 import groupsObserver from './groups-observer.js'
 
 export default {
-  name: 'NestableItem',
+  name: 'Placeholder',
 
   mixins: [groupsObserver],
 

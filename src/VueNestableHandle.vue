@@ -11,6 +11,8 @@
 import groupsObserver from './groups-observer.js'
 
 export default {
+  name: 'VueNestableHandle',
+
   mixins: [groupsObserver],
 
   props: {

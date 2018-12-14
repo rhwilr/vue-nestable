@@ -1,14 +1,14 @@
 import { mount } from '@vue/test-utils'
-import { Nestable } from '../src/index'
+import { VueNestable } from '../src/index'
 
 describe('vue-nestable', () => {
-  const wrapperDefault = mount(Nestable, {
+  const wrapperDefault = mount(VueNestable, {
     propsData: {
       value: []
     }
   })
 
-  const wrapper = mount(Nestable, {
+  const wrapper = mount(VueNestable, {
     propsData: {
       value: [{
         key: 0,

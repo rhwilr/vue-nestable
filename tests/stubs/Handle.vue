@@ -1,13 +1,14 @@
 <template>
   <VueNestable v-model="nestableItems">
-    <VueNestableHandle
-      slot-scope="{ item }"
-      :item="item"
-    >
-      Handle
-    </VueNestableHandle>
+    <template slot-scope="{ item }">
+      <!-- Handler -->
+      <VueNestableHandle :item="item">
+        ::
+      </VueNestableHandle>
 
-    {{ item.text }}
+      <!-- Content -->
+      <span>{{ item.text }}</span>
+    </template>
   </VueNestable>
 </template>
 
