@@ -12,7 +12,7 @@
     "fix": "eslint --ext .js,.vue . --fix",
     "test": "jest",
     "prepublish": "npm run build",
-    "postpublish": "npm run deploy"
+    "postpublish": "npm run deploy-docs"
   },
   "author": "Ralph Huwiler <ralph@huwiler.rocks>",
   "homepage": "https://rhwilr.github.io/vue-nestable/",
