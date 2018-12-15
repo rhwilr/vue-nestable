@@ -8,6 +8,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 
+## [1.0.0-beta.2] - 2018-12-15
+
+### Added
+ - You can now access the `index` of the item in the scoped-slot.
+ - The components `VueNestable` and `VueNestableHandle` are exposed as named exports.
+
+### Changed
+ - Renamed component names to PascalCase.
+
+
 ## [1.0.0-beta.1] - 2018-12-07
 
 ### Fixed
