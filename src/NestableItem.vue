@@ -4,7 +4,10 @@
       class="nestable-item-content"
       @mouseenter="onMouseEnter"
     >
-      <slot :item="item" />
+      <slot
+        :index="index"
+        :item="item"
+      />
     </div>
 
     <ol
@@ -16,7 +19,7 @@
       >
         <NestableItem
           :key="childIndex"
-          :index="index"
+          :index="childIndex"
           :item="child"
           :options="options"
           :is-copy="isCopy"

@@ -1,10 +1,10 @@
 <template>
   <VueNestable v-model="nestableItems">
     <VueNestableHandle
-      slot-scope="{ item }"
+      slot-scope="{ item, index }"
       :item="item"
     >
-      {{ item.text }}
+      {{ index }} - {{ item.text }}
     </VueNestableHandle>
   </VueNestable>
 </template>
