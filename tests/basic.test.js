@@ -33,19 +33,19 @@ describe('vue-nestable', () => {
   it('respects the order of the items', () => {
     let items = wrapper.findAll(`li.nestable-item span`)
 
-    expect(items.at(0).text()).toBe(`Andy`)
-    expect(items.at(1).text()).toBe(`Harry`)
-    expect(items.at(2).text()).toBe(`David`)
-    expect(items.at(3).text()).toBe(`Lisa`)
+    expect(items.at(0).text()).toContain(`Andy`)
+    expect(items.at(1).text()).toContain(`Harry`)
+    expect(items.at(2).text()).toContain(`David`)
+    expect(items.at(3).text()).toContain(`Lisa`)
   })
 
   it('ensures the item 2 is nested under item 1', () => {
     let parent = wrapper.findAll(`li.nestable-item`).at(1)
     let children = parent.find('ol.nestable-list')
 
-    expect(parent.find(`.nestable-item-content span`).text()).toBe(`Harry`)
+    expect(parent.find(`.nestable-item-content span`).text()).toContain(`Harry`)
 
     expect(children.exists()).toBe(true)
-    expect(children.find(`.nestable-item-content span`).text()).toBe(`David`)
+    expect(children.find(`.nestable-item-content span`).text()).toContain(`David`)
   })
 })
