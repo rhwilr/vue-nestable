@@ -1,8 +1,8 @@
 <template>
   <ComponentExample link="List">
     <VueNestable v-model="nestableItems">
-      <span slot-scope="{ item }">
-        {{ item.text }}
+      <span slot-scope="{ item, index }">
+        <small>[{{ index }}]</small> {{ item.text }}
       </span>
     </VueNestable>
   </ComponentExample>

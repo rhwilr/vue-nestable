@@ -123,9 +123,10 @@ take a look at the style used in the demo:
 | childrenProp | String           | 'children'    | Optional name of property with children.                                                                                                                                                                                        |
 
 ## Slots
-| Slot Name   | Description                                                                     |
-| :---------- | :------------------------------------------------------------------------------ |
-| placeholder | Lets you define a custom template that is used when no elements are in the list |
+| Slot Name   | Props       | Description                                                                                                   |
+| :---------- | :---------- | :------------------------------------------------------------------------------------------------------------ |
+| default     | item, index | This slot is used to render the items in the list, use the scoped-slot property `item` to render the element. |
+| placeholder |             | Lets you define a custom template that is used when no elements are in the list                               |
 
 
 ## Events
