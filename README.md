@@ -41,19 +41,32 @@ Drag & drop hierarchical list made as a vue component.
 
 ## Installation
 
-1. Install the plugin:
+Install the plugin:
 
 ```sh
 npm install --save vue-nestable
 ```
 
-2. Add the plugin into your app:
+Use the plugin in your app:
 
 ```js
 import Vue from 'vue'
 import VueNestable from 'vue-nestable'
 
 Vue.use(VueNestable)
+```
+
+You can also import the components on-demand, if you wish to do so:
+```js
+import { VueNestable, VueNestableHandle } from 'vue-nestable'
+
+export default {
+  components: {
+    VueNestable,
+    VueNestableHandle
+  }
+  ...
+}
 ```
 
 
