@@ -8,6 +8,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 
+## [1.0.0] - 2018-12-16
+
+:tada: I'm proud to announce that version 1.0 has landed. :tada: 
+
+No changes since the last beta release, but if you are upgrading from a 0.x
+release, please note that the polyfill for the 
+[experimental support](https://github.com/vuejs/vue/pull/7765) for binding 
+scopedSlots was removed. See 
+[Installation](https://github.com/rhwilr/vue-nestable#installation) for details 
+on how to import the component.
+
+
 ## [1.0.0-beta.2] - 2018-12-15
 
 ### Added
