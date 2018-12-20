@@ -37,7 +37,6 @@ export default {
       this.onDragEnd(event)
     },
     touchmove (event) {
-      let item = this.item || this.$parent.item
       this.notifyMouseMove(this.group, event)
     }
   }
