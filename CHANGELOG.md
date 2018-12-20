@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.1.0-beta.0] - 2018-12-20
 
 ### Added
-  - vue-nestable now supports toucheEvents to handle drag & drop on mobile device.
+  - vue-nestable now supports touch events to handle drag & drop on mobile device.
 
 
 ## [1.0.0] - 2018-12-16
