@@ -7,6 +7,7 @@ export default {
 
       storeGroup.onDragStartListeners.push(nestable.onDragStart)
       storeGroup.onMouseEnterListeners.push(nestable.onMouseEnter)
+      storeGroup.onMouseMoveListeners.push(nestable.onMouseMove)
     },
 
     notifyDragStart (group, event, item) {
@@ -25,6 +26,14 @@ export default {
       }
     },
 
+    notifyMouseMove (group, event) {
+      let storeGroup = this._getByGroup(group)
+
+      for (let listener of storeGroup.onMouseMoveListeners) {
+        listener(event)
+      }
+    },
+
     _getByGroup (group) {
       // the group already exists, return the reference
       if (store[group]) {
@@ -35,6 +44,7 @@ export default {
       store[group] = {
         onDragStartListeners: [],
         onMouseEnterListeners: [],
+        onMouseMoveListeners: [],
         onDragStart: [],
         dragItem: null
       }

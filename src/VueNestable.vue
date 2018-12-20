@@ -131,7 +131,8 @@ export default {
   provide () {
     return {
       listId: this.listId,
-      group: this.group
+      group: this.group,
+      onDragEnd: this.onDragEnd
     }
   },
 
@@ -198,12 +199,16 @@ export default {
     startTrackMouse () {
       document.addEventListener('mousemove', this.onMouseMove)
       document.addEventListener('mouseup', this.onDragEnd)
+      document.addEventListener('touchend', this.onDragEnd)
+      document.addEventListener('touchcancel', this.onDragEnd)
       document.addEventListener('keydown', this.onKeyDown)
     },
 
     stopTrackMouse () {
       document.removeEventListener('mousemove', this.onMouseMove)
       document.removeEventListener('mouseup', this.onDragEnd)
+      document.removeEventListener('touchend', this.onDragEnd)
+      document.removeEventListener('touchcancel', this.onDragEnd)
       document.removeEventListener('keydown', this.onKeyDown)
       this.elCopyStyles = null
     },
@@ -242,8 +247,32 @@ export default {
       }
     },
 
+    getXandYFromEvent (event) {
+      let { clientX, clientY } = event
+
+      // get touch event
+      const { targetTouches } = event
+
+      // if there is a touch event, use this
+      if (targetTouches) {
+        const touch = targetTouches[0]
+        clientX = touch.clientX
+        clientY = touch.clientY
+
+        // we rely on the mouseenter event to track if a node should be moved
+        // since this event does not exist, we need to simulate it.
+        const event = new Event('mouseenter')
+        const element = document.elementFromPoint(clientX, clientY)
+        const touchElement = element && (element.closest('.nestable-item-content') || element.closest('.nestable-list-empty'))
+        if (touchElement) touchElement.dispatchEvent(event)
+      }
+
+      return { clientX, clientY }
+    },
+
     onMouseMove (event) {
-      const { clientX, clientY } = event
+      let { clientX, clientY } = this.getXandYFromEvent(event)
+
       const transformProps = getTransformProps(clientX, clientY)
       const elCopy = document.querySelector('.nestable-' + this.group + ' .nestable-drag-layer > .nestable-list')
 

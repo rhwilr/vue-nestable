@@ -2,6 +2,9 @@
   <span
     draggable
     @dragstart="dragstart"
+    @touchstart="dragstart"
+    @touchend="touchend"
+    @touchmove="touchmove"
   >
     <slot />
   </span>
@@ -23,12 +26,19 @@ export default {
     }
   },
 
-  inject: ['group'],
+  inject: ['group', 'onDragEnd'],
 
   methods: {
     dragstart (event) {
       let item = this.item || this.$parent.item
       this.notifyDragStart(this.group, event, item)
+    },
+    touchend (event) {
+      this.onDragEnd(event)
+    },
+    touchmove (event) {
+      let item = this.item || this.$parent.item
+      this.notifyMouseMove(this.group, event)
     }
   }
 }
