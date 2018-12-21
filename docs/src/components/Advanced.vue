@@ -8,12 +8,14 @@
     >
       <template slot-scope="{ item }">
         <!-- Handler -->
-        <VueNestableHandle :item="item">
-          <i class="fas fa-bars" />
-        </VueNestableHandle>
+        <div class="wrapper">
+          <VueNestableHandle :item="item">
+            <i class="fas fa-bars" />
+          </VueNestableHandle>
 
-        <!-- Content -->
-        <span>Item :: {{ item.text }}</span>
+          <!-- Content -->
+          <span>Item :: {{ item.text }}</span>
+        </div>
       </template>
     </VueNestable>
   </ComponentExample>
