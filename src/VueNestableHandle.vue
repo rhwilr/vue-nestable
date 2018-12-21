@@ -1,5 +1,5 @@
 <template>
-  <span
+  <div
     draggable
     @dragstart="dragstart"
     @touchstart="dragstart"
@@ -7,7 +7,7 @@
     @touchmove="touchmove"
   >
     <slot />
-  </span>
+  </div>
 </template>
 
 <script type="text/babel">
