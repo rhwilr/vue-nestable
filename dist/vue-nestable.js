@@ -620,7 +620,7 @@
               const __vue_script__$3 = script$3;
               
   /* template */
-  var __vue_render__$3 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{attrs:{"draggable":""},on:{"dragstart":_vm.dragstart,"touchstart":_vm.dragstart,"touchend":_vm.touchend,"touchmove":_vm.touchmove}},[_vm._t("default")],2)};
+  var __vue_render__$3 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"draggable":""},on:{"dragstart":_vm.dragstart,"touchstart":_vm.dragstart,"touchend":_vm.touchend,"touchmove":_vm.touchmove}},[_vm._t("default")],2)};
   var __vue_staticRenderFns__$3 = [];
 
     /* style */
