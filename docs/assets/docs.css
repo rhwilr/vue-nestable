@@ -158,10 +158,3 @@ a {
 .nestable-list-empty {
   text-align: center;
 }
-
-.wrapper {
-  display: flex;
-}
-.wrapper span {
-  margin-left: 5px;
-}

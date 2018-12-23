@@ -5,6 +5,7 @@
     @touchstart="dragstart"
     @touchend="touchend"
     @touchmove="touchmove"
+    class="nestable-handle"
   >
     <slot />
   </div>
