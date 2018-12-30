@@ -115,6 +115,7 @@ a {
   padding: 1em;
   flex: 1;
   margin: 1em;
+  overflow: hidden;
 }
 .side-by-side {
   display: flex;
