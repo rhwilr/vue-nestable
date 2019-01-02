@@ -111,6 +111,11 @@ export default {
       required: false,
       default: 'id'
     },
+    classProp: {
+      type: String,
+      required: false,
+      default: null
+    },
     group: {
       type: [String, Number],
       required: false,
@@ -160,6 +165,7 @@ export default {
       return {
         dragItem: this.dragItem,
         keyProp: this.keyProp,
+        classProp: this.classProp,
         childrenProp: this.childrenProp
       }
     },

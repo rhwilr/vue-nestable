@@ -89,10 +89,14 @@ export default {
     },
 
     itemClasses () {
+      let isDragging = this.isDragging ? [ 'is-dragging'] : []
+      let classProp = this.item[this.options.classProp] || []
+
       return [
         `nestable-item${this.isCopy ? '-copy' : ''}`,
         `nestable-item${this.isCopy ? '-copy' : ''}-${this.item[this.options.keyProp]}`,
-        this.isDragging ? 'is-dragging' : ''
+        ...isDragging,
+        ...classProp
       ]
     }
   },
