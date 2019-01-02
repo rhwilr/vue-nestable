@@ -8,6 +8,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 
+## [1.1.0-beta.1] - 2018-12-20
+
+### Changed
+  - The vue-nestable-handle component now uses a div instead of a span to allow
+    for more flexible content. If you are useing the handle next to other
+    content, make sure to set `display: inline;` on `.nestable-handle`.
+    [#9](https://github.com/rhwilr/vue-nestable/pull/9) (by
+    [@Guntau](https://github.com/Guntau))
+
+
 ## [1.1.0-beta.0] - 2018-12-20
 
 ### Added

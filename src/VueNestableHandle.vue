@@ -1,13 +1,14 @@
 <template>
-  <span
+  <div
     draggable
     @dragstart="dragstart"
     @touchstart="dragstart"
     @touchend="touchend"
     @touchmove="touchmove"
+    class="nestable-handle"
   >
     <slot />
-  </span>
+  </div>
 </template>
 
 <script type="text/babel">

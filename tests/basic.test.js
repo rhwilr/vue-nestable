@@ -18,11 +18,11 @@ describe('vue-nestable', () => {
     expect(wrapper.find(`li.nestable-item`).exists()).toBe(true)
 
     expect(wrapper.find(`li.nestable-item .nestable-item-content`).exists()).toBe(true)
-    expect(wrapper.find(`li.nestable-item`).find(`span`).exists()).toBe(true)
+    expect(wrapper.find(`li.nestable-item`).find(`div`).exists()).toBe(true)
   })
 
   it('renderes all the items', () => {
-    expect(wrapper.findAll(`li.nestable-item span`).length).toBe(4)
+    expect(wrapper.findAll(`li.nestable-item  div div`).length).toBe(4)
 
     expect(wrapper.html()).toContain(`Andy`)
     expect(wrapper.html()).toContain(`Harry`)
@@ -31,7 +31,7 @@ describe('vue-nestable', () => {
   })
 
   it('respects the order of the items', () => {
-    let items = wrapper.findAll(`li.nestable-item span`)
+    let items = wrapper.findAll(`li.nestable-item div div`)
 
     expect(items.at(0).text()).toContain(`Andy`)
     expect(items.at(1).text()).toContain(`Harry`)
@@ -43,9 +43,9 @@ describe('vue-nestable', () => {
     let parent = wrapper.findAll(`li.nestable-item`).at(1)
     let children = parent.find('ol.nestable-list')
 
-    expect(parent.find(`.nestable-item-content span`).text()).toContain(`Harry`)
+    expect(parent.find(`.nestable-item-content div`).text()).toContain(`Harry`)
 
     expect(children.exists()).toBe(true)
-    expect(children.find(`.nestable-item-content span`).text()).toContain(`David`)
+    expect(children.find(`.nestable-item-content div`).text()).toContain(`David`)
   })
 })

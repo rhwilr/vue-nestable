@@ -9,7 +9,7 @@ describe('vue-nestable', () => {
   const wrapper = mount(BasicStub, { localVue })
 
   it('ensures the item and index is passed in a scoped slot', () => {
-    let items = wrapper.findAll(`li.nestable-item span`)
+    let items = wrapper.findAll(`li.nestable-item div div`)
 
     expect(items.at(0).text()).toBe(`0 - Andy`)
     expect(items.at(1).text()).toBe(`1 - Harry`)
