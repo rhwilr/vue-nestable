@@ -89,7 +89,7 @@ export default {
     },
 
     itemClasses () {
-      let isDragging = this.isDragging ? [ 'is-dragging'] : []
+      let isDragging = this.isDragging ? ['is-dragging'] : []
       let classProp = this.item[this.options.classProp] || []
 
       return [

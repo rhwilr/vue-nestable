@@ -1,11 +1,11 @@
 <template>
   <div
     draggable
+    class="nestable-handle"
     @dragstart="dragstart"
     @touchstart="dragstart"
     @touchend="touchend"
     @touchmove="touchmove"
-    class="nestable-handle"
   >
     <slot />
   </div>
