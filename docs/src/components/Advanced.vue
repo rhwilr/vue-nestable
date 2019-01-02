@@ -5,6 +5,7 @@
       :max-depth="2"
       key-prop="key"
       children-prop="nested"
+      class-prop="class"
     >
       <template slot-scope="{ item }">
         <!-- Handler -->
@@ -32,9 +33,11 @@ export default {
       nestableItems: [
         {
           key: 0,
+          class: 'purple-text-color',
           text: 'Andy'
         }, {
           key: 1,
+          class: 'blue-text-color',
           text: 'Harry',
           nested: [{
             key: 2,
@@ -42,6 +45,7 @@ export default {
           }]
         }, {
           key: 3,
+          class: 'red-text-color',
           text: 'Lisa'
         }
       ]
@@ -50,5 +54,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+.blue-text-color {
+  color: #415ad4;
+}
+.purple-text-color {
+  color: #b43ceb;
+}
+.red-text-color {
+  color: #e13a3a;
+}
 </style>
