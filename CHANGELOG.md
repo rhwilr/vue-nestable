@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 
+## [1.1.0-beta.2] - 2019-01-02
+
+### Added
+  - You can add custom classes to an item by setting `classProp` to the name of
+    the property that holds your class for each item.
+
+
 ## [1.1.0-beta.1] - 2018-12-20
 
 ### Changed
