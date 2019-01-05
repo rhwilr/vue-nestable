@@ -88,15 +88,30 @@ export default {
       return !!this.$scopedSlots.handler
     },
 
+    normalizedClassProp() {
+      let classProp = this.item[this.options.classProp]
+
+      // if the classprop is not set, return an empty array
+      if (!classProp) return []
+
+      if (Array.isArray(classProp)) {
+          return classProp
+      } else if (typeof a === "object") {
+          return [classProp]
+      } else {
+          // String value
+          return [classProp]
+      }
+    },
+
     itemClasses () {
       let isDragging = this.isDragging ? ['is-dragging'] : []
-      let classProp = this.item[this.options.classProp] || []
 
       return [
         `nestable-item${this.isCopy ? '-copy' : ''}`,
         `nestable-item${this.isCopy ? '-copy' : ''}-${this.item[this.options.keyProp]}`,
         ...isDragging,
-        ...classProp
+        ...this.normalizedClassProp
       ]
     }
   },
