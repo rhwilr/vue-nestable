@@ -4,6 +4,20 @@
   (factory((global.VueNestable = {})));
 }(this, (function (exports) { 'use strict';
 
+  function _typeof(obj) {
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+      _typeof = function (obj) {
+        return typeof obj;
+      };
+    } else {
+      _typeof = function (obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+      };
+    }
+
+    return _typeof(obj);
+  }
+
   function _defineProperty(obj, key, value) {
     if (key in obj) {
       Object.defineProperty(obj, key, {
@@ -62,7 +76,8 @@
   return store[a]?store[a]:(store[a]={onDragStartListeners:[],onMouseEnterListeners:[],onMouseMoveListeners:[],onDragStart:[],dragItem:null},store[a]);// otherwise create a new object for the group
   }}};
 
-  var script = {name:"NestableItem",mixins:[groupsObserver],props:{item:{type:Object,required:!0,default:function a(){return {}}},index:{type:Number,required:!1,default:null},isCopy:{type:Boolean,required:!1,default:!1},options:{type:Object,required:!0,default:function a(){return {}}}},inject:["listId","group"],computed:{isDragging:function b(){var a=this.options.dragItem;return !this.isCopy&&a&&a[this.options.keyProp]===this.item[this.options.keyProp]},hasChildren:function a(){return this.item[this.options.childrenProp]&&0<this.item[this.options.childrenProp].length},hasHandle:function a(){return !!this.$scopedSlots.handler},itemClasses:function c(){var a=this.isDragging?["is-dragging"]:[],b=this.item[this.options.classProp]||[];return ["nestable-item".concat(this.isCopy?"-copy":""),"nestable-item".concat(this.isCopy?"-copy":"","-").concat(this.item[this.options.keyProp])].concat(a,_toConsumableArray(b))}},methods:{onMouseEnter:function c(a){if(this.options.dragItem){var b=this.item||this.$parent.item;this.notifyMouseEnter(this.group,a,this.listId,b);}}}};
+  var script = {name:"NestableItem",mixins:[groupsObserver],props:{item:{type:Object,required:!0,default:function b(){return {}}},index:{type:Number,required:!1,default:null},isCopy:{type:Boolean,required:!1,default:!1},options:{type:Object,required:!0,default:function b(){return {}}}},inject:["listId","group"],computed:{isDragging:function c(){var b=this.options.dragItem;return !this.isCopy&&b&&b[this.options.keyProp]===this.item[this.options.keyProp]},hasChildren:function b(){return this.item[this.options.childrenProp]&&0<this.item[this.options.childrenProp].length},hasHandle:function b(){return !!this.$scopedSlots.handler},normalizedClassProp:function c(){var b=this.item[this.options.classProp];// if the classprop is not set, return an empty array
+  return b?Array.isArray(b)?b:"object"===("undefined"==typeof a?"undefined":_typeof(a))?[b]:[b]:[]},itemClasses:function c(){var b=this.isDragging?["is-dragging"]:[];return ["nestable-item".concat(this.isCopy?"-copy":""),"nestable-item".concat(this.isCopy?"-copy":"","-").concat(this.item[this.options.keyProp])].concat(b,_toConsumableArray(this.normalizedClassProp))}},methods:{onMouseEnter:function d(b){if(this.options.dragItem){var c=this.item||this.$parent.item;this.notifyMouseEnter(this.group,b,this.listId,c);}}}};
 
   /* script */
               const __vue_script__ = script;

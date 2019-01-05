@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 
+## [1.1.0-beta.3] - 2019-01-05
+
+### Fixed
+  - When a string was passed to the class prop it was expanded to an array of
+    characters in the browser version of vue.
+
+
 ## [1.1.0-beta.2] - 2019-01-02
 
 ### Added
