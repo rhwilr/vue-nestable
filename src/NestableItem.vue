@@ -88,19 +88,19 @@ export default {
       return !!this.$scopedSlots.handler
     },
 
-    normalizedClassProp() {
+    normalizedClassProp () {
       let classProp = this.item[this.options.classProp]
 
       // if the classprop is not set, return an empty array
       if (!classProp) return []
 
       if (Array.isArray(classProp)) {
-          return classProp
-      } else if (typeof a === "object") {
-          return [classProp]
+        return classProp
+      } else if (typeof a === 'object') {
+        return [classProp]
       } else {
-          // String value
-          return [classProp]
+        // String value
+        return [classProp]
       }
     },
 
