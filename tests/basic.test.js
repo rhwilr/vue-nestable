@@ -48,4 +48,12 @@ describe('vue-nestable', () => {
     expect(children.exists()).toBe(true)
     expect(children.find(`.nestable-item-content div`).text()).toContain(`David`)
   })
+
+  it('adds a custom class to the nestable-item if defined', () => {
+    let items = wrapper.findAll(`li.nestable-item`)
+
+    expect(items.at(0).classes()).toEqual([`nestable-item`, `nestable-item-0`, `purple-text`])
+    expect(items.at(1).classes()).toEqual([`nestable-item`, `nestable-item-1`])
+    expect(items.at(3).classes()).toEqual([`nestable-item`, `nestable-item-3`, `purple-text`, `red-text`])
+  })
 })

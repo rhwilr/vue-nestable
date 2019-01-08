@@ -1,5 +1,8 @@
 <template>
-  <VueNestable v-model="nestableItems">
+  <VueNestable
+    v-model="nestableItems"
+    class-prop="class"
+  >
     <VueNestableHandle
       slot-scope="{ item, index }"
       :item="item"
@@ -16,6 +19,7 @@ export default {
       nestableItems: [
         {
           id: 0,
+          class: 'purple-text',
           text: 'Andy'
         }, {
           id: 1,
@@ -26,6 +30,7 @@ export default {
           }]
         }, {
           id: 3,
+          class: [ 'purple-text', 'red-text' ],
           text: 'Lisa'
         }
       ]

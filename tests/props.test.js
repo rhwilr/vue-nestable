@@ -18,7 +18,8 @@ describe('vue-nestable', () => {
       maxDepth: 2,
       keyProp: 'key',
       group: 'characters',
-      childrenProp: 'nested'
+      childrenProp: 'nested',
+      classProp: 'class'
     }
   })
 
@@ -53,5 +54,10 @@ describe('vue-nestable', () => {
   it('tests the childrenProp prop', () => {
     expect(wrapperDefault.props('childrenProp')).toBe('children')
     expect(wrapper.props('childrenProp')).toBe('nested')
+  })
+
+  it('tests the classProp prop', () => {
+    expect(wrapperDefault.props('classProp')).toBe(null)
+    expect(wrapper.props('classProp')).toBe('class')
   })
 })
