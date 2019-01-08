@@ -1,4 +1,5 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
@@ -6,6 +7,28 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+
+
+## [2.0.0] - 2019-01-08
+
+Only a month after we hit version 1.0.0, we are already releasing version 2.0.0!
+So Yay... I guess? :smiley:
+
+But we release this new version not because we added many new features, but
+because we made a potential breaking change so you might have to make changes to
+your code. And since we follow semver: here is version 2.0.0.
+
+### Potential Breaking Change
+  - The vue-nestable-handle component now uses a div instead of a span as a
+    wrapper element to allow for more flexible content. If you are using the
+    handle next to other content, you might have to set `display: inline;` on
+    the `.nestable-handle` class.
+
+### Added
+  - support for touch events to handle drag & drop on mobile device.
+  - the option to add custom classes to an item by setting `classProp` to the
+    name of the property that holds your class for each item.
+
 
 
 ## [1.1.0-beta.3] - 2019-01-05
@@ -26,7 +49,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
   - The vue-nestable-handle component now uses a div instead of a span to allow
-    for more flexible content. If you are useing the handle next to other
+    for more flexible content. If you are using the handle next to other
     content, make sure to set `display: inline;` on `.nestable-handle`.
     [#9](https://github.com/rhwilr/vue-nestable/pull/9) (by
     [@Guntau](https://github.com/Guntau))
