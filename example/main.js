@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-
-import VueNestable from '../src/VueNestable.vue'
-import VueNestableHandle from '../src/VueNestableHandle.vue'
+import { VueNestable, VueNestableHandle } from '../src/index'
 
 Vue.component('VueNestable', VueNestable)
 Vue.component('VueNestableHandle', VueNestableHandle)

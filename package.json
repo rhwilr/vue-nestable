@@ -6,7 +6,7 @@
   "homepage": "https://rhwilr.github.io/vue-nestable/",
   "license": "MIT",
   "module": "dist/vue-nestable.es.js",
-  "main": "dist/vue-nestable.cjs.min.js",
+  "main": "dist/vue-nestable.cjs.js",
   "keywords": [
     "vue",
     "vue-nestable",
