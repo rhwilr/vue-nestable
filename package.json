@@ -20,9 +20,12 @@
     "build:lib": "rm -rf ./dist && bili src/index.js",
     "build:example": "rm -rf ./build && webpack --mode production --progress --hide-modules",
     "deploy-docs": "npm run build:example; gh-pages -d build",
+    "test": "jest",
+    "lint": "eslint --ext .js,.vue .",
+    "fix": "eslint --ext .js,.vue . --fix",
     "prepublish": "npm run build:lib",
     "postpublish": "npm run deploy-docs",
-    "test": "jest"
+    "pretest": "npm run lint"
   },
   "browserslist": [
     "> 1%",
@@ -42,6 +45,13 @@
     "babel-loader": "^8.0.5",
     "bili": "^3.4.2",
     "css-loader": "^2.1.0",
+    "eslint": "^5.12.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.15.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^5.1.0",
     "file-loader": "^3.0.1",
     "gh-pages": "^2.0.1",
     "html-webpack-plugin": "^3.2.0",

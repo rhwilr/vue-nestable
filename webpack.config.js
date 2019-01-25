@@ -1,12 +1,12 @@
 var path = require('path')
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   entry: './example/main.js',
   output: {
-    path: path.resolve(__dirname, './build'),
+    path: path.resolve(__dirname, './build')
   },
   resolve: {
     extensions: ['.js', '.json', '.vue']
@@ -28,7 +28,8 @@ module.exports = {
           'vue-style-loader',
           'css-loader'
         ]
-      },      {
+      },
+      {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
@@ -57,4 +58,4 @@ module.exports = {
       })
     ]
   }
-};
+}
