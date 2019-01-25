@@ -2,73 +2,56 @@
   "name": "vue-nestable",
   "version": "2.0.0",
   "description": "vue-nestable",
-  "main": "dist/vue-nestable.js",
-  "scripts": {
-    "dev": "cross-env NODE_ENV=development rollup -w -c ./docs/rollup.config.js",
-    "build": "cross-env NODE_ENV=production rollup -c",
-    "deploy-docs": "cross-env NODE_ENV=production rollup -c ./docs/rollup.config.js; gh-pages -d docs/dist",
-    "lint": "eslint --ext .js,.vue .",
-    "pretest": "npm run lint",
-    "fix": "eslint --ext .js,.vue . --fix",
-    "test": "jest",
-    "prepublish": "npm run build",
-    "postpublish": "npm run deploy-docs"
-  },
   "author": "Ralph Huwiler <ralph@huwiler.rocks>",
   "homepage": "https://rhwilr.github.io/vue-nestable/",
   "license": "MIT",
+  "module": "dist/vue-nestable.es.js",
+  "main": "dist/vue-nestable.cjs.min.js",
   "keywords": [
     "vue",
     "vue-nestable",
     "vue nestable",
     "vue tree"
   ],
-  "dependencies": {
-    "immutability-helper": "^2.9.0"
+  "scripts": {
+    "dev": "webpack-dev-server --mode development --open --hot",
+    "build:lib": "rm -rf ./dist && bili src/index.js",
+    "build:example": "rm -rf ./build && webpack --progress --hide-modules",
+    "deploy-docs": "npm run build:example; gh-pages -d build",
+    "prepublish": "npm run build:lib",
+    "postpublish": "npm run deploy-docs",
+    "test": "jest"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rhwilr/vue-nestable"
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie < 11"
+  ],
+  "dependencies": {
+    "immutability-helper": "^3.0.0",
+    "vue": "^2.5.22"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-env": "^7.3.1",
     "@vue/test-utils": "^1.0.0-beta.28",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^10.0.1",
-    "babel-jest": "^23.6.0",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-preset-minify": "^0.5.0",
-    "cross-env": "^5.2.0",
-    "eslint": "^5.12.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-friendly-formatter": "^4.0.1",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^8.0.1",
-    "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "eslint-plugin-vue": "^5.1.0",
-    "gh-pages": "^2.0.1",
-    "jest": "^23.6.0",
-    "postcss-cli": "^6.1.1",
-    "rollup": "^0.67.4",
-    "rollup-plugin-alias": "^1.5.1",
-    "rollup-plugin-babel": "^4.2.0",
-    "rollup-plugin-buble": "^0.19.6",
-    "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-json": "^3.1.0",
-    "rollup-plugin-livereload": "^0.6.0",
-    "rollup-plugin-node-globals": "^1.1.0",
-    "rollup-plugin-node-resolve": "^4.0.0",
-    "rollup-plugin-postcss": "^1.6.2",
-    "rollup-plugin-replace": "^2.1.0",
-    "rollup-plugin-serve": "^0.6.1",
-    "rollup-plugin-uglify": "^6.0.0",
-    "rollup-plugin-vue": "^4.3.2",
-    "vue": "2.5.17",
-    "vue-eslint-parser": "^4.0.3",
+    "babel-jest": "^24.0.0",
+    "babel-loader": "^8.0.5",
+    "bili": "^3.4.2",
+    "css-loader": "^2.1.0",
+    "file-loader": "^3.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.0.0",
+    "pre-commit": "^1.2.2",
+    "rollup-plugin-vue": "^4.6.1",
+    "uglifyjs-webpack-plugin": "^2.1.1",
     "vue-jest": "^3.0.2",
-    "vue-template-compiler": "2.5.17"
+    "vue-loader": "^15.6.1",
+    "vue-template-compiler": "^2.5.22",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -80,5 +63,8 @@
       ".*\\.(vue)$": "vue-jest",
       "^.+\\.js$": "babel-jest"
     }
-  }
+  },
+  "pre-commit": [
+    "test"
+  ]
 }
