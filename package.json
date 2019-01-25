@@ -16,7 +16,7 @@
   "scripts": {
     "dev": "webpack-dev-server --mode development --open --hot",
     "build:lib": "rm -rf ./dist && bili src/index.js",
-    "build:example": "rm -rf ./build && webpack --progress --hide-modules",
+    "build:example": "rm -rf ./build && webpack --mode production --progress --hide-modules",
     "deploy-docs": "npm run build:example; gh-pages -d build",
     "prepublish": "npm run build:lib",
     "postpublish": "npm run deploy-docs",
@@ -29,7 +29,7 @@
   ],
   "dependencies": {
     "immutability-helper": "^3.0.0",
-    "vue": "^2.5.22"
+    "vue": "^2.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -41,6 +41,7 @@
     "bili": "^3.4.2",
     "css-loader": "^2.1.0",
     "file-loader": "^3.0.1",
+    "gh-pages": "^2.0.1",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.0.0",
     "pre-commit": "^1.2.2",
