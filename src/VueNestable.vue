@@ -297,9 +297,11 @@ export default {
           ...transformProps
         }
 
-        for (let key in transformProps) {
-          if (transformProps.hasOwnProperty(key)) {
-            elCopy.style[key] = transformProps[key]
+        if (elCopy) {
+          for (let key in transformProps) {
+            if (transformProps.hasOwnProperty(key)) {
+              elCopy.style[key] = transformProps[key]
+            }
           }
         }
 
@@ -348,6 +350,7 @@ export default {
       items = update(items, insertPath)
 
       this.isDirty = true
+      this.pathTo = pathTo
       this.$emit('input', items)
     },
 
@@ -461,8 +464,9 @@ export default {
     },
 
     dragApply () {
-      this.$emit('change', this.dragItem)
+      this.$emit('change', {dragItem: this.dragItem, pathTo: this.pathTo})
 
+      this.pathTo = null
       this.itemsOld = null
       this.dragItem = null
       this.isDirty = false
@@ -471,6 +475,7 @@ export default {
     dragRevert () {
       this.$emit('input', this.itemsOld)
 
+      this.pathTo = null
       this.itemsOld = null
       this.dragItem = null
       this.isDirty = false
