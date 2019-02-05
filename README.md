@@ -126,6 +126,7 @@ take a look at the style used in the demo:
 
 
 ## Props
+
 | Property     | Type                | Default       | Description                                                                                                                                                                                                                     |
 | :----------- | :------------------ | :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | value        | Array               | [ ]           | Array of objects to be used in the list. **Important:** Each item must have a unique key by which it can be identified. By default the key is assumed to be named `id` but you can change it by setting the `keyProp` property. |
@@ -137,6 +138,7 @@ take a look at the style used in the demo:
 | class        | String *(Optional)* | null          | Name of the property for classes to add to the item.                                                                                                                                                                               |
 
 ## Slots
+
 | Slot Name   | Props       | Description                                                                                                   |
 | :---------- | :---------- | :------------------------------------------------------------------------------------------------------------ |
 | default     | item, index | This slot is used to render the items in the list, use the scoped-slot property `item` to render the element. |
@@ -144,7 +146,9 @@ take a look at the style used in the demo:
 
 
 ## Events
-| Event | Parameters | Description                         |
-| :---- | :--------- | :---------------------------------- |
-| input | value      | triggered whenever the list changes |
+
+| Event  | Parameters         | Description                                                                                                                                            |
+| :----- | :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| input  | `value`            | triggered whenever the list changes                                                                                                                    |
+| change | `value`, `options` | triggered when the user dropped the item. `options` is passed as the second parameter in the event and contains the following properties: `{ pathTo }` |
 
