@@ -464,7 +464,7 @@ export default {
     },
 
     dragApply () {
-      this.$emit('change', {dragItem: this.dragItem, pathTo: this.pathTo})
+      this.$emit('change', this.dragItem, { pathTo: this.pathTo })
 
       this.pathTo = null
       this.itemsOld = null

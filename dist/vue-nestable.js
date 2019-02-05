@@ -570,7 +570,7 @@
   var g=this.getRealNextPath(e,f).length+(this.getItemDepth(d)-1);if(!(g>this.maxDepth)){// if collapsed by default
   // and move last (by count) child
   // remove parent node from list of open nodes
-  var h={};if(this.collapsed&&1<e.length){var j=this.getItemByPath(e.slice(0,-1));1===j[this.childrenProp].length&&(h=this.onToggleCollapse(j,!0));}this.moveItem({dragItem:d,pathFrom:e,pathTo:f},h);}}}},isCollapsed:function b(a){return !!(-1<this.collapsedGroups.indexOf(a[this.keyProp])^this.collapsed)},dragApply:function a(){this.$emit("change",{dragItem:this.dragItem,pathTo:this.pathTo}),this.pathTo=null,this.itemsOld=null,this.dragItem=null,this.isDirty=!1;},dragRevert:function a(){this.$emit("input",this.itemsOld),this.pathTo=null,this.itemsOld=null,this.dragItem=null,this.isDirty=!1;}}};
+  var h={};if(this.collapsed&&1<e.length){var j=this.getItemByPath(e.slice(0,-1));1===j[this.childrenProp].length&&(h=this.onToggleCollapse(j,!0));}this.moveItem({dragItem:d,pathFrom:e,pathTo:f},h);}}}},isCollapsed:function b(a){return !!(-1<this.collapsedGroups.indexOf(a[this.keyProp])^this.collapsed)},dragApply:function a(){this.$emit("change",this.dragItem,{pathTo:this.pathTo}),this.pathTo=null,this.itemsOld=null,this.dragItem=null,this.isDirty=!1;},dragRevert:function a(){this.$emit("input",this.itemsOld),this.pathTo=null,this.itemsOld=null,this.dragItem=null,this.isDirty=!1;}}};
 
   /* script */
               const __vue_script__$2 = script$2;
