@@ -6,7 +6,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [Unreleased]
+## [2.1.0] - 2019-02-05
+
+### Added
+  - You now get additional information in the change event about the item that
+    was moved. For now, we only set the `pathTo` attribute.
+    [#13](https://github.com/rhwilr/vue-nestable/pull/13) (by
+    [@iceflash](https://github.com/iceflash))
+
+### Changed
+  - Modernized the development environment. We now use Webpack to build
+    vue-nestable. In addition, we now export multiple builds: common-js, es,
+    iife, and umd. You can import a different build if you need to, but node and
+    webpack will automatically use what works best for your setup.
+
 
 
 ## [2.0.0] - 2019-01-08
