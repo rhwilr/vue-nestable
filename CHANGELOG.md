@@ -20,7 +20,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     iife, and umd. You can import a different build if you need to, but node and
     webpack will automatically use what works best for your setup.
 
-
+### Improved
+  - Dragging items that are not of equal size should now work better. Currently
+    this is only fixed on the desktop, on mobile the
+    [issue](https://github.com/rhwilr/vue-nestable/issues/15) still persists.
+   
 
 ## [2.0.0] - 2019-01-08
 
