@@ -75,7 +75,6 @@ import update from 'immutability-helper'
 import {
   closest,
   getOffsetRect,
-  getTotalScroll,
   getTransformProps,
   listWithChildren
 } from './utils.js'
@@ -284,11 +283,10 @@ export default {
 
       if (!this.elCopyStyles) {
         const offset = getOffsetRect(this.el)
-        const scroll = getTotalScroll(this.el)
 
         this.elCopyStyles = {
-          marginTop: `${offset.top - clientY - scroll.top}px`,
-          marginLeft: `${offset.left - clientX - scroll.left}px`,
+          marginTop: `${offset.top - clientY}px`,
+          marginLeft: `${offset.left - clientX}px`,
           ...transformProps
         }
       } else {
