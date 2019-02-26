@@ -1,10 +1,5 @@
 export const closest = (target, selector) => {
-  // closest(e.target, '.field')
-  while (target) {
-    if (target.matches && target.matches(selector)) return target
-    target = target.parentNode
-  }
-  return null
+  return target.closest(selector)
 }
 
 export const getOffsetRect = (elem) => {
