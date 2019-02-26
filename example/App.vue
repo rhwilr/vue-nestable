@@ -53,15 +53,15 @@
 <script>
 
 // import example components
-import List from '@/components/List.vue'
-import Simple from '@/components/Simple.vue'
-import Advanced from '@/components/Advanced.vue'
-import CrossList from '@/components/CrossList.vue'
-import NoItems from '@/components/NoItems.vue'
+import List from './components/List.vue'
+import Simple from './components/Simple.vue'
+import Advanced from './components/Advanced.vue'
+import CrossList from './components/CrossList.vue'
+import NoItems from './components/NoItems.vue'
 
 // import styles
-import('../assets/vue-nestable.css')
-import('../assets/docs.css')
+require('./assets/vue-nestable.css')
+require('./assets/examples.css')
 
 export default {
   name: 'App',

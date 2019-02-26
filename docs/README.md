@@ -1,3 +1,0 @@
-# examples
-
-> vue-nestable examples

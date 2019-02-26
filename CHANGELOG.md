@@ -5,8 +5,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.1.1] - 2019-02-13
 
-## [Unreleased]
+### Fixed
+  - The position for the ghost element is now calculated correctly when the list
+    is inside a scrollable container.
+    [#17](https://github.com/rhwilr/vue-nestable/issues/17)
+
+
+## [2.1.0] - 2019-02-05
+
+### Added
+  - You now get additional information in the change event about the item that
+    was moved. For now, we only set the `pathTo` attribute.
+    [#13](https://github.com/rhwilr/vue-nestable/pull/13) (by
+    [@iceflash](https://github.com/iceflash))
+
+### Changed
+  - Modernized the development environment. We now use Webpack to build
+    vue-nestable. In addition, we now export multiple builds: common-js, es,
+    iife, and umd. You can import a different build if you need to, but node and
+    webpack will automatically use what works best for your setup.
+
+### Improved
+  - Dragging items that are not of equal size should now work better. Currently
+    this is only fixed on the desktop, on mobile the
+    [issue](https://github.com/rhwilr/vue-nestable/issues/15) still persists.
 
 
 ## [2.0.0] - 2019-01-08
@@ -63,13 +87,13 @@ your code. And since we follow semver: here is version 2.0.0.
 
 ## [1.0.0] - 2018-12-16
 
-:tada: I'm proud to announce that version 1.0 has landed. :tada: 
+:tada: I'm proud to announce that version 1.0 has landed. :tada:
 
 No changes since the last beta release, but if you are upgrading from a 0.x
-release, please note that the polyfill for the 
-[experimental support](https://github.com/vuejs/vue/pull/7765) for binding 
-scopedSlots was removed. See 
-[Installation](https://github.com/rhwilr/vue-nestable#installation) for details 
+release, please note that the polyfill for the
+[experimental support](https://github.com/vuejs/vue/pull/7765) for binding
+scopedSlots was removed. See
+[Installation](https://github.com/rhwilr/vue-nestable#installation) for details
 on how to import the component.
 
 

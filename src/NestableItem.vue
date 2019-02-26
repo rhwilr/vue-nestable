@@ -3,6 +3,8 @@
     <div
       class="nestable-item-content"
       @mouseenter="onMouseEnter"
+      @mouseleave="onMouseLeave"
+      @mousemove="onMouseMove"
     >
       <slot
         :index="index"
@@ -74,6 +76,13 @@ export default {
 
   inject: ['listId', 'group'],
 
+  data () {
+    return {
+      breakPoint: null,
+      moveDown: false
+    }
+  },
+
   computed: {
     isDragging () {
       let dragItem = this.options.dragItem
@@ -120,6 +129,39 @@ export default {
     onMouseEnter (event) {
       if (!this.options.dragItem) return
 
+      // if we don't know the direction the mouse is moving,
+      // we can not calculate the offset at which we should trigger a swap
+      // we we fallback to the old behavior
+      if (!event.movementY) {
+        return this.sendNotification(event)
+      }
+
+      // when the mouse enters the item we save the size of this item
+      // is is to improve performance, so we do not recalculate the size on every move
+      this.moveDown = event.movementY > 0
+      this.breakPoint = event.srcElement.getBoundingClientRect().height / 2
+    },
+    onMouseLeave () {
+      this.breakPoint = null
+    },
+    onMouseMove (event) {
+      // if we are not in a drag operation, we can discard the input
+      if (!this.breakPoint) return
+
+      // calculate how much the mouse is away from the center
+      let delta = event.offsetY - this.breakPoint
+
+      // if we have not reached the breakpoint, we can abort here
+      if (this.moveDown && delta < this.breakPoint / 4) return
+      if (!this.moveDown && delta > -this.breakPoint / 4) return
+
+      this.sendNotification(event)
+    },
+    sendNotification (event) {
+      // reset the calculated breakpoint
+      this.breakPoint = null
+
+      // and trigger the enter event
       let item = this.item || this.$parent.item
       this.notifyMouseEnter(this.group, event, this.listId, item)
     }
