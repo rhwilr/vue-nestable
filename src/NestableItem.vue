@@ -9,6 +9,7 @@
       <slot
         :index="index"
         :item="item"
+        :isChild="isChild"
       />
     </div>
 
@@ -25,6 +26,7 @@
           :item="child"
           :options="options"
           :is-copy="isCopy"
+          is-child
         >
           <!-- bind scoped slots to the netable-item component -->
           <template
@@ -61,6 +63,11 @@ export default {
       type: Number,
       required: false,
       default: null
+    },
+    isChild: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     isCopy: {
       type: Boolean,

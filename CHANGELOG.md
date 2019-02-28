@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+
+
+## [2.2.0] - 2019-02-28
+
+### Added
+  - The default slot that renders the item now provides an `isChild` prop
+
 ### Changed
   - Small performance improvement when finding the closest parent of an element
 
