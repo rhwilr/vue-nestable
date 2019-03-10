@@ -75,7 +75,9 @@ export default {
 You only need two components: `vue-nestable` which renders the list and
 `vue-nestable-handle` which indicates the area the user can drag the item by.
 
-**Note:** Each item must have a unique `id` property.
+**Important Note:** Each item must have a unique `id` property and it must be a
+valid css class name. It can not contain a `:`, `,`, `.`, `;` or other special
+characters that are invalid in a css class name.
 
 ```html
 <template>
