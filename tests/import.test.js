@@ -20,7 +20,8 @@ describe('vue-nestable', () => {
       components: {
         VueNestable,
         VueNestableHandle
-      }
+      },
+      sync: true
     })
 
     expect(wrapper.contains(BasicStub)).toBe(true)
