@@ -13,7 +13,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
   - The `options` object in the `change` event now includes the `items` prop.
     The `item` prop gives access to the new list of all items that will be
-    returned once the `input` event is fired.
+    returned once the `input` event is fired. 
+    [#20](https://github.com/rhwilr/vue-nestable/pull/20) (by
+    [@notflip](https://github.com/notflip))
 
 
 ## [2.2.0] - 2019-02-28
