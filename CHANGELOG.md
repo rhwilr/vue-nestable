@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 
+## [2.3.0] - 2019-03-14
+
+### Added
+  - The `options` object in the `change` event now includes the `items` prop.
+    The `item` prop gives access to the new list of all items that will be
+    returned once the `input` event is fired.
+
 
 ## [2.2.0] - 2019-02-28
 

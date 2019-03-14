@@ -149,8 +149,8 @@ take a look at the style used in the demo:
 
 ## Events
 
-| Event  | Parameters         | Description                                                                                                                                            |
-| :----- | :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| input  | `value`            | triggered whenever the list changes                                                                                                                    |
-| change | `value`, `options` | triggered when the user dropped the item. `options` is passed as the second parameter in the event and contains the following properties: `{ pathTo }` |
+| Event  | Parameters         | Description                                                                                                                                                   |
+| :----- | :----------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| input  | `value`            | triggered whenever the list changes                                                                                                                           |
+| change | `value`, `options` | triggered when the user dropped the item. `options` is passed as the second parameter in the event and contains the following properties: `{ items, pathTo }` |
 
