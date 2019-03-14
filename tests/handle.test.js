@@ -5,7 +5,7 @@ import HandleStub from './stubs/Handle.vue'
 const localVue = createLocalVue()
 localVue.use(VueNestable)
 
-describe('vue-nestable', () => {
+describe('handle', () => {
   const wrapper = mount(HandleStub, { localVue })
 
   it('the handle is draggable', () => {

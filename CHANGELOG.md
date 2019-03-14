@@ -16,13 +16,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     [#22](https://github.com/rhwilr/vue-nestable/issues/22)
 
 
+## [2.3.1] - 2019-03-14
+
+### Fixed
+  - The `items` property in the `change` event is no longer undefined, but
+    actually contains the data that was promised.
+
+
 ## [2.3.0] - 2019-03-14
 
 ### Added
   - The `options` object in the `change` event now includes the `items` prop.
-    The `item` prop gives access to the new list of all items that will be
-    returned once the `input` event is fired.
-    [#20](https://github.com/rhwilr/vue-nestable/pull/20) (by
+    The `item` prop gives access to the new list of all items after the changes
+    were applied. [#20](https://github.com/rhwilr/vue-nestable/pull/20) (by
     [@notflip](https://github.com/notflip))
 
 

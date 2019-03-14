@@ -2,7 +2,7 @@ import { createLocalVue, mount } from '@vue/test-utils'
 import VueNestableInstall, { VueNestable, VueNestableHandle } from '../src/index'
 import BasicStub from './stubs/Basic.vue'
 
-describe('vue-nestable', () => {
+describe('import', () => {
   it('ensures vue-nestable can be imported globally', () => {
     const localVue = createLocalVue()
     localVue.use(VueNestableInstall)

@@ -5,7 +5,7 @@ import BasicStub from './stubs/Basic.vue'
 const localVue = createLocalVue()
 localVue.use(VueNestable)
 
-describe('vue-nestable', () => {
+describe('slots', () => {
   const wrapper = mount(BasicStub, { localVue })
 
   it('ensures the item and index is passed in a scoped slot', () => {
