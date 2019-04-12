@@ -8,12 +8,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 
+## [2.3.1] - 2019-04-12
+
+### Fixed
+  - In some cases, the `onMouseEnter` event would fire after the drag operation
+    was already completed. This would cause an unhandled exception.
+    [#22](https://github.com/rhwilr/vue-nestable/issues/22)
+
+
 ## [2.3.0] - 2019-03-14
 
 ### Added
   - The `options` object in the `change` event now includes the `items` prop.
     The `item` prop gives access to the new list of all items that will be
-    returned once the `input` event is fired. 
+    returned once the `input` event is fired.
     [#20](https://github.com/rhwilr/vue-nestable/pull/20) (by
     [@notflip](https://github.com/notflip))
 
