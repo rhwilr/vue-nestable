@@ -416,6 +416,11 @@ export default {
       }
 
       const dragItem = this.dragItem
+
+      // In some cases, this event fires after the drag operation was already
+      // completed, in which case we can ignore it
+      if (!dragItem) return
+
       // if the event does not have a valid item that belongs to this list, ignore it
       if (item !== null && dragItem[this.keyProp] === item[this.keyProp]) return
 
