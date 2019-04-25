@@ -1,0 +1,14 @@
+# Configuration for probot-stale - https://github.com/probot/stale
+daysUntilStale: 21
+daysUntilClose: 7
+staleLabel: stale
+exemptLabels:
+  - bug
+  - enhancement
+markComment: >
+  Thanks for your contribution to vue-nestable!
+  This issue has been automatically marked as stale because it has not had
+  recent activity. It will be closed if no further activity occurs.
+  If you would like this issue to remain open:
+   1. Verify that you can still reproduce the issue in the latest version of vue-nestable
+   1. Leave a comment with the steps to reproduce it
