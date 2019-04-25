@@ -35,8 +35,11 @@
       <p>Wrap your item in a <code>vue-nestable-handle</code> to allow it to be dragged.</p>
       <Simple />
 
-      <h1>Advanced list with custom drag handle</h1>
-      <p>You can customize how deeply items can be nested as well what the <code>id</code> prop is called.</p>
+      <h1>Advanced (Drag handle, Classes, and Hooks)</h1>
+      <p>
+        You can customize how deeply items can be nested as well what the <code>id</code> prop is called.<br>
+        In this example we also add custom css classes for each item, and added a hook that prevents one item from being nested.
+      </p>
       <Advanced />
 
       <h1>Draggable across different lists</h1>

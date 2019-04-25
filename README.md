@@ -32,6 +32,7 @@ Drag & drop hierarchical list made as a vue component.
   * [Props](#props)
   * [Slots](#slots)
   * [Events](#events)
+  * [Hooks](#hooks)
 
 
 ## Demo
@@ -129,17 +130,25 @@ take a look at the style used in the demo:
 
 ## Props
 
+The following props can be passed to the `<VueNestable>` Component:
+
 | Property     | Type                | Default       | Description                                                                                                                                                                                                                     |
 | :----------- | :------------------ | :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | value        | Array               | [ ]           | Array of objects to be used in the list. **Important:** Each item must have a unique key by which it can be identified. By default the key is assumed to be named `id` but you can change it by setting the `keyProp` property. |
 | threshold    | Number              | 30            | Amount of pixels by which the mouse must be move horizontally before increasing/decreasing level (nesting) of current element.                                                                                                  |
 | maxDepth     | Number              | 10            | Maximum available level of nesting. Setting this to 0 will prevent dragging altogether.                                                                                                                                         |
 | group        | String or Number    | random String | Different group numbers may be passed if you have more than one nestable component on a page and want some extra styles for portal instances.                                                                                   |
-| keyProp      | String *(Optional)* | 'id'          | Name of the property that uniquely identifies an item.                                                                                                                                                                                               |
-| childrenProp | String *(Optional)* | 'children'    | Name of the property that holds an array of children.                                                                                                                                                                                                 |
-| class        | String *(Optional)* | null          | Name of the property for classes to add to the item.                                                                                                                                                                               |
+| keyProp      | String *(Optional)* | 'id'          | Name of the property that uniquely identifies an item.                                                                                                                                                                          |
+| childrenProp | String *(Optional)* | 'children'    | Name of the property that holds an array of children.                                                                                                                                                                           |
+| class        | String *(Optional)* | null          | Name of the property for classes to add to the item.                                                                                                                                                                            |
+| hooks        | Object *(Optional)* | {}            | Allows you to register hooks that fire whenever vue-nestable performs some action                                                                                                                                               |
+
 
 ## Slots
+
+The `<VueNestable>` Component has two slots that can be used to render items and
+a placeholder. See [Example](example/components/NoItems.vue) for an example on
+how to use them.
 
 | Slot Name   | Props                | Description                                                                                                   |
 | :---------- | :------------------- | :------------------------------------------------------------------------------------------------------------ |
@@ -149,8 +158,24 @@ take a look at the style used in the demo:
 
 ## Events
 
+Events are triggered when an item was moved or when a drag operation was
+completed. When you use `v-model` to bind your data, the `@input` event will
+automatically be handled.
+
 | Event  | Parameters         | Description                                                                                                                                                   |
 | :----- | :----------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | input  | `value`            | triggered whenever the list changes                                                                                                                           |
 | change | `value`, `options` | triggered when the user dropped the item. `options` is passed as the second parameter in the event and contains the following properties: `{ items, pathTo }` |
 
+
+## Hooks
+
+Hooks allow you to get finer controll over which items can be moved or take
+action when a specific item is moved. Look
+[here](example/components/Advanced.vue) of an example on how to prevent one item
+from being moved.
+
+
+| Hook Name     | Parameters                   | Description                                                                                                   |
+| :------------ | :--------------------------- | :------------------------------------------------------------------------------------------------------------ |
+| beforeMove    | {dragItem, pathFrom, pathTo} | Fires when an item is about to be moved. Returning `false` will cancel that action.                           |
