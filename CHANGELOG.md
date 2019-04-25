@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 
+## [2.4.0] - 2019-04-25
+
+### Added
+  - You have now the option to pass hooks that get called when an item is moved.
+    This gives you greater flexibility and the option to prevent specific items
+    from being dragged.
+
+
 ## [2.3.2] - 2019-04-12
 
 ### Fixed
