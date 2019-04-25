@@ -150,10 +150,10 @@ The `<VueNestable>` Component has two slots that can be used to render items and
 a placeholder. See [Example](example/components/NoItems.vue) for an example on
 how to use them.
 
-| Slot Name   | Props                | Description                                                                                                   |
-| :---------- | :------------------- | :------------------------------------------------------------------------------------------------------------ |
-| default     | item, index, isChild | This slot is used to render the items in the list, use the scoped-slot property `item` to render the element. |
-| placeholder |                      | Lets you define a custom template that is used when no elements are in the list                               |
+| Slot Name   | Props                      | Description                                                                                                   |
+| :---------- | :------------------------- | :------------------------------------------------------------------------------------------------------------ |
+| default     | `item`, `index`, `isChild` | This slot is used to render the items in the list, use the scoped-slot property `item` to render the element. |
+| placeholder |                            | Lets you define a custom template that is used when no elements are in the list                               |
 
 
 ## Events
@@ -171,11 +171,21 @@ automatically be handled.
 ## Hooks
 
 Hooks allow you to get finer controll over which items can be moved or take
-action when a specific item is moved. Look
-[here](example/components/Advanced.vue) of an example on how to prevent one item
-from being moved.
+action when a specific item is moved.
+
+Hooks are passed as an Object to the `:hooks` prop. The object defines a key
+with the hook name and a function that will be called when the hook fires.
+
+```
+{
+  'beforeMove': this.myHookFunction
+}
+```
+
+Look [here](example/components/Advanced.vue) of an example on how to prevent one
+item from being moved.
 
 
-| Hook Name     | Parameters                   | Description                                                                                                   |
-| :------------ | :--------------------------- | :------------------------------------------------------------------------------------------------------------ |
-| beforeMove    | {dragItem, pathFrom, pathTo} | Fires when an item is about to be moved. Returning `false` will cancel that action.                           |
+| Hook Name     | Parameters                       | Description                                                                                  |
+| :------------ | :------------------------------- | :------------------------------------------------------------------------------------------- |
+| beforeMove    | `{ dragItem, pathFrom, pathTo }` | Fires when an item is about to be moved. Returning `false` will cancel that action.          |
