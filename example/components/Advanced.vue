@@ -3,6 +3,9 @@
     <VueNestable
       v-model="nestableItems"
       :max-depth="2"
+      :hooks="{
+        'beforeMove': beforeMove
+      }"
       key-prop="key"
       children-prop="nested"
       class-prop="class"
@@ -47,8 +50,23 @@ export default {
           key: 3,
           class: 'red-text-color',
           text: 'Lisa'
+        }, {
+          key: 4,
+          text: 'I can not be nested'
         }
       ]
+    }
+  },
+
+  methods: {
+    beforeMove ({ dragItem, pathFrom, pathTo }) {
+      // Item 4 can not be nested more than one level
+      if (dragItem.key === 4) {
+        return pathTo.length === 1
+      }
+
+      // All other items can be
+      return true
     }
   }
 }

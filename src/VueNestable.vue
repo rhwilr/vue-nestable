@@ -70,6 +70,7 @@ import NestableItem from './NestableItem.vue'
 import Placeholder from './Placeholder.vue'
 import nestableHelpers from './nestable-helpers.js'
 import groupsObserver from './groups-observer.js'
+import callsHooks from './calls-hooks.js'
 import update from 'immutability-helper'
 
 import {
@@ -87,7 +88,7 @@ export default {
     Placeholder
   },
 
-  mixins: [nestableHelpers, groupsObserver],
+  mixins: [nestableHelpers, groupsObserver, callsHooks],
 
   props: {
     value: {
@@ -129,6 +130,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    hooks: {
+      type: Object,
+      required: false,
+      default: () => ({})
     }
   },
 
@@ -341,6 +347,8 @@ export default {
         itemsToInsert: [dragItem],
         childrenProp: this.childrenProp
       })
+
+      if (!this.hook('beforeMove', { dragItem, pathFrom, pathTo: realPathTo })) return
 
       let items = this.value
 
