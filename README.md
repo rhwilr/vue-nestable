@@ -176,7 +176,7 @@ action when a specific item is moved.
 Hooks are passed as an Object to the `:hooks` prop. The object defines a key
 with the hook name and a function that will be called when the hook fires.
 
-```
+```js
 {
   'beforeMove': this.myHookFunction
 }
