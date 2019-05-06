@@ -284,6 +284,11 @@ export default {
     onMouseMove (event) {
       let { clientX, clientY } = this.getXandYFromEvent(event)
 
+      // initialize the initial mouse positoin on the first drag operation
+      if (this.mouse.last.x === 0) {
+        this.mouse.last.x = clientX
+      }
+
       const transformProps = getTransformProps(clientX, clientY)
       const elCopy = document.querySelector('.nestable-' + this.group + ' .nestable-drag-layer > .nestable-list')
 
