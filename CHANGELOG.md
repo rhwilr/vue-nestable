@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 
+## [2.4.1] - 2019-05-06
+
+### Fixed
+  - Fixed a issue that caused an items nesting level to be always increased on
+    the first interaction.
+    [#24](https://github.com/rhwilr/vue-nestable/issues/24)
+
+
 ## [2.4.0] - 2019-04-25
 
 ### Added
