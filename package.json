@@ -17,7 +17,7 @@
   ],
   "scripts": {
     "dev": "webpack-dev-server --mode development --open --hot",
-    "build:lib": "rm -rf ./dist && bili src/index.js",
+    "build:lib": "rm -rf ./dist && bili",
     "build:example": "rm -rf ./build && webpack --mode production --progress --hide-modules",
     "deploy-docs": "npm run build:example; gh-pages -d build",
     "test": "jest",

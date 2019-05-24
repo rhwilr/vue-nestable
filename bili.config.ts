@@ -3,6 +3,7 @@ import { Config } from 'bili'
 const config: Config = {
   banner: true,
   plugins: {
+    commonjs: true,
     vue: true
   },
   input: {
@@ -11,7 +12,7 @@ const config: Config = {
   output: {
     dir: 'dist',
     extractCSS: true,
-    format: ['es', 'iife-min', 'cjs', 'cjs-min', 'umd-min'],
+    format: ['esm', 'iife-min', 'cjs', 'cjs-min', 'umd-min'],
     moduleName: 'vueNestable',
   }
 }
