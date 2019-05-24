@@ -6,7 +6,7 @@
   "homepage": "https://rhwilr.github.io/vue-nestable/",
   "license": "MIT",
   "module": "dist/index.esm.js",
-  "main": "dist/index.min.js",
+  "main": "dist/index.umd.min.js",
   "unpkg": "dist/index.iife.min.js",
   "jsdelivr": "dist/index.iife.min.js",
   "keywords": [
