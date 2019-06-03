@@ -125,7 +125,7 @@ export default {
 By default, vue-nestable comes without any styling. Which means you can
 customize the appearance completely to your needs. However, if you want you can
 take a look at the style used in the demo:
-[docs/assets/vue-nestable.css](docs/assets/vue-nestable.css)
+[example/assets/vue-nestable.css](example/assets/vue-nestable.css)
 
 
 ## Props
