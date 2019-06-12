@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 
+## [2.4.3] - 2019-06-12
+
+This release updates many dependencies to the latest version.
+There are no new features or changes in this release.
+
+
 ## [2.4.2] - 2019-05-24
 
 There are no new features or changes in this release.
