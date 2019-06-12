@@ -44,7 +44,7 @@
     "babel-jest": "^24.7.1",
     "babel-loader": "^8.0.5",
     "bili": "^4.8.0",
-    "css-loader": "^2.1.1",
+    "css-loader": "^3.0.0",
     "eslint": "^5.16.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.17.2",
