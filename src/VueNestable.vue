@@ -283,7 +283,7 @@ export default {
 
     onMouseMove (event) {
       event && event.preventDefault()
-      
+
       let { clientX, clientY } = this.getXandYFromEvent(event)
 
       // initialize the initial mouse positoin on the first drag operation
