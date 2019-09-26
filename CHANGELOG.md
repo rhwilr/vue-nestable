@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+
+## [2.4.5] - 2019-09-26
+
+### Fixed
+  - Fixes a bug that caused the dragging item to be offset when the content was
+    in a scrollable container.
+    [#17](https://github.com/rhwilr/vue-nestable/issues/17)
+
+
 ## [2.4.4] - 2019-08-15
 
 This release updates many dependencies to the latest version.
