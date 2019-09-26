@@ -3,7 +3,7 @@ const store = {}
 export default {
   methods: {
     registerNestable (nestable) {
-      let storeGroup = this._getByGroup(nestable.group)
+      const storeGroup = this._getByGroup(nestable.group)
 
       storeGroup.onDragStartListeners.push(nestable.onDragStart)
       storeGroup.onMouseEnterListeners.push(nestable.onMouseEnter)
@@ -11,25 +11,25 @@ export default {
     },
 
     notifyDragStart (group, event, item) {
-      let storeGroup = this._getByGroup(group)
+      const storeGroup = this._getByGroup(group)
 
-      for (let listener of storeGroup.onDragStartListeners) {
+      for (const listener of storeGroup.onDragStartListeners) {
         listener(event, item)
       }
     },
 
     notifyMouseEnter (group, event, eventList, item) {
-      let storeGroup = this._getByGroup(group)
+      const storeGroup = this._getByGroup(group)
 
-      for (let listener of storeGroup.onMouseEnterListeners) {
+      for (const listener of storeGroup.onMouseEnterListeners) {
         listener(event, eventList, item)
       }
     },
 
     notifyMouseMove (group, event) {
-      let storeGroup = this._getByGroup(group)
+      const storeGroup = this._getByGroup(group)
 
-      for (let listener of storeGroup.onMouseMoveListeners) {
+      for (const listener of storeGroup.onMouseMoveListeners) {
         listener(event)
       }
     },

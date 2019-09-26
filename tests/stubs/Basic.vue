@@ -30,7 +30,7 @@ export default {
           }]
         }, {
           id: 3,
-          class: [ 'purple-text', 'red-text' ],
+          class: ['purple-text', 'red-text'],
           text: 'Lisa'
         }
       ]

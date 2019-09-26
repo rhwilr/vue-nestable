@@ -195,7 +195,7 @@ export default {
   },
 
   created () {
-    let items = listWithChildren(this.value, this.childrenProp)
+    const items = listWithChildren(this.value, this.childrenProp)
     this.$emit('input', items)
     this.isDirty = false
 
@@ -284,7 +284,7 @@ export default {
     onMouseMove (event) {
       event && event.preventDefault()
 
-      let { clientX, clientY } = this.getXandYFromEvent(event)
+      const { clientX, clientY } = this.getXandYFromEvent(event)
 
       // initialize the initial mouse positoin on the first drag operation
       if (this.mouse.last.x === 0) {
@@ -309,8 +309,8 @@ export default {
         }
 
         if (elCopy) {
-          for (let key in transformProps) {
-            if (transformProps.hasOwnProperty(key)) {
+          for (const key in transformProps) {
+            if (Object.prototype.hasOwnProperty.call(transformProps, key)) {
               elCopy.style[key] = transformProps[key]
             }
           }
@@ -407,7 +407,7 @@ export default {
 
         // is last (by order) item in array
         if (itemIndex + 1 === parent[this.childrenProp].length) {
-          let pathTo = pathFrom.slice(0, -1)
+          const pathTo = pathFrom.slice(0, -1)
           pathTo[pathTo.length - 1] += 1
 
           // if collapsed by default

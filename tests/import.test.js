@@ -11,8 +11,8 @@ describe('import', () => {
 
     expect(wrapper.contains(BasicStub)).toBe(true)
 
-    expect(wrapper.find(`.nestable`).exists()).toBe(true)
-    expect(wrapper.find(`.nestable-item-content`).exists()).toBe(true)
+    expect(wrapper.find('.nestable').exists()).toBe(true)
+    expect(wrapper.find('.nestable-item-content').exists()).toBe(true)
   })
 
   it('ensures the components can be imported on-demand', () => {

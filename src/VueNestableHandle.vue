@@ -31,7 +31,7 @@ export default {
 
   methods: {
     dragstart (event) {
-      let item = this.item || this.$parent.item
+      const item = this.item || this.$parent.item
       this.notifyDragStart(this.group, event, item)
     },
     touchend (event) {

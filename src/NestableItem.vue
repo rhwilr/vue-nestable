@@ -92,7 +92,7 @@ export default {
 
   computed: {
     isDragging () {
-      let dragItem = this.options.dragItem
+      const dragItem = this.options.dragItem
       return !this.isCopy && dragItem && dragItem[this.options.keyProp] === this.item[this.options.keyProp]
     },
 
@@ -105,7 +105,7 @@ export default {
     },
 
     normalizedClassProp () {
-      let classProp = this.item[this.options.classProp]
+      const classProp = this.item[this.options.classProp]
 
       // if the classprop is not set, return an empty array
       if (!classProp) return []
@@ -121,7 +121,7 @@ export default {
     },
 
     itemClasses () {
-      let isDragging = this.isDragging ? ['is-dragging'] : []
+      const isDragging = this.isDragging ? ['is-dragging'] : []
 
       return [
         `nestable-item${this.isCopy ? '-copy' : ''}`,
@@ -156,7 +156,7 @@ export default {
       if (!this.breakPoint) return
 
       // calculate how much the mouse is away from the center
-      let delta = event.offsetY - this.breakPoint
+      const delta = event.offsetY - this.breakPoint
 
       // if we have not reached the breakpoint, we can abort here
       if (this.moveDown && delta < this.breakPoint / 4) return
@@ -169,7 +169,7 @@ export default {
       this.breakPoint = null
 
       // and trigger the enter event
-      let item = this.item || this.$parent.item
+      const item = this.item || this.$parent.item
       this.notifyMouseEnter(this.group, event, this.listId, item)
     }
   }

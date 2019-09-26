@@ -34,7 +34,7 @@ export default {
 
   computed: {
     isDragging () {
-      let dragItem = this.options.dragItem
+      const dragItem = this.options.dragItem
       return dragItem
     }
   },
