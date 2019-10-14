@@ -142,6 +142,7 @@ The following props can be passed to the `<VueNestable>` Component:
 | childrenProp | String *(Optional)* | 'children'    | Name of the property that holds an array of children.                                                                                                                                                                           |
 | class        | String *(Optional)* | null          | Name of the property for classes to add to the item.                                                                                                                                                                            |
 | hooks        | Object *(Optional)* | {}            | Allows you to register hooks that fire whenever vue-nestable performs some action                                                                                                                                               |
+| rtl        | Boolean *(Optional)* | false            | Add rtl support to vue-nestable                                                                                                                                               |
 
 
 ## Slots
