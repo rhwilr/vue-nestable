@@ -71,8 +71,7 @@
   background-color: rgba(106, 127, 233, 0.274);
 }
 .nestable.rtl .nestable-drag-layer > .nestable-list {
-  left: auto;
-  right: 0;
+  padding: 0;
 }
 .nestable [draggable="true"] {
   cursor: move;
