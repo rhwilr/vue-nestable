@@ -16,7 +16,7 @@
         v-for="(item, index) in value"
       >
         <NestableItem
-          :key="index"
+          :key="item[keyProp]"
           :index="index"
           :item="item"
           :options="itemOptions"
