@@ -21,9 +21,9 @@
         v-for="(child, childIndex) in item[options.childrenProp]"
       >
         <NestableItem
-          :key="childIndex"
-          :index="childIndex"
+          :key="child[this.keyProp]"
           :item="child"
+          :index="childIndex"
           :options="options"
           :is-copy="isCopy"
           is-child
@@ -81,7 +81,7 @@ export default {
     }
   },
 
-  inject: ['listId', 'group'],
+  inject: ['listId', 'group', 'keyProp'],
 
   data () {
     return {

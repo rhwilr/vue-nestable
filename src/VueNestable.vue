@@ -142,6 +142,7 @@ export default {
     return {
       listId: this.listId,
       group: this.group,
+      keyProp: this.keyProp,
       onDragEnd: this.onDragEnd
     }
   },
