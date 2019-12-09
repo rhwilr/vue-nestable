@@ -21,7 +21,7 @@
         v-for="(child, childIndex) in item[options.childrenProp]"
       >
         <NestableItem
-          :key="child[this.keyProp]"
+          :key="child[keyProp]"
           :item="child"
           :index="childIndex"
           :options="options"
