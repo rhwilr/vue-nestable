@@ -35,6 +35,10 @@
       <p>Wrap your item in a <code>vue-nestable-handle</code> to allow it to be dragged.</p>
       <Simple />
 
+      <h1>Sort items by drag & drop (RTL)</h1>
+      <p>Wrap your item in a <code>vue-nestable-handle</code> to allow it to be dragged.</p>
+      <SimpleRtl />
+
       <h1>Advanced (Drag handle, Classes, and Hooks)</h1>
       <p>
         You can customize how deeply items can be nested as well what the <code>id</code> prop is called.<br>
@@ -58,6 +62,7 @@
 // import example components
 import List from './components/List.vue'
 import Simple from './components/Simple.vue'
+import SimpleRtl from './components/SimpleRtl.vue'
 import Advanced from './components/Advanced.vue'
 import CrossList from './components/CrossList.vue'
 import NoItems from './components/NoItems.vue'
@@ -72,6 +77,7 @@ export default {
   components: {
     List,
     Simple,
+    SimpleRtl,
     Advanced,
     CrossList,
     NoItems

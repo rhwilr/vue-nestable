@@ -1,5 +1,5 @@
 <template>
-  <div :class="['nestable', `nestable-${group}`]">
+  <div :class="['nestable', `nestable-${group}`, rtl ? 'rtl' : '']">
     <ol class="nestable-list nestable-group">
       <!-- No items in list -->
       <Placeholder
@@ -135,6 +135,11 @@ export default {
       type: Object,
       required: false,
       default: () => ({})
+    },
+    rtl: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
 
@@ -321,7 +326,7 @@ export default {
           }
         }
 
-        const diffX = clientX - this.mouse.last.x
+        const diffX = this.rtl ? this.mouse.last.x - clientX : clientX - this.mouse.last.x
         if (
           (diffX >= 0 && this.mouse.shift.x >= 0) ||
           (diffX <= 0 && this.mouse.shift.x <= 0)
