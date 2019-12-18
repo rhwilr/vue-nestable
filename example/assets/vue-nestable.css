@@ -4,7 +4,7 @@
 .nestable {
   position: relative;
 }
-.nestable.rtl {
+.nestable-rtl {
   direction: rtl;
 }
 .nestable .nestable-list {
@@ -12,7 +12,7 @@
   padding: 0 0 0 40px;
   list-style-type: none;
 }
-.nestable.rtl .nestable-list {
+.nestable-rtl .nestable-list {
   padding: 0 40px 0 0;
 }
 .nestable > .nestable-list {
@@ -59,7 +59,7 @@
   z-index: 100;
   pointer-events: none;
 }
-.nestable.rtl .nestable-drag-layer {
+.nestable-rtl .nestable-drag-layer {
   left: auto;
   right: 0;
 }
@@ -70,7 +70,7 @@
   padding: 0;
   background-color: rgba(106, 127, 233, 0.274);
 }
-.nestable.rtl .nestable-drag-layer > .nestable-list {
+.nestable-rtl .nestable-drag-layer > .nestable-list {
   padding: 0;
 }
 .nestable [draggable="true"] {

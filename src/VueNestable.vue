@@ -1,5 +1,5 @@
 <template>
-  <div :class="['nestable', `nestable-${group}`, rtl ? 'rtl' : '']">
+  <div :class="['nestable', `nestable-${group}`, rtl ? 'nestable-rtl' : '']">
     <ol class="nestable-list nestable-group">
       <!-- No items in list -->
       <Placeholder
