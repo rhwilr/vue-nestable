@@ -8,6 +8,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 
+## [2.5.0] - 2019-12-18
+
+### Added
+  - RTL support. Check out the example for details.
+    [#83](https://github.com/rhwilr/vue-nestable/pull/83) (by
+    [@RoOhi-E](https://github.com/RoOhi-E))
+
+### Fixed
+  - Using `keyprop` to render NestablItems in v-for.
+    [#85](https://github.com/rhwilr/vue-nestable/pull/85) (by
+    [@passi246](https://github.com/passi246))
+
+### Changed
+  - Upgraded dependencies.
+
+
 ## [2.4.5] - 2019-09-26
 
 ### Fixed
