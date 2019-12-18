@@ -35,10 +35,6 @@
       <p>Wrap your item in a <code>vue-nestable-handle</code> to allow it to be dragged.</p>
       <Simple />
 
-      <h1>Sort items by drag & drop (RTL)</h1>
-      <p>Wrap your item in a <code>vue-nestable-handle</code> to allow it to be dragged.</p>
-      <SimpleRtl />
-
       <h1>Advanced (Drag handle, Classes, and Hooks)</h1>
       <p>
         You can customize how deeply items can be nested as well what the <code>id</code> prop is called.<br>
@@ -53,6 +49,10 @@
       <h1>Customize the placeholder text</h1>
       <p>You can display a placeholder when there are no items in the list.</p>
       <NoItems />
+
+      <h1>RTL Support</h1>
+      <p>Add the <code>rtl</code> prop to support RTL languages.</p>
+      <SimpleRtl />
     </div>
   </div>
 </template>
