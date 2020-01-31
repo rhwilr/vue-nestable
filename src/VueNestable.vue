@@ -242,6 +242,12 @@ export default {
 
       this.dragItem = item
       this.itemsOld = this.value
+
+      // Trigger a mouseMove event to update the ghost item with the mouse
+      // position
+      this.$nextTick(() => {
+        this.onMouseMove(event)
+      })
     },
 
     onDragEnd (event, isCancel) {
