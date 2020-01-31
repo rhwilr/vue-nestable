@@ -17,13 +17,13 @@
   ],
   "scripts": {
     "dev": "webpack-dev-server --mode development --open --hot",
-    "build:lib": "rm -rf ./dist && bili",
+    "build": "rm -rf ./dist && bili",
     "build:example": "rm -rf ./build && webpack --mode production --progress --hide-modules",
     "deploy-docs": "npm run build:example; gh-pages -d build",
     "test": "jest",
     "lint": "eslint --ext .js,.vue .",
     "fix": "eslint --ext .js,.vue . --fix",
-    "prepublish": "npm run build:lib",
+    "prepublish": "npm run build",
     "postpublish": "npm run deploy-docs",
     "pretest": "npm run lint"
   },
