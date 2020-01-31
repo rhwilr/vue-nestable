@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.5.1] - 2020-01-31
+
+### Fixed
+  - When moving the mouse slowly, the ghost item would appear in the top left
+    corner until the next mousemove event triggerd. This is now fixed.
+    [#87](https://github.com/rhwilr/vue-nestable/issues/87)
+
+### Changed
+  - Upgraded dependencies.
+
 
 ## [2.5.0] - 2019-12-18
 
