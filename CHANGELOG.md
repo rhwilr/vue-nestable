@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+
+## [2.5.2] - 2020-02-28
+
+### Fixed
+  - Fixed a bug where under some conditions the `.nestable-drag-layer` element
+    would not render until the next frame, therefore calculating its size would
+    throw an error.
+
+
 ## [2.5.1] - 2020-01-31
 
 ### Fixed
