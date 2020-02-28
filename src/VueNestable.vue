@@ -306,6 +306,7 @@ export default {
       // In some cases the drag-layer might not be at the top left of the window,
       // we need to find, where it acually is, and incorperate the position into the calculation.
       const elDragLayer = document.querySelector('.nestable-' + this.group + ' .nestable-drag-layer')
+      if (!elDragLayer) return
       const { top: dragLayerTop, left: dragLayerLeft } = elDragLayer.getBoundingClientRect()
 
       const elCopy = document.querySelector('.nestable-' + this.group + ' .nestable-drag-layer > .nestable-list')
