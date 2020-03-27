@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 
+## [2.5.3] - 2020-03-27
+
+### Fixed
+  - Under some conditions, the wrong `pathTo` value would be passed to the 
+    `change` event.
+
+
 ## [2.5.2] - 2020-02-28
 
 ### Fixed
