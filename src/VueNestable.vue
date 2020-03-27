@@ -380,7 +380,7 @@ export default {
       items = update(items, insertPath)
 
       this.isDirty = true
-      this.pathTo = pathTo
+      this.pathTo = realPathTo
       this.$emit('input', items)
     },
 
