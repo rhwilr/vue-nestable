@@ -146,7 +146,9 @@ export default {
       // when the mouse enters the item we save the size of this item
       // is is to improve performance, so we do not recalculate the size on every move
       this.moveDown = event.movementY > 0
-      this.breakPoint = event.srcElement.getBoundingClientRect().height / 2
+
+      const target = event.target || event.srcElement;
+      this.breakPoint = target.getBoundingClientRect().height / 2
     },
     onMouseLeave () {
       this.breakPoint = null
