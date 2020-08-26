@@ -147,8 +147,7 @@ export default {
       // is is to improve performance, so we do not recalculate the size on every move
       this.moveDown = event.movementY > 0
 
-      const target = event.target || event.srcElement;
-      this.breakPoint = target.getBoundingClientRect().height / 2
+      this.breakPoint = event.target.getBoundingClientRect().height / 2
     },
     onMouseLeave () {
       this.breakPoint = null
