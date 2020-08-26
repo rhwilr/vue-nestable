@@ -8,10 +8,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 
+## [2.6.0] - 2020-08-26
+
+### Changed
+  - Replaces deprecated `Event.srcElement` with `Event.target`.
+    [#98](https://github.com/rhwilr/vue-nestable/pull/98) (by
+    [@punpunm](https://github.com/punpunm))
+  - Upgraded dependencies.
+
+
 ## [2.5.3] - 2020-03-27
 
 ### Fixed
-  - Under some conditions, the wrong `pathTo` value would be passed to the 
+  - Under some conditions, the wrong `pathTo` value would be passed to the
     `change` event.
 
 
