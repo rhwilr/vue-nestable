@@ -41,6 +41,13 @@
         <code>expandade</code> property is required for this feature. See the example for more information
       </p>
       <Collapsable />
+      
+      <h1>Add items ( via footer slot)</h1>
+      <p>
+        You can simply add more items on each node using the
+        <code>footer</code> <code>slot</code>
+      </p>
+      <AddItem />
 
       <h1>Advanced (Drag handle, Classes, and Hooks)</h1>
       <p>
@@ -74,6 +81,7 @@ import Advanced from './components/Advanced.vue'
 import CrossList from './components/CrossList.vue'
 import NoItems from './components/NoItems.vue'
 import Collapsable from './components/Collapsable'
+import AddItem from './components/AddItem'
 
 // import styles
 require('./assets/vue-nestable.css')
@@ -90,6 +98,7 @@ export default {
     CrossList,
     NoItems,
     Collapsable,
+    AddItem,
   }
 }
 </script>
