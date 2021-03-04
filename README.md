@@ -101,6 +101,7 @@ export default {
         {
           id: 0,
           text: 'Andy'
+          expanded: true, // required on each item if using the expandable option
         }, {
           id: 1,
           text: 'Harry',
@@ -155,6 +156,7 @@ how to use them.
 | :---------- | :------------------------- | :------------------------------------------------------------------------------------------------------------ |
 | default     | `item`, `index`, `isChild` | This slot is used to render the items in the list, use the scoped-slot property `item` to render the element. |
 | placeholder |                            | Lets you define a custom template that is used when no elements are in the list                               |
+| expandable-trigger | `expanded`                            | Lets you override the default expandable trigger                              |
 
 
 ## Events
