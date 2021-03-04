@@ -6,6 +6,15 @@
       @mouseleave="onMouseLeave"
       @mousemove="onMouseMove"
     >
+
+    <template v-if="options.expandable">
+      <a @click="toggleExpansion(item)" v-if="item.children && item.children.length > 0">
+        <slot name="expandable-trigger" :v-bind="item.expanded">
+            <i :class="`${item.expanded ? 'fas fa-caret-up' : 'fas fa-caret-down'}`"></i>
+        </slot>
+      </a>
+    </template>
+
       <slot
         :index="index"
         :item="item"
@@ -122,13 +131,23 @@ export default {
 
     itemClasses () {
       const isDragging = this.isDragging ? ['is-dragging'] : []
-
-      return [
+      let classes = [
         `nestable-item${this.isCopy ? '-copy' : ''}`,
         `nestable-item${this.isCopy ? '-copy' : ''}-${this.item[this.options.keyProp]}`,
         ...isDragging,
-        ...this.normalizedClassProp
-      ]
+        ...this.normalizedClassProp,
+        this.hasChildren ? 'has-children' : null,
+      ];
+
+      if (this.options.expandable) {
+        if (!this.item.hasOwnProperty('expanded')) {
+          console.error('Missing property: expanded (bool)');
+
+        }
+        classes.push(this.item.expanded ? 'is-active' : null);
+      }
+
+      return classes;
     }
   },
 
@@ -172,6 +191,10 @@ export default {
       // and trigger the enter event
       const item = this.item || this.$parent.item
       this.notifyMouseEnter(this.group, event, this.listId, item)
+    },
+
+    toggleExpansion(item) {
+      item.expanded = !item.expanded;
     }
   }
 }

@@ -79,3 +79,11 @@
 .nestable-handle {
   display: inline;
 }
+
+.expandable .has-children ol {
+  display: none;
+}
+
+.expandable .has-children.is-active > ol {
+  display: block;
+}
