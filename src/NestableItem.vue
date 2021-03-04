@@ -41,6 +41,9 @@
           </template>
         </NestableItem>
       </template>
+
+      <slot name="footer" v-bind="{ item, index }" />
+
     </ol>
   </li>
 </template>

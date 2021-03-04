@@ -155,6 +155,7 @@ how to use them.
 | :---------- | :------------------------- | :------------------------------------------------------------------------------------------------------------ |
 | default     | `item`, `index`, `isChild` | This slot is used to render the items in the list, use the scoped-slot property `item` to render the element. |
 | placeholder |                            | Lets you define a custom template that is used when no elements are in the list                               |
+| footer      | `item`, `index`            | This slot is used to renders in the bottom of the child `ol`. [Example/demo](example/components/AddItem.vue)                                                 |
 
 
 ## Events
