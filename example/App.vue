@@ -35,6 +35,13 @@
       <p>Wrap your item in a <code>vue-nestable-handle</code> to allow it to be dragged.</p>
       <Simple />
 
+      <h1>Add items ( via footer slot)</h1>
+      <p>
+        You can simply add more items on each node using the
+        <code>footer</code> <code>slot</code>
+      </p>
+      <AddItem />
+
       <h1>Advanced (Drag handle, Classes, and Hooks)</h1>
       <p>
         You can customize how deeply items can be nested as well what the <code>id</code> prop is called.<br>
@@ -66,6 +73,7 @@ import SimpleRtl from './components/SimpleRtl.vue'
 import Advanced from './components/Advanced.vue'
 import CrossList from './components/CrossList.vue'
 import NoItems from './components/NoItems.vue'
+import AddItem from './components/AddItem'
 
 // import styles
 require('./assets/vue-nestable.css')
@@ -80,7 +88,8 @@ export default {
     SimpleRtl,
     Advanced,
     CrossList,
-    NoItems
+    NoItems,
+    AddItem,
   }
 }
 </script>
