@@ -11,6 +11,11 @@ Drag & drop hierarchical list made as a vue component.
 [travis-image]: https://img.shields.io/travis/rhwilr/vue-nestable/master.svg?style=flat-square
 [travis-url]: https://travis-ci.org/rhwilr/vue-nestable
 
+
+> This package is currently only compatible with Vue 2. Vue 3 compatibility
+> may be added in the future, though there are currently no plans for it.
+
+
 <hr />
 
 
